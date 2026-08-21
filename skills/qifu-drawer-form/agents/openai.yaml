@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qifu Drawer Form"
+  short_description: "按命名组合生成奇富后台右侧抽屉新建/编辑/查看表单"
+  default_prompt: "使用 $qifu-drawer-form,根据业务字段选择已注册的抽屉组合名称,并在 Figma 中生成奇富后台抽屉表单。"
