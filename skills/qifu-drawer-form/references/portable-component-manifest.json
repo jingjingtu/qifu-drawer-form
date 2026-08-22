@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "mode": "PORTABLE_KIT",
+  "sourceLibraryName": "奇富科技中后台组件库 新",
+  "components": {
+    "drawerHeader": {
+      "name": "通知反馈 / Drawer / Header",
+      "required": true,
+      "variants": ["title 标题", "close 关闭按钮"]
+    },
+    "closeIcon": {
+      "name": "Icon/basic/close",
+      "required": true
+    },
+    "tag": {
+      "name": "Data Display / Tag / Tag",
+      "required": true,
+      "variants": ["light", "success", "medium", "square"]
+    },
+    "select": {
+      "name": "录入组件 / Select / Base",
+      "required": true,
+      "variants": ["Single", "LG", "Default"]
+    },
+    "tableShell": {
+      "name": "Data Display / Table / Shell-V2",
+      "required": true,
+      "variants": ["small 小 36px", "bordered 边框线", "selection off 隐藏"]
+    },
+    "headerCell": {
+      "name": "Data Display / Table / Header Cell-V2",
+      "required": true,
+      "variants": ["small 小 36px", "divider both", "showSort=false", "showFilter=false"]
+    },
+    "row": {
+      "name": "Data Display / Table / Row-V2",
+      "required": true,
+      "variants": ["small 小 36px", "divider both"]
+    },
+    "contentCell": {
+      "name": "Data Display / Table / Content Cell-V2",
+      "required": true,
+      "variants": ["small 小 36px", "divider both"]
+    },
+    "text": {
+      "name": "Data Display / Table / Cell Content / Text-V2",
+      "required": true,
+      "variants": ["contentFont 内容字号=14px"]
+    },
+    "pagination": {
+      "name": "Navigation / Pagination / Pagination-V2",
+      "required": true,
+      "variants": ["current=1", "pageSize=20"]
+    }
+  },
+  "textStyles": [
+    {"name": "Body/Regular", "required": true, "fontFamily": "PingFang SC", "fontSize": 14, "lineHeight": 22},
+    {"name": "标题/Medium", "required": true, "fontFamily": "PingFang SC", "fontSize": 16, "lineHeight": 24},
+    {"name": "标题/Small", "required": true, "fontFamily": "PingFang SC", "fontSize": 14, "lineHeight": 22}
+  ]
+}

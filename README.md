@@ -4,7 +4,7 @@
 
 本仓库延续 [qifu-list-page](https://github.com/BitPan666/qifu-list-page) 的提示词结构与交付方式，并增加数据详情抽屉 Golden Sample、内嵌表格、分页器、文本样式和结构 QA 规则。
 
-> 仓库公开发布只降低 Skill 获取门槛，不提供 Figma 文件或组件库权限。使用者仍需拥有目标文件编辑权限和组件库访问权限。
+> 仓库公开发布只降低 Skill 获取门槛，不会携带 Figma 登录状态、组件库权限或真实组件实例。默认使用 `REAL_COMPONENT_ONLY`；没有正式组件库权限时，请先准备 Portable Kit 并显式使用 `PORTABLE_KIT`。
 
 ## 效果预览
 
@@ -32,13 +32,16 @@
         ├── SKILL.md
         ├── VERSION
         ├── agents/openai.yaml
+        ├── scripts/validate_portable_manifest.py
         └── references/
             ├── component-map.md
             ├── drawer-compositions.md
             ├── field-control-map.md
             ├── golden-sample-data-detail-drawer.md
             ├── page-blueprint.md
-            └── platform-yushu.md
+            ├── platform-yushu.md
+            ├── portable-kit.md
+            └── portable-component-manifest.json
 ```
 
 ## 支持的抽屉组合
@@ -61,6 +64,28 @@
 - 跨文件生成时，目标文件能够使用组件库中已发布的组件。
 
 GitHub 只同步 Skill 文件，不会同步 Figma 登录状态、访问权限、Token 或个人凭证。
+
+## 组件来源模式
+
+| 模式 | 组件来源 | 缺失时行为 | 适用场景 |
+| --- | --- | --- | --- |
+| `REAL_COMPONENT_ONLY`（默认） | 当前文件已启用的正式 Figma Library | 立即停止，返回 `COMPONENT_LIBRARY_UNAVAILABLE` | 正式交付 |
+| `PORTABLE_KIT` | 当前文件内复制的本地组件 | 立即停止，返回 `PORTABLE_COMPONENT_MISSING` | 没有正式 Library 权限 |
+| `VISUAL_FALLBACK` | 页面级视觉降级 | 允许生成，但必须标记 `Fallback /` 并审计 | 只需要截图预览 |
+
+未显式指定模式时，Skill 不会因为导入失败而静默生成假组件。
+
+### Portable Kit 的准备与使用
+
+1. 从组件库源文件复制一份副本，命名为 `奇富科技中后台组件库 - Portable Kit`；
+2. 删除不需要分享的业务页面，保留组件集、Variants、嵌套组件、文字样式和变量；
+3. 允许协作者复制该文件到自己的 Draft；
+4. 最稳定的方式是在 Portable Kit 副本中直接生成业务页面；
+5. 如果要在已有业务文件中生成，先把 Portable Kit 的本地主组件复制到业务文件；
+6. 提示词中明确写 `componentMode: PORTABLE_KIT`；
+7. Skill 会按 `references/portable-component-manifest.json` 的精确名称检查本地组件，并验证 `INSTANCE.mainComponent`。
+
+Portable Kit 不依赖原始 Library 的 published key，也不会接收原组件库更新。完整规则见 [`references/portable-kit.md`](skills/qifu-drawer-form/references/portable-kit.md)。
 
 ## 使用方式一：直接打开仓库
 

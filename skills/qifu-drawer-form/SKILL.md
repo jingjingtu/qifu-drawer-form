@@ -18,6 +18,7 @@ description: 根据业务描述、字段清单、截图或线框,在 Figma 中�
 - [抽屉组合注册表](references/drawer-compositions.md):稳定组合名称、适用场景、组件结构和按名称调用规则。
 - 当抽屉包含“摘要信息 + 区块标题 + 筛选控件 + 内嵌表格/分页”时，完整读取[数据详情抽屉 Golden Sample](references/golden-sample-data-detail-drawer.md)，并使用 `Qifu Drawer Form / Data Detail with Table`。
 - 当 `platform=yushu` 或用户提到"毓数"时,完整读取[毓数平台导航基线](references/platform-yushu.md)。
+- 当用户指定 `PORTABLE_KIT` 或说明没有正式组件库权限时,完整读取[Portable Kit 模式](references/portable-kit.md)与[Portable 组件清单](references/portable-component-manifest.json)。
 - 组件名 / 节点 ID / 发布 Key 全部复用[组件映射](references/component-map.md),不在 `SKILL.md` 重复维护。
 
 任何 `use_figma` 调用前加载并遵循 `figma-use`;创建或更新完整抽屉时同时加载并遵循 `figma-generate-design`。若目标项目另有 `AGENTS.md` 或项目级 Figma 规则,先读取并以其为准。
@@ -28,6 +29,7 @@ description: 根据业务描述、字段清单、截图或线框,在 Figma 中�
 
 ```text
 drawerTitle      抽屉标题(动宾:新建 X / 编辑 X / 查看 X)
+componentMode    组件来源模式:REAL_COMPONENT_ONLY(默认) | PORTABLE_KIT | VISUAL_FALLBACK
 compositionName  抽屉组合的完整注册名称;未指定时按场景匹配,默认使用 Qifu Drawer Form / Sectioned Create
 platform         所属平台;当前默认基准为 yushu
 widthTier        480 / 640 / 680 / 840;普通表单默认 640，数据详情表格组合固定 680
@@ -64,6 +66,14 @@ embeddedTable    仅 Data Detail with Table 使用(可选)
 targetPage       Figma 目标 Page;默认与 qifu-list-page 相同,测试固定 Page `测试`(node 3497:651)
 ```
 
+组件来源模式必须显式区分:
+
+- `REAL_COMPONENT_ONLY`:使用已启用的正式 Figma Library 与发布组件。任一必需组件、变体、样式或 Slot 无法解析时,在写入业务画板前停止并返回 `COMPONENT_LIBRARY_UNAVAILABLE` 或 `COMPONENT_MISSING`;不得创建视觉降级图层。
+- `PORTABLE_KIT`:使用当前目标文件内已复制的本地组件。不得依赖原 Library 的 `publishedKey`;按[Portable 组件清单](references/portable-component-manifest.json)的精确名称查找本地 `COMPONENT` / `COMPONENT_SET`,创建后必须验证 `INSTANCE.mainComponent`。
+- `VISUAL_FALLBACK`:只有用户明确选择时才允许页面级降级。所有降级节点必须命名为 `Fallback / ...`,并在抽屉外生成 `Audit / Missing Components`;它们不是正式组件实例。
+
+未指定 `componentMode` 时一律使用 `REAL_COMPONENT_ONLY`,不能根据导入失败自动切换到 `VISUAL_FALLBACK`。
+
 仅在缺少的信息会改变抽屉主结构或带来高风险误导时提问。其余内容按常见后台表单场景补全,并在交付说明中列出假设。
 
 推荐用户按以下自然语言顺序描述;字段可省略:
@@ -93,9 +103,13 @@ targetPage       Figma 目标 Page;默认与 qifu-list-page 相同,测试固定 
 1. 确认目标 Figma 文件、页面和插入位置;不写到组件介绍页或业务 Page。
 2. 凡提示词包含"测试""效果验证""试生成"或"Skill 回归",必须复用 Page `测试`(node `3497:651`),规则与 qifu-list-page 完全一致。
 3. 检查同文件已有抽屉,优先复用其宽度档位、变量、文字样式和 Section 节奏。
-4. 按[组件映射](references/component-map.md)中的精确名称解析所需组件;节点 ID 失效时按名称重新发现。
-5. 同文件使用本地组件节点创建实例;跨文件使用发布键导入。
-6. 记录组件覆盖结果:`resolved`、`fallback`、`missing`。未完成盘点前不得开始写抽屉。
+4. 先执行组件来源预检:
+   - `REAL_COMPONENT_ONLY`:确认目标文件已启用奇富组件库,并逐项验证发布 Key 可导入;
+   - `PORTABLE_KIT`:读取[Portable 组件清单](references/portable-component-manifest.json),使用 `figma.getLocalComponentsAsync()` 按精确名称解析;
+   - `VISUAL_FALLBACK`:记录用户明确授权的视觉降级范围。
+5. 按[组件映射](references/component-map.md)中的精确名称解析所需组件;节点 ID 失效时按名称重新发现。
+6. 同文件使用本地组件节点创建实例;跨文件使用发布键导入。创建任何业务 Frame 前,确认必需组件的来源模式检查已通过。
+7. 记录组件覆盖结果:`resolved`、`fallback`、`missing`。未完成盘点前不得开始写抽屉。
 
 ### 3. 创建抽屉骨架
 
@@ -166,13 +180,16 @@ Drawer / <pageName> / Create / <compositionName>
 
 1. 优先使用现有组件的合法组合。
 2. 不修改组件库母版,不分离实例,不在业务抽屉中创建冒充正式库组件的母版。
-3. 使用页面级最小降级实现,节点命名为 `Fallback / <Capability>`。
-4. 在 Drawer 右侧创建 `Audit / Missing Components`,逐项写明:
+3. `REAL_COMPONENT_ONLY` 与 `PORTABLE_KIT` 模式下不得自动降级:
+   - `REAL_COMPONENT_ONLY` 返回 `COMPONENT_LIBRARY_UNAVAILABLE` / `COMPONENT_MISSING` 并停止写入;
+   - `PORTABLE_KIT` 返回 `PORTABLE_COMPONENT_MISSING` 并停止写入。
+4. 仅 `VISUAL_FALLBACK` 模式使用页面级最小降级实现,节点命名为 `Fallback / <Capability>`。
+5. 在允许降级的模式下,于 Drawer 右侧创建 `Audit / Missing Components`,逐项写明:
    - 需要的组件或能力;
    - 当前抽屉场景;
    - 当前降级方案;
    - 建议的组件属性与状态。
-5. 在交付信息中重复列出缺口,便于维护者补齐组件库。
+6. 在交付信息中重复列出缺口,便于维护者补齐组件库或 Portable Kit。
 
 ### 9. 验证
 
@@ -181,6 +198,7 @@ Drawer / <pageName> / Create / <compositionName>
 - **层级归属检查**:抽屉内所有 Input / Select / Radio / Checkbox / Textarea / Button / Tag 等真实组件 INSTANCE,都必须嵌套在 `Drawer / Header`、`Section / <name>`、`Drawer / Footer` 这三个容器之内;不允许出现在 Page 根级或抽屉 Frame 之外的"孤儿组件"。发现即归位到正确容器。
 - **重复节点检查**:抽屉 Frame 内不存在与已嵌实例位置、尺寸几乎一致的重复节点(常见于 AI 未清理旧实例);发现即删除,并计入 Audit / Missing Components。
 - 所有设计系统元素仍为 `INSTANCE`,且主组件名称正确。
+- `REAL_COMPONENT_ONLY` 下不得出现任何 `Fallback /` 节点;`PORTABLE_KIT` 下所有控件 INSTANCE 的 `mainComponent` 必须属于当前文件本地组件;`VISUAL_FALLBACK` 下必须存在对应审计。
 - `compositionName` 与注册表完全一致,且 Section 数、列模式、Footer 按钮组、默认状态符合该组合;没有出现未注册别名。
 - 抽屉宽度属于 `480 / 640 / 840` 三档。
 - Header 仅含 Title + CloseBtn,无面包屑/tabs;Title 使用动宾且与 `drawerTitle` 一致。
@@ -199,6 +217,7 @@ Drawer / <pageName> / Create / <compositionName>
 - 抽屉外层 Frame 不叠加自定义 padding;所有留白来自 page-blueprint 第 7 节的 10 项铁律。
 - `Data Detail with Table` 额外通过 Golden Sample QA：抽屉 680px；Body 内容卡片距抽屉四周 16px；卡片使用纵向 Auto Layout、上下 20px/左右 24px；区块标题使用 `标题/Small`，品牌色 3×12 rail 与标题 gap=5；标题后 Tag gap 绑定 `--qifu-size/8`；标题与正文 gap=16；Form label 左对齐且各控件左边缘对齐，默认 label-control gap=24。
 - `Data Detail with Table` 的页面级普通正文与 Form label 必须绑定组件库 `Body/Regular`（PingFang SC Regular 14/22）；禁止使用 `Body/Medium`、Bold 或手填字体属性。Header Title、Section Title、表头和链接仍保持各自语义样式，不得为了“统一”一并改成 Regular。
+- 字体预检必须在写入文字前完成;`PingFang SC Regular` 与 `Body/Regular` 不可用时,`REAL_COMPONENT_ONLY` / `PORTABLE_KIT` 直接返回 `STYLE_MISSING`,不得仅加载字体后继续使用 Figma 默认字体。
 - 表格正文必须由 `Data Display / Table / Cell Content / Text-V2` 的 `contentFont 内容字号=14px` 组件变体继承 `Body/Regular` 14/22；不得在 30 个页面实例上逐个覆盖。表头继续使用 Header Cell-V2 的 Semibold 层级。
 - 内嵌表格的 Table Shell-V2、Header Cell-V2、Row-V2、Content Cell-V2、Text-V2、Pagination-V2 必须全部为组件库真实实例；表格描边只包围表头与数据行，分页器位于描边外。
 - `Data Detail with Table` 的内容 Section 与 `Table Border / 四边完整` 统一使用 4px 圆角。Table Border 必须是单独 Frame：1px Inside 描边、`Clip content=true`；表头、数据行和列分割线放入其中，Pagination 不得成为该边框的可见内容。
@@ -216,6 +235,7 @@ Drawer / <pageName> / Create / <compositionName>
 - 不在同一抽屉堆叠多状态或混合控件高度。
 - 不把复杂看板、向导流、批量编辑硬塞进本 Skill。
 - 不宣称缺失组件已存在;明确区分正式实例与降级组合。
+- 不因发布 Key 导入失败而静默切换模式;模式只能由用户在 DrawerSpec 中显式指定。
 
 ## 已知限制
 
@@ -245,4 +265,5 @@ Drawer / <pageName> / Create / <compositionName>
 - Section 清单与字段总数;
 - 对输入描述做出的假设;
 - 组件缺口及建议补充项;
+- 组件来源模式与预检结果;
 - 视觉和结构验证结果。
