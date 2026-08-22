@@ -144,31 +144,9 @@ Footer：取消按钮【显示 / 隐藏】；主操作【确定 / 保存 / 关�
 
 未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。
 
-## 提示词示例一：标准分区新建抽屉
 
-```text
-使用 qifu-drawer-form Skill，并调用 @figma 插件，在【Figma 地址】的“测试”Page 生成“新建营销任务抽屉”。
 
-平台：毓数；操作类型：新建；业务对象：营销任务；抽屉标题：新建营销任务。
-
-抽屉组合：Qifu Drawer Form / Sectioned Create；宽度：640。
-
-分区一：基础信息
-- 任务名称，控件 Input，必填，默认值无，帮助文字“请输入便于识别的任务名称”
-- 任务类型，控件 Select，必填，默认值无
-- 生效时间，控件 DateRange，必填，默认值无
-
-分区二：触达规则
-- 目标客群，控件 Custom(AudienceSelector)，必填，默认值无
-- 触达渠道，控件 Checkbox.Group，必填，默认值“短信、企微”
-- 频控策略，控件 Select，非必填，默认值“每人每天最多 1 次”
-
-状态：Data。Footer 显示取消，主操作为“确定”，无危险操作。
-
-不要覆盖已有画板；完成后进行结构检查和截图检查。
-```
-
-## 提示词示例二：数据详情抽屉
+## 提示词示例一：数据详情抽屉
 
 ```text
 使用 qifu-drawer-form Skill，并调用 @figma 插件，在【https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/奇富科技中后台组件库-新?node-id=3932-405】的当前 Page 生成“数据详情抽屉”。
