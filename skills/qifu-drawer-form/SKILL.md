@@ -1,6 +1,6 @@
 ---
 name: qifu-drawer-form
-description: 根据业务描述、字段清单、截图或线框,在 Figma 中使用「奇富科技中后台组件库 新」的真实组件实例生成奇富后台右侧抽屉表单(新建/编辑/查看)。适用于按稳定名称调用 Simple Create / Sectioned Create / Advanced Create / Edit / Readonly / Data Detail with Table 六种组合，并完成 Header、Form Section、Footer 或摘要+筛选+内嵌表格结构；也用于审查组件缺口。不要用于复杂看板、向导流(Wizard)、带批量编辑的列表页或高度定制的工作台。
+description: 根据业务描述、字段清单、截图或线框,在 Figma 中使用「奇富科技中后台组件库 新」的真实组件实例生成奇富后台右侧抽屉表单(新建/编辑/查看)。适用于按稳定名称调用 Simple Create / Sectioned Create / Advanced Create / Edit / Readonly / Data Detail with Table 六种组合，并完成 Header、Form Section、Footer 或摘要+筛选+内嵌表格结构；也支持以已验证的智客星列表页为底图叠加蒙层与抽屉。不要用于复杂看板、向导流(Wizard)、带批量编辑的列表页或高度定制的工作台。
 ---
 
 # Qifu Drawer Form
@@ -16,8 +16,10 @@ description: 根据业务描述、字段清单、截图或线框,在 Figma 中�
 - [页面蓝图](references/page-blueprint.md):抽屉结构、宽度阶梯、Header/Footer、Section 与字段规则。
 - [字段控件映射](references/field-control-map.md):字段类型 → 真实控件 的路由表。
 - [抽屉组合注册表](references/drawer-compositions.md):稳定组合名称、适用场景、组件结构和按名称调用规则。
+- [Figma 执行与结构化验收](references/figma-execution-validation.md):截图解析、组件解析闭环、Slot 验证、P0 失败即停和 PASS/BLOCKED/FAIL 判定。
 - 当抽屉包含“摘要信息 + 区块标题 + 筛选控件 + 内嵌表格/分页”时，完整读取[数据详情抽屉 Golden Sample](references/golden-sample-data-detail-drawer.md)，并使用 `Qifu Drawer Form / Data Detail with Table`。
 - 当 `platform=yushu` 或用户提到"毓数"时,完整读取[毓数平台导航基线](references/platform-yushu.md)。
+- 当 `platform=zhikexing` 且 `presentationMode=OVERLAY_ON_ZHIKEXING_LIST` 时，完整读取[智客星列表页底图协议](references/zhikexing-list-background.md)，以及其中列出的 `zhikexing-list-page` 资料。
 - 当用户指定 `PORTABLE_KIT` 或说明没有正式组件库权限时,完整读取[Portable Kit 模式](references/portable-kit.md)与[Portable 组件清单](references/portable-component-manifest.json)。
 - 组件名 / 节点 ID / 发布 Key 全部复用[组件映射](references/component-map.md),不在 `SKILL.md` 重复维护。
 
@@ -31,7 +33,13 @@ description: 根据业务描述、字段清单、截图或线框,在 Figma 中�
 drawerTitle      抽屉标题(动宾:新建 X / 编辑 X / 查看 X)
 componentMode    组件来源模式:REAL_COMPONENT_ONLY(默认) | PORTABLE_KIT | VISUAL_FALLBACK
 compositionName  抽屉组合的完整注册名称;未指定时按场景匹配,默认使用 Qifu Drawer Form / Sectioned Create
-platform         所属平台;当前默认基准为 yushu
+platform         所属平台;当前默认基准为 yushu，可选 zhikexing
+presentationMode  展示模式:STANDALONE(默认) | OVERLAY_ON_ZHIKEXING_LIST
+background        仅 OVERLAY_ON_ZHIKEXING_LIST 使用
+  ├─ source       TEMPLATE(默认) | EXISTING_LIST_PAGE
+  ├─ sourceNode   EXISTING_LIST_PAGE 时必填
+  ├─ sidePath[]   底图菜单路径，仅修改模板中已存在的菜单状态
+  └─ pageName     底图业务页名称，仅用于 Scene 命名
 widthTier        480 / 640 / 680 / 840;普通表单默认 640，数据详情表格组合固定 680
 maskClosable     默认 false
 escClosable      默认 false
@@ -86,32 +94,57 @@ targetPage       Figma 目标 Page;默认与 qifu-list-page 相同,测试固定 
 【可选】Footer 危险/次要动作。
 ```
 
+智客星列表页底图模式可追加：
+
+```text
+展示方式：OVERLAY_ON_ZHIKEXING_LIST；底图使用智客星列表页模板；
+当前菜单：【一级菜单 / 二级菜单】。
+```
+
 解析优先级固定为:平台 → 操作类型(Create/Edit/Readonly)→ 对象 → 抽屉标题 → sections[] → fields[] → Footer。不要把页面对象当成字段标签。
+
+### 截图与参考图输入规则
+
+当用户提供截图、PNG、线框或 Sketch 时，参考图只用于识别结构、层级、比例和可见字段，不作为最终交付图层，也不能覆盖用户文字描述。
+
+1. 从参考图识别 Header、Body、Section、Form Row、Footer、遮罩、抽屉边界和背景页；截图中的水印、批注、红线、演示光标、浏览器边框和讲解黑底全部视为噪声。
+2. 从用户描述确定业务文案、字段语义、必填状态、选项、交互和目标文件；参考图只能补充用户未写明的视觉结构。
+3. 为每个识别结果记录 `evidence = user-description | screenshot | inferred`。影响组件选择、页面层级或写入位置的内容不得只依赖 `inferred`，必须在交付说明中列为假设。
+4. 参考图中看起来像输入框、下拉框、单选、表格或按钮的图层，不得直接复制为最终控件；必须按组件映射和目标文件已启用的库重新解析为真实组件实例。
+5. 参考素材可放在目标画板外侧并锁定，命名 `Reference / <drawerTitle> / Source`；最终 Drawer 或 Scene 内不得包含参考图栅格、讲解黑底、标题或红色标注箭头。
 
 ## 工作流
 
 ### 1. 形成 DrawerSpec
 
 1. 从描述、截图或线框提取 `DrawerSpec`。
-2. 先从[抽屉组合注册表](references/drawer-compositions.md)确定唯一的 `compositionName`:精确匹配的优先,其次按规则推断,无法区分默认 `Sectioned Create`。不得临时创造近义名称或把业务对象名写进组合名。
-3. 含摘要、筛选和内嵌表格的数据详情抽屉使用 `Qifu Drawer Form / Data Detail with Table` 与 680px；其余抽屉按字段数与分组判断 `widthTier`:≤ 6 字段无分组可选 480;7–15 字段默认 640;> 12 字段或显式双列用 840。
-4. 按 [field-control-map](references/field-control-map.md) 为每个字段分配控件与默认 widthTier。
-5. 在 DrawerSpec 中**显式列出**哪些字段是必填,哪些是禁用态及其条件,不允许留空让 AI 自行猜。
+2. 解析 `presentationMode`：未指定时固定为 `STANDALONE`；只有 `platform=zhikexing` 才允许 `OVERLAY_ON_ZHIKEXING_LIST`。
+3. 先从[抽屉组合注册表](references/drawer-compositions.md)确定唯一的 `compositionName`:精确匹配的优先,其次按规则推断,无法区分默认 `Sectioned Create`。不得临时创造近义名称或把业务对象名写进组合名。
+4. 含摘要、筛选和内嵌表格的数据详情抽屉使用 `Qifu Drawer Form / Data Detail with Table` 与 680px；其余抽屉按字段数与分组判断 `widthTier`:≤ 6 字段无分组可选 480;7–15 字段默认 640;> 12 字段或显式双列用 840。
+5. 按 [field-control-map](references/field-control-map.md) 为每个字段分配控件与默认 widthTier。
+6. 将操作分为 Header 关闭、Body 局部操作、Footer 次操作和唯一主操作；同一动作只出现一次。
+7. 在 DrawerSpec 中**显式列出**哪些字段是必填,哪些是禁用态及其条件,不允许留空让 AI 自行猜。
 
 ### 2. 盘点目标文件
 
 1. 确认目标 Figma 文件、页面和插入位置;不写到组件介绍页或业务 Page。
 2. 凡提示词包含"测试""效果验证""试生成"或"Skill 回归",必须复用 Page `测试`(node `3497:651`),规则与 qifu-list-page 完全一致。
-3. 检查同文件已有抽屉,优先复用其宽度档位、变量、文字样式和 Section 节奏。
-4. 先执行组件来源预检:
+3. 用户已指定 `targetPage`、当前画板或明确要求“只改这个画板”时，将该 Page 和画板 ID 视为唯一读写边界；不得因调试、审计、截图或 Skill 默认值切换到 `测试` 或其他 Page。
+4. 检查同文件已有抽屉,优先复用其宽度档位、变量、文字样式和 Section 节奏。
+5. `OVERLAY_ON_ZHIKEXING_LIST` 模式下，先按[智客星列表页底图协议](references/zhikexing-list-background.md)解析并验证背景来源；背景模板或现有列表页不合格时停止并返回相应错误，未完成底图预检前不得创建 Drawer。
+6. 先执行组件来源预检:
    - `REAL_COMPONENT_ONLY`:确认目标文件已启用奇富组件库,并逐项验证发布 Key 可导入;
    - `PORTABLE_KIT`:读取[Portable 组件清单](references/portable-component-manifest.json),使用 `figma.getLocalComponentsAsync()` 按精确名称解析;
    - `VISUAL_FALLBACK`:记录用户明确授权的视觉降级范围。
-5. 按[组件映射](references/component-map.md)中的精确名称解析所需组件;节点 ID 失效时按名称重新发现。
-6. 同文件使用本地组件节点创建实例;跨文件使用发布键导入。创建任何业务 Frame 前,确认必需组件的来源模式检查已通过。
-7. 记录组件覆盖结果:`resolved`、`fallback`、`missing`。未完成盘点前不得开始写抽屉。
+7. 按[组件映射](references/component-map.md)中的精确名称解析所需组件;节点 ID 失效时按名称重新发现。
+8. 组件解析必须遵循“精确名称/本地节点 → 发布 Key → 唯一候选”顺序。同名候选为 0 或多于 1 时分别报告 `COMPONENT_MISSING` 或 `COMPONENT_AMBIGUOUS`，不得按相似外观、末段名称或第一个搜索结果猜选。
+9. 同文件使用本地组件节点创建实例;跨文件使用发布键导入。创建任何业务 Frame 前,确认必需组件的来源模式检查已通过。
+10. 形成 `ComponentResolutionManifest`：每项必须包含 `capability / exactName / sourceFile / nodeId 或 publishedKey / publicProperties / expectedCount / slotTarget / status / evidence`。
+11. 记录组件覆盖结果:`resolved`、`fallback`、`missing`、`ambiguous`、`unverified`。`REAL_COMPONENT_ONLY` 与 `PORTABLE_KIT` 下必需能力未全部 `resolved` 时停止写入业务画板。
 
 ### 3. 创建抽屉骨架
+
+`presentationMode=OVERLAY_ON_ZHIKEXING_LIST` 时，先严格按[智客星列表页底图协议](references/zhikexing-list-background.md)创建 `1366 x 768` 的 Scene，复制完整列表页作为 Background，在其上创建绑定语义遮罩变量的 `Overlay Mask`，最后把本节 Drawer 放在最上层并右侧贴边。该模式不改变 `compositionName`、字段、Footer 或抽屉宽度规则。
 
 先创建唯一顶层 Frame(Drawer),再把所有区域直接创建在 Frame 内部。使用 Auto Layout 表达结构关系。以 `Qifu Drawer Form / Sectioned Create` 为例:
 
@@ -136,7 +169,9 @@ Drawer / <pageName> / Create / <compositionName>
 
 抽屉外层用 `frame` 直接管理,不创建"DrawerShell"母版;抽屉宽度档位 = [page-blueprint](references/page-blueprint.md) 中的 Narrow/Standard/Wide。
 
-`Qifu Drawer Form / Data Detail with Table` 不套用上面的通用表单 Section 骨架。必须按 [Golden Sample](references/golden-sample-data-detail-drawer.md) 创建 680px 抽屉、16px 内容安全边距、20/24 内容卡片、真实 Select / Table Shell-V2 / Pagination-V2 实例，以及分页器与表格描边分离的结构。
+`Qifu Drawer Form / Data Detail with Table` 不套用上面的通用表单 Section 骨架。必须按 [Golden Sample](references/golden-sample-data-detail-drawer.md) 创建 `1366×768` Scene：完整真实列表页底图 < Overlay Mask < 右侧 680px 抽屉；不得用 IMAGE 矩形或截图充当底图。抽屉内部使用 16px 内容安全边距、20/24 内容卡片、真实 Select / Table Shell-V2 / Pagination-V2 实例，以及分页器与表格描边分离的结构。
+
+骨架阶段只能建立最终父级和空的 `Control / <fieldKey>` 容器，或无外观占位节点。禁止先用矩形、边框、箭头、图标、文字或旧控件画出一套可见的临时 Input、Select、Radio、Textarea、Table 或 Button。
 
 ### 4. 组装 Header 与 Footer
 
@@ -162,6 +197,13 @@ Drawer / <pageName> / Create / <compositionName>
 - 所有控件**默认 32px 高度**;`widthTier` 严格取 200/304/408/FULL 阶梯。
 - `Edit` 组合必须按 `defaultValue` 回填初始值;`Readonly` 组合所有控件为 `disabled=true`,Footer 单一关闭按钮。
 - 必填字段的 `*` 由 FormItem 提供,**不手画**,颜色 `#dc2626`,与 label 间距 4px。
+- 每个字段只能有一个语义控件：`Control / <fieldKey>` 内只能保留一个真实组件实例，或一个已记录的合法 `Fallback / <Capability>` 子树；禁止实例与临时控件、旧实例、自由文本、边框或图标重叠共存。
+- 占位文案、值、箭头、单选状态和按钮文案必须来自组件实例及其公开属性；不得在实例上方额外覆盖同文案或同图形。
+- 若目标位置已有临时控件或旧控件，替换必须作为一次原子操作完成：创建并定位真实实例，验证 `type=INSTANCE` 与 `mainComponent`，随后立即删除原控件的完整旧子树。隐藏、透明度 `0`、移出画板或锁定旧层均不算删除。
+- 实例必须位于对应字段标签右侧并与标签同行。移动或重新归属实例时，先将实例放入最终父层，再重新读取实例与标签的 `absoluteBoundingBox`，使用当前绝对坐标差值调整位置；禁止用归层前缓存的父容器边界计算相对坐标。
+- 每个组件属性必须完成闭环：读取实例 `componentProperties` → 解析唯一真实 Key → 校验类型和值域 → 写入 → 重新读取 → 验证最终值。写入失败、Key 不唯一、枚举值不匹配或回读不一致均为失败，不得用实例外文字覆盖。
+- Slot 只能放真实实例或已批准的空占位；禁止把裸 Text、矩形、Group、截图或页面级手绘表格写入 Drawer、Section、Form Row、Table 或 Pagination Slot。替换 Slot 后必须回读当前值、实例数量、`mainComponent` 和父级 Auto Layout。
+- Close、Radio、Checkbox、Switch 等小控件替换后，必须扫描实例实际图形区域附近的实例外 `VECTOR`、`ELLIPSE`、`LINE`、`BOOLEAN_OPERATION`、`GROUP` 和 `TEXT`。Close 的旧自由文本 `×/x` 也属于残留；Radio 的扫描锚点是选项文字左侧的圆形控件区域。
 
 ### 7. 状态管理
 
@@ -193,8 +235,9 @@ Drawer / <pageName> / Create / <compositionName>
 
 ### 9. 验证
 
-逐区截图检查,再检查整体。至少验证:
+按 [Figma 执行与结构化验收](references/figma-execution-validation.md) 的顺序执行：`DrawerSpec 完整性 → ComponentResolutionManifest → 实例属性回读 → 页面结构计数 → Slot 与父级关系 → 变量与几何 → 分区截图 → 整页截图`。前一阶段失败时停止，不使用截图或肉眼观感掩盖结构失败。逐区截图检查,再检查整体。至少验证:
 
+- 交付结果必须分别给出 `structuralValidation = PASS|BLOCKED|FAIL` 和 `visualValidation = PASS|BLOCKED|FAIL`；只有两者均为 `PASS` 才能宣称完成。
 - **层级归属检查**:抽屉内所有 Input / Select / Radio / Checkbox / Textarea / Button / Tag 等真实组件 INSTANCE,都必须嵌套在 `Drawer / Header`、`Section / <name>`、`Drawer / Footer` 这三个容器之内;不允许出现在 Page 根级或抽屉 Frame 之外的"孤儿组件"。发现即归位到正确容器。
 - **重复节点检查**:抽屉 Frame 内不存在与已嵌实例位置、尺寸几乎一致的重复节点(常见于 AI 未清理旧实例);发现即删除,并计入 Audit / Missing Components。
 - 所有设计系统元素仍为 `INSTANCE`,且主组件名称正确。
@@ -209,11 +252,16 @@ Drawer / <pageName> / Create / <compositionName>
 - 必填字段的 `*` 位于 label 左侧、色 `#dc2626`。
 - 控件可见宽度属于 `200 / 304 / 408 / FULL` 阶梯,默认值符合 field-control-map。
 - 所有控件高度均为 32px;同抽屉不混 28/32px。
+- 每个 Form Row 只有一个语义控件根节点；不存在临时控件、旧实例或自由文本与真实实例占用同一控件区域。
+- 组件文案、箭头、选中圆点和按钮内容位于组件实例子树内，没有实例外的同文案或同图形覆盖层。
+- Close 实例的图形边界附近不存在实例外 `×/x`、线段或矢量；Radio 每个选项文字左侧的控件区域不存在实例外圆环、椭圆或矢量。不能只验证实例数量、父层、坐标和 `mainComponent`。
 - `Edit` 组合所有字段已按 `defaultValue` 回填;`Readonly` 全部 disabled,仅"关闭"按钮。
 - Textarea / Upload 不会和其他字段并列为 double 列。
 - 状态唯一:Data / Loading / Disabled / Error 只有一种。
 - 存在缺口时已生成 `Audit / Missing Components`。
 - 无文字截断、节点重叠、画板溢出。
+- `OVERLAY_ON_ZHIKEXING_LIST` 额外验证 Scene、Background、Overlay Mask 均为 `1366 x 768`，图层顺序为 Background < Overlay Mask < Drawer，Drawer 贴 Scene 右侧，且截图中底图被压暗而 Drawer 保持清晰。
+- 组合模式背景必须继续通过 `zhikexing-list-page` 的 Header、侧栏、Shell、Filter Bar、Table Shell 与 Pagination 结构检查；底图不得是截图、展平图层、裸 Text 或 Slot 覆盖物。
 - 抽屉外层 Frame 不叠加自定义 padding;所有留白来自 page-blueprint 第 7 节的 10 项铁律。
 - `Data Detail with Table` 额外通过 Golden Sample QA：抽屉 680px；Body 内容卡片距抽屉四周 16px；卡片使用纵向 Auto Layout、上下 20px/左右 24px；区块标题使用 `标题/Small`，品牌色 3×12 rail 与标题 gap=5；标题后 Tag gap 绑定 `--qifu-size/8`；标题与正文 gap=16；Form label 左对齐且各控件左边缘对齐，默认 label-control gap=24。
 - `Data Detail with Table` 的页面级普通正文与 Form label 必须绑定组件库 `Body/Regular`（PingFang SC Regular 14/22）；禁止使用 `Body/Medium`、Bold 或手填字体属性。Header Title、Section Title、表头和链接仍保持各自语义样式，不得为了“统一”一并改成 Regular。
@@ -222,12 +270,14 @@ Drawer / <pageName> / Create / <compositionName>
 - 内嵌表格的 Table Shell-V2、Header Cell-V2、Row-V2、Content Cell-V2、Text-V2、Pagination-V2 必须全部为组件库真实实例；表格描边只包围表头与数据行，分页器位于描边外。
 - `Data Detail with Table` 的内容 Section 与 `Table Border / 四边完整` 统一使用 4px 圆角。Table Border 必须是单独 Frame：1px Inside 描边、`Clip content=true`；表头、数据行和列分割线放入其中，Pagination 不得成为该边框的可见内容。
 - 非 Empty / Loading 状态下，表格每个可见数据行的每个可见单元格必须有真实内容；表头与数据行逐列同宽，所有列宽之和必须精确等于 Table Border 内容宽度，不得依赖裁剪隐藏横向溢出。
-- 全部页面级 Frame / Rectangle / Instance 的 x、y、width、height、padding、gap、圆角和描边宽度必须为整数；发现缩放造成的小数即 FAIL，替换为未缩放组件实例或整数重建，不做四舍五入式视觉蒙混。
+- 新建的页面组合层（Scene、Background、Overlay Mask、Drawer、内容卡片、Table Border、Pagination 容器）以及其自由布局属性的 x、y、width、height、padding、gap、圆角和描边宽度必须为整数；发现本次缩放造成的小数即 FAIL，替换为未缩放实例或整数重建。正式组件实例内部的 Vector、Text、Slot 或由母版 Auto Layout 计算出的分数值不做页面层修正，不得为凑整数 detach 或改写母版。
 - 自由文本必须应用组件库文本样式；组件实例内部文字由组件自身管理。组件库不存在指定文本样式时报告 `STYLE_MISSING`，不得自行生成近似字体。
+- 截图识别出的每个字段、操作和页面区域都有 `evidence`，且截图噪声未进入最终画板。
 
 ## 硬性约束
 
 - 不把参考图直接作为图片放进抽屉交付。
+- `OVERLAY_ON_ZHIKEXING_LIST` 不得临时手绘、截图化或缩放智客星底图；只允许复制已验证模板或用户指定并验收通过的现有列表页。
 - 不重画已有组件,不分离实例来改外观。
 - 不为追求截图相似度破坏组件属性或变量绑定。
 - 不擅自改动、补充或发布组件库母版。
@@ -236,6 +286,8 @@ Drawer / <pageName> / Create / <compositionName>
 - 不把复杂看板、向导流、批量编辑硬塞进本 Skill。
 - 不宣称缺失组件已存在;明确区分正式实例与降级组合。
 - 不因发布 Key 导入失败而静默切换模式;模式只能由用户在 DrawerSpec 中显式指定。
+- 不允许 `Control Text Cover`、`Button Text Cover`、`Table / Clean` 或隐藏正式实例后展示手绘控件。
+- 组件属性、Slot、字体加载、权限和实例关系失败均不得降级为“视觉通过”；必须报告失败码和节点位置。
 
 ## 已知限制
 
@@ -243,8 +295,8 @@ Drawer / <pageName> / Create / <compositionName>
 > 仓库内回填方式见 `_docs/limit-backfill.md`(仅发布仓)。
 
 ### 2026-08-21 · 数据详情抽屉 Golden Sample
-- Golden Sample 为组件库文件 Page `02 From 训练过程` 的 `Page / Drawer / 数据详情 / 本地组件重制版 · 0820`（node `4659:420`）；未来同类抽屉先复用其版式语法，再替换业务数据。
-- 自动生成验证样例为同 Page 的 `Golden Sample / Drawer / 数据详情 / 680 · 0821`（node `4725:1548`）；其表格四边框、独立分页器、真实组件引用、Auto Layout 和整数几何已按本 Skill 验收。
+- 唯一 Golden Sample 为组件库文件 Page `02 From 训练过程` 的 `Golden Sample / Drawer / 数据详情 / 680 · 0821 根据手搓重生成`（node `4725:1548`）；未来同类抽屉先复用其 Scene、抽屉和表格结构，再替换业务数据。旧的 `4659:420` 仅作历史对照。
+- Golden Sample Scene 固定 `1366×768`。原有 `底图 1` 是 IMAGE 填充矩形，不能作为交付底图；生成或重制时必须换成完整真实列表页。当前可验证底图源为 `Template / List Page / 智客星 / 1440 / 手动调整`（node `4892:34812`，实际 `1366×768`），且 Header、侧栏、Shell、Filter Bar、Table Shell 与 Pagination 必须保持真实组件实例。
 - 两张样例中的页面级任务正文与 Form label 已统一绑定 `Body/Regular` 14/22；`Body/Medium` 会造成正文误加粗，后续生成与回归验收均判定为 FAIL。
 - 组件库现有 `标题/Medium` 的真实定义是 16/24，没有独立 16/20 标题样式；必须使用现有样式并报告此差异，不允许手工覆盖行高。
 - `Text-V2 / contentFont 内容字号=14px` 的组件母版正文已绑定 `Body/Regular` 14/22。Tag、Select、Header Cell、Pagination 等其余部分组件内部 Text 仍可能未绑定 Text Style；页面层不得 detach 或覆盖字体，只报告 `COMPONENT_SOURCE_GAP` 并把修复留给组件母版。页面级自由 Text 仍必须 100% 绑定组件库 Text Style。
@@ -255,15 +307,24 @@ Drawer / <pageName> / Create / <compositionName>
 - 抽屉 Frame 内不允许存在与已嵌实例位置/尺寸几乎一致的重复节点(详见验证清单"重复节点检查")
 - 配套兜底工具:`Component Library/.figma-plugins/qifu-drawer-cleanup/`(在外部仓,可改写为"选中即清"版本)
 
+### 2026-08-20 · qifu-figma-drawer-builder 合并
+- `qifu-figma-drawer-builder` 的有效规则已合并进本 Skill，后续统一使用 `qifu-drawer-form`；旧 builder 只作为历史来源，不再作为运行入口。
+- 合并范围包括截图证据解析、ComponentResolutionManifest、精确组件解析、属性写入回读、Slot 验证、单一语义控件、小控件残留扫描、P0 失败即停和双状态交付。
+- 旧 builder 中与新版冲突的内容不继承：过时组合名、固定 1440 根画板、默认复制列表页双画板、以及对 `qifu-list-page` 的完整列表页规则。
+- 后续如果发现抽屉生成偏差，优先补充 `references/figma-execution-validation.md` 和组件映射，不再新增第二个抽屉生成 Skill。
+
 ## 交付内容
 
 完成后返回:
 
 - 抽屉节点 ID 与名称;
+- `presentationMode`、Scene 节点及底图来源节点（组合模式时）；
 - 使用的 `compositionName`;
 - 使用的主要组件及关键变体;
 - Section 清单与字段总数;
 - 对输入描述做出的假设;
 - 组件缺口及建议补充项;
 - 组件来源模式与预检结果;
-- 视觉和结构验证结果。
+- `ComponentResolutionManifest` 摘要、属性回读结果、Slot 验证结果;
+- `structuralValidation` 与 `visualValidation` 状态;
+- 实例、变量、布局、滚动、原型和截图验证结果。

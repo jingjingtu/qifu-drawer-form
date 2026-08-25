@@ -6,7 +6,9 @@
 
 `Qifu Drawer Form / Data Detail with Table`
 
-Golden Sample：组件库文件 `gTV3VdC6a5e9vpkRHIZSXA`，Page `3932:405`，人工精修源 Frame `4659:420`。自动生成验证 Frame 为 `4725:1548`，用于检查组件引用、Auto Layout、整数几何和表格边框实现。参考其信息层级和节奏，不复制固定业务文案。
+唯一 Golden Sample：组件库文件 `gTV3VdC6a5e9vpkRHIZSXA`，Page `3932:405` 的 `Golden Sample / Drawer / 数据详情 / 680 · 0821 根据手搓重生成`（node `4725:1548`）。该 Frame 是未来数据详情抽屉的唯一结构、组件关系和视觉基线；旧的 `4659:420` 仅保留为历史对照，不再作为生成来源。参考其信息层级和节奏，不复制固定业务文案。
+
+本 Golden Sample 的 Scene 固定为 `1366 × 768`。其底图必须是完整、可编辑的真实列表页，当前验证来源为 `Template / List Page / 智客星 / 1440 / 手动调整`（node `4892:34812`，实际尺寸 `1366 × 768`）；禁止使用截图、IMAGE 填充矩形、导出图片或展平底图替代。
 
 ## 组件覆盖
 
@@ -27,10 +29,12 @@ Golden Sample：组件库文件 `gTV3VdC6a5e9vpkRHIZSXA`，Page `3932:405`，人
 ## 结构
 
 ```text
-Page / Drawer / <Object> / Golden Sample
-├── Background Page
-├── Overlay Mask
-└── Drawer / <Object>                         680px
+Golden Sample / Drawer / <Object> / 680
+├── Background / List Page                    1366×768，完整真实列表页副本
+│   ├── Header / Global
+│   └── Workspace / Navigation + Content Shell
+├── Overlay Mask                              1366×768，位于底图之上
+└── Drawer / <Object>                         680px，right=0
     ├── Drawer / Header                      680×56
     │   ├── Title                            x=24，标题/Medium
     │   └── INSTANCE / Icon/basic/close      16×16，right=24
@@ -49,7 +53,7 @@ Page / Drawer / <Object> / Golden Sample
                     └── Pagination-V2         描边外，右对齐
 ```
 
-所有结构容器使用 Auto Layout；仅顶层页面、遮罩与右侧抽屉定位允许绝对坐标。
+所有结构容器使用 Auto Layout；仅 `1366×768` Scene、完整列表页底图、遮罩与右侧抽屉定位允许绝对坐标。底图不是 Slot 覆盖物，也不是静态矩形；应复制完整列表页 Frame，使 Header、侧栏、List Page Shell、Filter Bar、Table Shell 与 Pagination 仍保留真实组件实例。
 
 ## 尺寸与间距
 
@@ -91,6 +95,9 @@ Page / Drawer / <Object> / Golden Sample
 
 ## QA
 
+- Golden Sample Scene 精确为 `1366×768`；图层顺序固定为 `Background / List Page < Overlay Mask < Drawer`，Drawer 宽 680 且 `x=686`、right=0。
+- Background 必须是完整真实列表页副本；不得出现 `IMAGE` 填充的 `底图`、截图、导出图片、展平矩形或裸 Text 作为整页底图。当前基线应能追溯到 `4892:34812` 或用户明确指定并通过同等结构检查的现有列表页。
+- Background 内的 Header、侧栏、List Page Shell、Filter Bar、Table Shell 与 Pagination 必须继续是可解析组件实例；对底图仅允许替换业务文案和既有组件的合法属性，不得 detach 或手绘覆盖。
 - Drawer 宽 680，Header 56，Body/卡片/标题/Form/Table 全部整数几何。
 - 页面级自由文本 100% 应用组件库 Text Style；无 `textStyleId=""` 的自由 Text。
 - 页面级普通正文和 Form label 100% 使用 `Body/Regular` 14/22；出现 `Body/Medium` 或 Bold 即 FAIL。Header Title、Section Title、表头与链接按各自语义样式单独验收。
