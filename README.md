@@ -136,7 +136,7 @@ cp -R skills/qifu-drawer-form ~/.codex/skills/
 
 ## 提示词结构
 
-复制下面模板，只替换 `【】` 中的业务内容。组件精确名称、Slot 组装、间距、文本样式和 QA 已写入 Skill，无需在提示词中重复。
+复制下面模板，只替换 `【】` 中的业务内容。组件精确名称、Slot 组装、间距、文本样式和 QA 已写入 Skill；正式交付会先解析组件库 Text Style，再生成文字。
 
 ```text
 使用 qifu-drawer-form Skill，并调用 @figma 插件，在【Figma 地址】的【目标 Page】生成【抽屉名称】。
@@ -168,7 +168,7 @@ Footer：取消按钮【显示 / 隐藏】；主操作【确定 / 保存 / 关�
 - 示例数据：【完整数据行】
 - 分页：【总数、每页条数、当前页】
 
-不要覆盖已有画板；使用真实组件实例。正式交付必须是 `1366×768` 画板，结构为底图 + 蒙层 + 右侧抽屉。完成后检查组件关系、Auto Layout、整数几何、文本样式、平台与主题回读、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
+不要覆盖已有画板；使用真实组件实例。正式交付必须是 `1366×768` 画板，结构为底图 + 蒙层 + 右侧抽屉。所有页面级文字必须绑定组件库 Text Style，不允许手填字体、字号或行高。完成后检查组件关系、Auto Layout、整数几何、TextStyleResolutionManifest、整页 Text Style 扫描、平台与主题回读、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
 ```
 
 未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。未指定平台时使用 `qifu-generic`，但仍生成 `1366×768` 完整打开态；没有已批准通用底图时返回 `BACKGROUND_TEMPLATE_MISSING`，不默认套用毓数。
@@ -201,7 +201,7 @@ componentMode：REAL_COMPONENT_ONLY。
 
 Footer：取消按钮显示；主操作：确定。
 
-参考截图只用于识别结构和比例，不要把截图放进最终画板。所有 Input、Select、Radio、DateRange、Button、Close 都必须使用真实组件实例。完成后返回 platformKey/themeKey 回读、ComponentResolutionManifest、Slot 验证、structuralValidation 和 visualValidation。
+参考截图只用于识别结构和比例，不要把截图放进最终画板。所有 Input、Select、Radio、DateRange、Button、Close 都必须使用真实组件实例。页面级文字必须使用组件库 Text Style。完成后返回 platformKey/themeKey 回读、ComponentResolutionManifest、TextStyleResolutionManifest、Slot 验证、structuralValidation 和 visualValidation。
 ```
 
 ## 提示词示例二：蓝色主题智能运营平台
@@ -263,7 +263,7 @@ componentMode：REAL_COMPONENT_ONLY。
 - Body 内容安全边距 16px；
 - 内容卡片上下 20px、左右 24px，圆角 4px；
 - 标题使用 3×12 品牌色 rail，rail 与标题间距 5px；
-- 页面级正文和 Form label 使用 `Body/Regular` 14/22；
+- 页面级正文和 Form label 使用组件库 `Body/Regular` 14/22；
 - 表格正文从 `Text-V2` 组件母版继承 `Body/Regular`，表头保持 Semibold；
 - Table Border 为独立 Frame：圆角 4、1px Inside、Clip content；
 - 表格外框只包含表头和数据行，Pagination 位于外框之外；

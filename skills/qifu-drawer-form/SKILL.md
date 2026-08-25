@@ -96,6 +96,14 @@ targetPage       Figma 目标 Page;默认与 qifu-list-page 相同,测试固定 
 
 未指定 `componentMode` 时一律使用 `REAL_COMPONENT_ONLY`,不能根据导入失败自动切换到 `VISUAL_FALLBACK`。
 
+文本样式必须显式区分:
+
+- 正式交付 Scene 内所有新增 `TEXT` 节点都必须绑定组件库自带 Text Style，禁止手填 `fontName / fontSize / lineHeight / letterSpacing` 来近似。
+- 创建任何文字前先读取目标文件可用 Text Style，并形成 `TextStyleResolutionManifest`：`usage / requiredStyleName / styleId / fontFamily / fontSize / lineHeight / status`。
+- 默认映射：Header Title 使用 `标题/Medium`；Section Title 使用 `标题/Small`；Form label、帮助文字、说明正文、审计说明、规则区域中的连接文字使用 `Body/Regular`；表格正文通过真实 `Text-V2` 实例继承 `Body/Regular`。
+- 组件实例内部文字由组件母版管理，不 detach、不在实例层手工覆盖字体。若真实组件母版内部文字未绑定 Text Style，返回 `COMPONENT_SOURCE_GAP`，并说明需要回到组件母版修复。
+- `TextStyleResolutionManifest` 任一必需样式缺失时返回 `STYLE_MISSING`，不得继续生成游离字体或手工字号。
+
 仅在缺少的信息会改变抽屉主结构或带来高风险误导时提问。其余内容按常见后台表单场景补全,并在交付说明中列出假设。
 
 推荐用户按以下自然语言顺序描述;字段可省略:
@@ -158,6 +166,7 @@ targetPage       Figma 目标 Page;默认与 qifu-list-page 相同,测试固定 
 10. 形成 `ComponentResolutionManifest`：每项必须包含 `capability / exactName / sourceFile / nodeId 或 publishedKey / publicProperties / expectedCount / slotTarget / status / evidence`。
 11. 记录组件覆盖结果:`resolved`、`fallback`、`missing`、`ambiguous`、`unverified`。`REAL_COMPONENT_ONLY` 与 `PORTABLE_KIT` 下必需能力未全部 `resolved` 时停止写入业务画板。
 12. 主题来源预检必须在写入页面前完成：优先绑定目标文件现有变量或组件公开属性；无法绑定主题主色时返回 `THEME_VARIABLE_MISSING` 或记录 `COMPONENT_SOURCE_GAP`，不得 detach 组件手工改色。
+13. 文本样式预检必须在写入任何 `TEXT` 前完成：枚举并解析 `标题/Medium`、`标题/Small`、`Body/Regular` 等必需组件库 Text Style，形成 `TextStyleResolutionManifest`；任一缺失即返回 `STYLE_MISSING`。
 
 ### 3. 创建抽屉骨架
 
@@ -284,12 +293,14 @@ Drawer / <pageName> / Create / <compositionName>
 - `Data Detail with Table` 额外通过 Golden Sample QA：抽屉 680px；Body 内容卡片距抽屉四周 16px；卡片使用纵向 Auto Layout、上下 20px/左右 24px；区块标题使用 `标题/Small`，品牌色 3×12 rail 与标题 gap=5；标题后 Tag gap 绑定 `--qifu-size/8`；标题与正文 gap=16；Form label 左对齐且各控件左边缘对齐，默认 label-control gap=24。
 - `Data Detail with Table` 的页面级普通正文与 Form label 必须绑定组件库 `Body/Regular`（PingFang SC Regular 14/22）；禁止使用 `Body/Medium`、Bold 或手填字体属性。Header Title、Section Title、表头和链接仍保持各自语义样式，不得为了“统一”一并改成 Regular。
 - 字体预检必须在写入文字前完成;`PingFang SC Regular` 与 `Body/Regular` 不可用时,`REAL_COMPONENT_ONLY` / `PORTABLE_KIT` 直接返回 `STYLE_MISSING`,不得仅加载字体后继续使用 Figma 默认字体。
+- 正式交付 Scene 内所有新增页面级 `TEXT` 必须有非空 `textStyleId`，且 `textStyleId` 来自 `TextStyleResolutionManifest`；禁止仅用相同字体名、字号或行高冒充组件库文本样式。
 - 表格正文必须由 `Data Display / Table / Cell Content / Text-V2` 的 `contentFont 内容字号=14px` 组件变体继承 `Body/Regular` 14/22；不得在 30 个页面实例上逐个覆盖。表头继续使用 Header Cell-V2 的 Semibold 层级。
 - 内嵌表格的 Table Shell-V2、Header Cell-V2、Row-V2、Content Cell-V2、Text-V2、Pagination-V2 必须全部为组件库真实实例；表格描边只包围表头与数据行，分页器位于描边外。
 - `Data Detail with Table` 的内容 Section 与 `Table Border / 四边完整` 统一使用 4px 圆角。Table Border 必须是单独 Frame：1px Inside 描边、`Clip content=true`；表头、数据行和列分割线放入其中，Pagination 不得成为该边框的可见内容。
 - 非 Empty / Loading 状态下，表格每个可见数据行的每个可见单元格必须有真实内容；表头与数据行逐列同宽，所有列宽之和必须精确等于 Table Border 内容宽度，不得依赖裁剪隐藏横向溢出。
 - 新建的页面组合层（Scene、Background、Overlay Mask、Drawer、内容卡片、Table Border、Pagination 容器）以及其自由布局属性的 x、y、width、height、padding、gap、圆角和描边宽度必须为整数；发现本次缩放造成的小数即 FAIL，替换为未缩放实例或整数重建。正式组件实例内部的 Vector、Text、Slot 或由母版 Auto Layout 计算出的分数值不做页面层修正，不得为凑整数 detach 或改写母版。
 - 自由文本必须应用组件库文本样式；组件实例内部文字由组件自身管理。组件库不存在指定文本样式时报告 `STYLE_MISSING`，不得自行生成近似字体。
+- 整页截图前必须扫描最终 Scene 内所有 `TEXT`：页面级 Text 无 `textStyleId`、使用非组件库 Text Style、或出现手填字体属性覆盖均为 `FAIL`；组件实例内部 Text 若未绑定样式，记录 `COMPONENT_SOURCE_GAP` 并保持实例关系。
 - 截图识别出的每个字段、操作和页面区域都有 `evidence`，且截图噪声未进入最终画板。
 - 平台与主题回读通过：交付结果中 `platformKey / platformName / themeKey / themePrimary` 与用户输入一致；主题主色只影响允许的语义颜色，不改变抽屉结构、控件高度、间距、圆角、阴影和 Slot 关系。
 
@@ -310,6 +321,7 @@ Drawer / <pageName> / Create / <compositionName>
 - 不因发布 Key 导入失败而静默切换模式;模式只能由用户在 DrawerSpec 中显式指定。
 - 不允许 `Control Text Cover`、`Button Text Cover`、`Table / Clean` 或隐藏正式实例后展示手绘控件。
 - 组件属性、Slot、字体加载、权限和实例关系失败均不得降级为“视觉通过”；必须报告失败码和节点位置。
+- 不允许在最终 Scene 内出现未绑定组件库 Text Style 的页面级文字；不允许用手工字体参数替代组件库文本样式。
 
 ## 已知限制
 
@@ -320,6 +332,7 @@ Drawer / <pageName> / Create / <compositionName>
 - 平台切换统一走 `platformKey`，当前支持 `zhikexing / yushu / zhineng-yunying / qifu-generic`；用户未指定平台时不再默认毓数。
 - 主题切换统一走 `themeKey / themePrimary`，当前支持 `zhikexing-green / yushu-green / smartops-blue / custom`；主题只改语义颜色，不改结构。
 - `zhineng-yunying` 是蓝色主题智能运营平台的预留平台壳；在专属导航与平台模板未补齐前，不得生成正式打开态，必须返回 `BACKGROUND_TEMPLATE_MISSING` 或使用用户明确指定并验收通过的 `EXISTING_LIST_PAGE`。
+- 正式交付 Scene 内所有新增页面级文字必须绑定组件库 Text Style；执行前形成 `TextStyleResolutionManifest`，执行后扫描 Scene 内 `TEXT.textStyleId`，无样式即 FAIL。
 
 ### 2026-08-21 · 数据详情抽屉 Golden Sample
 - 唯一 Golden Sample 为组件库文件 Page `02 From 训练过程` 的 `Golden Sample / Drawer / 数据详情 / 680 · 0821 根据手搓重生成`（node `4725:1548`）；未来同类抽屉先复用其 Scene、抽屉和表格结构，再替换业务数据。旧的 `4659:420` 仅作历史对照。
@@ -353,6 +366,7 @@ Drawer / <pageName> / Create / <compositionName>
 - 对输入描述做出的假设;
 - 组件缺口及建议补充项;
 - 组件来源模式与预检结果;
+- `TextStyleResolutionManifest` 摘要与整页 Text Style 扫描结果;
 - `ComponentResolutionManifest` 摘要、属性回读结果、Slot 验证结果;
 - `structuralValidation` 与 `visualValidation` 状态;
 - 实例、变量、布局、滚动、原型和截图验证结果。

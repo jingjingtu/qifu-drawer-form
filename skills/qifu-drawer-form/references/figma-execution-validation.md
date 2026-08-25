@@ -39,6 +39,22 @@ status = resolved | fallback | missing | ambiguous | unverified | failed
 evidence = user-description | screenshot | component-map | target-file | inferred
 ```
 
+## 2.1 TextStyleResolutionManifest
+
+创建任何页面级 `TEXT` 前必须完成文本样式解析：
+
+```text
+usage = headerTitle | sectionTitle | formLabel | bodyText | helpText | auditText | ruleText | tableText
+requiredStyleName = 标题/Medium | 标题/Small | Body/Regular | <组件库语义样式>
+styleId
+fontFamily
+fontSize
+lineHeight
+status = resolved | missing | ambiguous | unverified
+```
+
+页面级文字只能通过 `textStyleId` 绑定组件库 Text Style，不得手填 `fontName / fontSize / lineHeight / letterSpacing` 作为替代。任一必需样式不是 `resolved` 时返回 `STYLE_MISSING`，停止写入。组件实例内部文字由母版管理；若母版内部 Text 未绑定 Text Style，返回 `COMPONENT_SOURCE_GAP`，不得 detach 或在实例层覆盖字体。
+
 解析顺序：
 
 1. 同文件优先使用组件映射中的本地节点 ID 或目标文件已有组件节点。
@@ -57,7 +73,7 @@ evidence = user-description | screenshot | component-map | target-file | inferre
 3. **属性闭环**：每个公开属性均完成“读取真实 Key → 校验类型和值域 → 写入 → 回读最终值”。`PROPERTY_NOT_FOUND`、`PROPERTY_AMBIGUOUS`、`PROPERTY_WRITE_FAILED`、`PROPERTY_READBACK_MISMATCH` 均判失败。
 4. **Slot 与父级**：Drawer、Body、Section、Form Row、Footer 和 Table Slot 的父级关系正确；Slot 当前值指向刚创建的真实实例，Auto Layout 没有把内容裁切或推出抽屉边界。
 5. **关键几何**：正式交付必须有唯一 `1366×768` Scene，且 Background、Overlay Mask 均为 `1366×768`；Drawer、Header、Body、Footer 层级唯一；内容 padding、Section 间距、字段同行对齐、按钮右对齐均符合 DrawerSpec；无重叠、溢出和异常空白。
-6. **字体与变量**：新增自由文本绑定组件库文本样式；组件内部字体、颜色、间距和圆角仍由母组件或变量控制，不用页面级固定样式覆盖。
+6. **字体与变量**：新增页面级 Text 必须绑定 `TextStyleResolutionManifest` 中的组件库文本样式；最终 Scene 内不得出现无 `textStyleId` 的页面级文字。组件内部字体、颜色、间距和圆角仍由母组件或变量控制，不用页面级固定样式覆盖。
 
 ## 4. 抽屉结构计数
 
@@ -108,6 +124,7 @@ Pagination = showPagination ? 1 : 0
 | `THEME_VARIABLE_MISSING` | 主题主色无法绑定到变量或组件公开属性 | 停止改色，不 detach 组件手工覆盖 |
 | `PORTABLE_COMPONENT_MISSING` | Portable Kit 缺少本地组件 | 停止，报告缺失能力 |
 | `STYLE_MISSING` | 必需文本样式或字体不可用 | 停止，不手填近似样式 |
+| `TEXT_STYLE_UNBOUND` | 最终 Scene 内存在页面级 Text 未绑定组件库 Text Style | 判 FAIL，定位节点并修复或停止 |
 | `PROPERTY_NOT_FOUND` | 属性 Key 不存在 | 停止，不覆盖实例文本 |
 | `PROPERTY_AMBIGUOUS` | 属性 Key 不唯一 | 停止，不猜选第一个 |
 | `PROPERTY_WRITE_FAILED` | 属性写入失败 | 停止，报告实例与错误 |
