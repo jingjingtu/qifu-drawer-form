@@ -103,6 +103,8 @@ Pagination = showPagination ? 1 : 0
 | `COMPONENT_LIBRARY_UNAVAILABLE` | 目标文件无法调用组件库 | 严格模式停止写入 |
 | `COMPONENT_MISSING` | 目标库没有能力 | 严格模式停止该区域；宽松模式才评估 Fallback |
 | `COMPONENT_AMBIGUOUS` | 候选不唯一 | 停止，报告候选完整名称 |
+| `PLATFORM_PROFILE_MISSING` | 指定平台缺少平台壳、导航或底图协议 | 独立抽屉可继续；平台壳交付停止并记录缺口 |
+| `THEME_VARIABLE_MISSING` | 主题主色无法绑定到变量或组件公开属性 | 停止改色，不 detach 组件手工覆盖 |
 | `PORTABLE_COMPONENT_MISSING` | Portable Kit 缺少本地组件 | 停止，报告缺失能力 |
 | `STYLE_MISSING` | 必需文本样式或字体不可用 | 停止，不手填近似样式 |
 | `PROPERTY_NOT_FOUND` | 属性 Key 不存在 | 停止，不覆盖实例文本 |

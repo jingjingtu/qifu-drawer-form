@@ -37,11 +37,14 @@
             ├── component-map.md
             ├── drawer-compositions.md
             ├── field-control-map.md
+            ├── figma-execution-validation.md
             ├── golden-sample-data-detail-drawer.md
             ├── page-blueprint.md
+            ├── platform-theme-switching.md
             ├── platform-yushu.md
             ├── portable-kit.md
-            └── portable-component-manifest.json
+            ├── portable-component-manifest.json
+            └── zhikexing-list-background.md
 ```
 
 ## 支持的抽屉组合
@@ -74,6 +77,26 @@ GitHub 只同步 Skill 文件，不会同步 Figma 登录状态、访问权限�
 | `VISUAL_FALLBACK` | 页面级视觉降级 | 允许生成，但必须标记 `Fallback /` 并审计 | 只需要截图预览 |
 
 未显式指定模式时，Skill 不会因为导入失败而静默生成假组件。
+
+## 平台与主题切换
+
+平台和主题必须分开写：`platformKey` 管平台壳、菜单、业务词和底图；`themeKey` / `themePrimary` 只管主按钮、选中态、链接色、轻量标签和强调色。换蓝色主题时不复制组件库、不改字段结构、不 detach 实例手工改色。
+
+| platformKey | 平台 | 默认主题 | 用法 |
+| --- | --- | --- | --- |
+| `zhikexing` | 智客星 | `zhikexing-green` | 当前主平台；可生成独立抽屉，也可叠加到智客星列表页底图。 |
+| `yushu` | 毓数 | `yushu-green` | 只有明确写毓数时才使用，不再作为默认平台。 |
+| `zhineng-yunying` | 智能运营平台 | `smartops-blue` | 预留的蓝色主题平台；平台壳未补齐时先生成独立抽屉并记录缺口。 |
+| `qifu-generic` | 奇富通用后台 | `zhikexing-green` | 未指定平台时使用，只生成抽屉本体。 |
+
+| themeKey | 主色 | 说明 |
+| --- | --- | --- |
+| `zhikexing-green` | `#00B578` | 智客星默认绿色主题。 |
+| `yushu-green` | `#00B578` | 毓数当前绿色主题，以目标文件变量为准。 |
+| `smartops-blue` | `#1677FF` | 智能运营平台蓝色主题。 |
+| `custom` | 用户指定 | 必须同时写 `themePrimary`。 |
+
+完整规则见 [`platform-theme-switching.md`](skills/qifu-drawer-form/references/platform-theme-switching.md)。
 
 ### Portable Kit 的准备与使用
 
@@ -118,7 +141,11 @@ cp -R skills/qifu-drawer-form ~/.codex/skills/
 ```text
 使用 qifu-drawer-form Skill，并调用 @figma 插件，在【Figma 地址】的【目标 Page】生成【抽屉名称】。
 
-平台：【不填默认毓数 / 平台名称】；操作类型：【新建 / 编辑 / 查看】；业务对象：【对象名称】；抽屉标题：【标题文案】。
+平台：【智客星 / 毓数 / 智能运营平台 / 奇富通用后台】；platformKey：【zhikexing / yushu / zhineng-yunying / qifu-generic】。
+
+主题：【zhikexing-green / yushu-green / smartops-blue / custom】；themePrimary：【不填使用主题默认 / #1677FF / 自定义色值】。
+
+操作类型：【新建 / 编辑 / 查看】；业务对象：【对象名称】；抽屉标题：【标题文案】。
 
 抽屉组合：【不填自动判断 / Qifu Drawer Form / Simple Create / Sectioned Create / Advanced Create / Edit / Readonly / Data Detail with Table】；宽度：【不填自动判断 / 480 / 640 / 680 / 840】。
 
@@ -139,18 +166,64 @@ Footer：取消按钮【显示 / 隐藏】；主操作【确定 / 保存 / 关�
 - 示例数据：【完整数据行】
 - 分页：【总数、每页条数、当前页】
 
-不要覆盖已有画板；使用真实组件实例。完成后检查组件关系、Auto Layout、整数几何、文本样式、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
+不要覆盖已有画板；使用真实组件实例。完成后检查组件关系、Auto Layout、整数几何、文本样式、平台与主题回读、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
 ```
 
-未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。
+未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。未指定平台时使用 `qifu-generic`，只生成抽屉本体，不默认套用毓数。
 
 
 
-## 提示词示例一：数据详情抽屉
+## 提示词示例一：智客星超频流控配置
+
+```text
+使用 qifu-drawer-form Skill，并调用 @figma 插件，在【Figma 地址】的当前 Page 生成“超频流控配置”右侧抽屉。
+
+平台：智客星；platformKey：zhikexing。
+主题：zhikexing-green。
+presentationMode：STANDALONE。
+componentMode：REAL_COMPONENT_ONLY。
+
+操作类型：新建；业务对象：超频流控规则；抽屉标题：超频流控配置。
+抽屉组合：Qifu Drawer Form / Simple Create；宽度：840。
+
+分区一：基础信息
+- 规则名称，控件 Select，必填，是，placeholder：请选择，宽度 FULL
+- 超频人群，控件 Radio.Group，必填，是，选项：人群包、客群，默认值：人群包
+- 选择人群，控件 Custom(SelectedAudienceTag)，必填，否，展示已选人群标签：26年企微活动 - 3K-2W新客250721 - 3K-2W新客250721 S102180
+- 有效期，控件 DateRange，必填，是，placeholder：开始日期 至 结束日期，宽度 408
+- 触达方式，控件 Select，必填，是，placeholder：请选择，宽度 FULL
+- 超频规则，控件 Custom(OverFrequencyRuleBuilder)，必填，是；规则块包含策略类型 Select，以及两行“每 InputNumber 天，触达 InputNumber 条”，第一行只有添加按钮，第二行有添加和删除按钮
+
+Footer：取消按钮显示；主操作：确定。
+
+参考截图只用于识别结构和比例，不要把截图放进最终画板。所有 Input、Select、Radio、DateRange、Button、Close 都必须使用真实组件实例。完成后返回 platformKey/themeKey 回读、ComponentResolutionManifest、Slot 验证、structuralValidation 和 visualValidation。
+```
+
+## 提示词示例二：蓝色主题智能运营平台
+
+```text
+使用 qifu-drawer-form Skill，并调用 @figma 插件，在【Figma 地址】的当前 Page 生成“超频流控配置”右侧抽屉。
+
+平台：智能运营平台；platformKey：zhineng-yunying；platformName：智能运营平台。
+主题：smartops-blue；themePrimary：#1677FF。
+presentationMode：STANDALONE。
+componentMode：REAL_COMPONENT_ONLY。
+
+操作类型：新建；业务对象：超频流控规则；抽屉标题：超频流控配置。
+抽屉组合：Qifu Drawer Form / Simple Create；宽度：840。
+
+字段与“智客星超频流控配置”示例保持一致，只允许把主按钮、Radio 选中态、链接色、轻量标签和强调色切换为蓝色主题。不得改变字段顺序、控件类型、间距、圆角、阴影、Slot 结构或 Footer 按钮顺序。
+
+如果目标文件没有智能运营平台专属导航壳，先生成独立抽屉，并在组件缺口中记录 PLATFORM_PROFILE_MISSING；不要借用毓数菜单冒充智能运营平台。
+```
+
+## 提示词示例三：数据详情抽屉
 
 ```text
 使用 qifu-drawer-form Skill，并调用 @figma 插件，在【https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/奇富科技中后台组件库-新?node-id=3932-405】的当前 Page 生成“数据详情抽屉”。
 
+平台：智客星；platformKey：zhikexing。
+主题：zhikexing-green。
 操作类型：查看；业务对象：脱落事件跟进；抽屉标题：数据详情。
 
 抽屉组合：Qifu Drawer Form / Data Detail with Table；宽度：680。

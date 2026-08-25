@@ -1,4 +1,4 @@
 interface:
   display_name: "Qifu Drawer Form"
   short_description: "按正式组件或 Portable Kit 生成奇富后台右侧抽屉"
-  default_prompt: "使用 $qifu-drawer-form,默认 REAL_COMPONENT_ONLY；没有正式组件库时显式指定 PORTABLE_KIT，并按组件清单预检后生成。"
+  default_prompt: "使用 $qifu-drawer-form,先显式解析 platformKey/themeKey；默认 REAL_COMPONENT_ONLY；没有正式组件库时显式指定 PORTABLE_KIT，并按组件清单预检后生成。"
