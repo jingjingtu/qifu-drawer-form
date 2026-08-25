@@ -74,6 +74,8 @@ status = resolved | missing | ambiguous | unverified
 4. **Slot 与父级**：Drawer、Body、Section、Form Row、Footer 和 Table Slot 的父级关系正确；Slot 当前值指向刚创建的真实实例，Auto Layout 没有把内容裁切或推出抽屉边界。
 5. **关键几何**：正式交付必须有唯一 `1366×768` Scene，且 Background、Overlay Mask 均为 `1366×768`；Drawer、Header、Body、Footer 层级唯一；内容 padding、Section 间距、字段同行对齐、按钮右对齐均符合 DrawerSpec；无重叠、溢出和异常空白。
 6. **字体与变量**：新增页面级 Text 必须绑定 `TextStyleResolutionManifest` 中的组件库文本样式；最终 Scene 内不得出现无 `textStyleId` 的页面级文字。组件内部字体、颜色、间距和圆角仍由母组件或变量控制，不用页面级固定样式覆盖。
+7. **DateRange 后缀图标**：`录入组件 / DatePicker / Input / DateRange` 拉宽后，`Suffix / Calendar Icon` 必须仍在实例内部右侧，右边距跟随组件 padding（通常 12px）；禁止实例外叠加日历图标。若只能通过 detach 或移动不可改写的实例内部图层实现，判为 `COMPONENT_SOURCE_GAP`，不得伪装通过。
+8. **超频规则面板**：`Custom(OverFrequencyRule)` 必须满足面板填充 `#F5F7FA`、top/bottom padding 16px、left padding 24px、规则区内联标签到 Select gap 8px、规则行间距 12px、规则行高度 32px；添加/减少必须分别是 `Icon/basic/plus-square` 与 `Icon/basic/Minus-Square` 真实实例。
 
 ## 4. 抽屉结构计数
 
@@ -107,6 +109,7 @@ Pagination = showPagination ? 1 : 0
 
 - Header 关闭实例不得叠加实例外 `×`、`x`、Vector 或线段。
 - Radio 选项文字左侧只允许一个真实 Radio 实例，不得叠加圆环、圆点或自由绘制图形。
+- DateRange 的日历图标只能来自组件内部 Suffix，不得因为占位文字较短而贴在文字后方；与同宽 Select 的后缀图标相比，右边距应一致或仅有组件母版允许的差异。
 - 必填星号属于 Label 或 FormItem 组合，不能进入 Input/Select 实例或与标题重叠。
 - 选中步骤、按钮层级、状态 Tag 和表格选择列必须按组件公开变体或变量设置；父节点状态正确但子图标颜色错误仍判失败。
 - 表格中所有列使用同一列宽数组；Pagination 紧跟最后一行且右边缘与表格一致。

@@ -232,6 +232,54 @@ Drawer / <pageName> / Create / <compositionName>
 - Slot 只能放真实实例或已批准的空占位；禁止把裸 Text、矩形、Group、截图或页面级手绘表格写入 Drawer、Section、Form Row、Table 或 Pagination Slot。替换 Slot 后必须回读当前值、实例数量、`mainComponent` 和父级 Auto Layout。
 - Close、Radio、Checkbox、Switch 等小控件替换后，必须扫描实例实际图形区域附近的实例外 `VECTOR`、`ELLIPSE`、`LINE`、`BOOLEAN_OPERATION`、`GROUP` 和 `TEXT`。Close 的旧自由文本 `×/x` 也属于残留；Radio 的扫描锚点是选项文字左侧的圆形控件区域。
 
+### 6.1 关键控件细节规则
+
+以下规则属于生成步骤的一部分，不能只在最后验收时发现再补救。
+
+#### DateRange / 有效期
+
+- `有效期`、`创建时间`、`发生时间` 等日期范围字段必须使用真实 `录入组件 / DatePicker / Input / DateRange` 实例。
+- 当 DateRange 被拉宽到 304 / 408 / FULL 或跟随 controlSlot 宽度时，日历图标必须仍然位于实例内部最右侧，右边距跟随组件 padding（通常 12px），视觉上与同宽 Select 的后缀箭头对齐。
+- 若日历图标贴在占位文字后方，先尝试设置 DateRange 实例外层 Auto Layout 为 `primaryAxisAlignItems=SPACE_BETWEEN`，同时保持 `paddingLeft=12 / paddingRight=12`。
+- 不允许把日历图标从实例内部拖出来，也不允许在实例外叠加 `Icon/basic/calendar`、裸 Vector、截图或覆盖层。
+- 如果 Figma 拒绝实例级布局覆盖，返回 `COMPONENT_SOURCE_GAP: DateRange suffix alignment`，说明需要修组件母版；不得 detach DateRange。
+
+#### Custom(OverFrequencyRule) / 超频规则
+
+- 当字段语义为“超频规则 / 频控规则 / 触达频次规则”时，`control` 必须解析为 `Custom(OverFrequencyRule)`。
+- `Custom(OverFrequencyRule)` 不是缺失组件 Fallback，而是一个由真实 Select、Input、Icon 组件组合成的页面级规则面板；不得命名为 `Fallback / ...`。
+- 面板节点命名 `Custom Rule Area / 超频规则`，放在 `Control / overFrequencyRule` 内，宽度跟随 controlSlot，右边缘与其他控件右边缘对齐。
+- 面板填充 `#F5F7FA` 或绑定等价背景变量，圆角 4px；内容自适应高度，三行规则示例高度为 152px，不用 144px 压缩。
+- 规则面板内边距：top 16px、bottom 16px、left 24px；right 默认 24px，可按图标和控件的视觉平衡微调，但不能导致内容贴边。
+- 规则行高度统一 32px；策略类型行、第一行规则、第二行规则之间的垂直间距统一 12px。
+- “策略类型”这类面板内部短标签称为“规则区内联标签”，使用页面级 Text 且绑定组件库 `Body/Regular`；它到 Select 左边的距离固定 8px。
+- 规则行内的连接文字“每 / 天，触达 / 条”使用页面级 Text 且绑定 `Body/Regular`；文字、Input、图标之间默认 8px 间距。
+- 添加按钮必须使用真实 `Icon/basic/plus-square` 实例；减少按钮必须使用真实 `Icon/basic/Minus-Square` 实例；均使用 24×24 容器、内部 16×16 图形，不允许手绘。
+- 标准结构：
+
+```text
+Control / overFrequencyRule
+└── Custom Rule Area / 超频规则
+    ├── Rule Row / 策略类型
+    │   ├── Rule Inner Label / 策略类型
+    │   └── INSTANCE / Select / 策略类型
+    ├── Rule Row / 01
+    │   ├── Rule Text 每
+    │   ├── INSTANCE / Input / 天数
+    │   ├── Rule Text 天，触达
+    │   ├── INSTANCE / Input / 条数
+    │   ├── Rule Text 条
+    │   └── INSTANCE / Icon/basic/plus-square
+    └── Rule Row / 02
+        ├── Rule Text 每
+        ├── INSTANCE / Input / 天数
+        ├── Rule Text 天，触达
+        ├── INSTANCE / Input / 条数
+        ├── Rule Text 条
+        ├── INSTANCE / Icon/basic/plus-square
+        └── INSTANCE / Icon/basic/Minus-Square
+```
+
 ### 7. 状态管理
 
 一个抽屉只交付一种状态;默认 `Data`。
@@ -279,6 +327,8 @@ Drawer / <pageName> / Create / <compositionName>
 - 必填字段的 `*` 位于 label 左侧、色 `#dc2626`。
 - 控件可见宽度属于 `200 / 304 / 408 / FULL` 阶梯,默认值符合 field-control-map。
 - 所有控件高度均为 32px;同抽屉不混 28/32px。
+- DateRange 拉宽后日历图标必须仍在组件内部右侧，右边距跟随组件 padding；优先用实例外层 `primaryAxisAlignItems=SPACE_BETWEEN` 修正，不允许实例外覆盖图标或 detach。
+- `Custom(OverFrequencyRule)` 超频规则面板必须符合 field-control-map 专项规则：浅灰底 `#F5F7FA`、top/bottom padding 16px、left padding 24px、规则区内联标签到 Select gap 8px、内部规则行 gap 12px、添加/减少为真实图标实例。
 - 每个 Form Row 只有一个语义控件根节点；不存在临时控件、旧实例或自由文本与真实实例占用同一控件区域。
 - 组件文案、箭头、选中圆点和按钮内容位于组件实例子树内，没有实例外的同文案或同图形覆盖层。
 - Close 实例的图形边界附近不存在实例外 `×/x`、线段或矢量；Radio 每个选项文字左侧的控件区域不存在实例外圆环、椭圆或矢量。不能只验证实例数量、父层、坐标和 `mainComponent`。
