@@ -56,7 +56,7 @@ evidence = user-description | screenshot | component-map | target-file | inferre
 2. **单一语义控件**：每个 `Control / <fieldKey>` 只有一个语义控件根节点；不存在旧实例、临时控件、重复边框、重复箭头或实例外同文案覆盖。
 3. **属性闭环**：每个公开属性均完成“读取真实 Key → 校验类型和值域 → 写入 → 回读最终值”。`PROPERTY_NOT_FOUND`、`PROPERTY_AMBIGUOUS`、`PROPERTY_WRITE_FAILED`、`PROPERTY_READBACK_MISMATCH` 均判失败。
 4. **Slot 与父级**：Drawer、Body、Section、Form Row、Footer 和 Table Slot 的父级关系正确；Slot 当前值指向刚创建的真实实例，Auto Layout 没有把内容裁切或推出抽屉边界。
-5. **关键几何**：Drawer、Header、Body、Footer 层级唯一；内容 padding、Section 间距、字段同行对齐、按钮右对齐均符合 DrawerSpec；无重叠、溢出和异常空白。
+5. **关键几何**：正式交付必须有唯一 `1366×768` Scene，且 Background、Overlay Mask 均为 `1366×768`；Drawer、Header、Body、Footer 层级唯一；内容 padding、Section 间距、字段同行对齐、按钮右对齐均符合 DrawerSpec；无重叠、溢出和异常空白。
 6. **字体与变量**：新增自由文本绑定组件库文本样式；组件内部字体、颜色、间距和圆角仍由母组件或变量控制，不用页面级固定样式覆盖。
 
 ## 4. 抽屉结构计数
@@ -103,7 +103,8 @@ Pagination = showPagination ? 1 : 0
 | `COMPONENT_LIBRARY_UNAVAILABLE` | 目标文件无法调用组件库 | 严格模式停止写入 |
 | `COMPONENT_MISSING` | 目标库没有能力 | 严格模式停止该区域；宽松模式才评估 Fallback |
 | `COMPONENT_AMBIGUOUS` | 候选不唯一 | 停止，报告候选完整名称 |
-| `PLATFORM_PROFILE_MISSING` | 指定平台缺少平台壳、导航或底图协议 | 独立抽屉可继续；平台壳交付停止并记录缺口 |
+| `PLATFORM_PROFILE_MISSING` | 指定平台缺少平台壳或导航协议 | 停止平台壳交付，记录缺口 |
+| `BACKGROUND_TEMPLATE_MISSING` | 正式打开态缺少可用的 1366×768 底图模板或指定列表页 | 停止写入，不生成裸抽屉或假底图 |
 | `THEME_VARIABLE_MISSING` | 主题主色无法绑定到变量或组件公开属性 | 停止改色，不 detach 组件手工覆盖 |
 | `PORTABLE_COMPONENT_MISSING` | Portable Kit 缺少本地组件 | 停止，报告缺失能力 |
 | `STYLE_MISSING` | 必需文本样式或字体不可用 | 停止，不手填近似样式 |

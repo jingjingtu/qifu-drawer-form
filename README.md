@@ -84,10 +84,10 @@ GitHub 只同步 Skill 文件，不会同步 Figma 登录状态、访问权限�
 
 | platformKey | 平台 | 默认主题 | 用法 |
 | --- | --- | --- | --- |
-| `zhikexing` | 智客星 | `zhikexing-green` | 当前主平台；可生成独立抽屉，也可叠加到智客星列表页底图。 |
+| `zhikexing` | 智客星 | `zhikexing-green` | 当前主平台；正式交付默认生成 `1366×768` 完整打开态，使用智客星列表页模板底图 + 蒙层 + 右侧抽屉。 |
 | `yushu` | 毓数 | `yushu-green` | 只有明确写毓数时才使用，不再作为默认平台。 |
-| `zhineng-yunying` | 智能运营平台 | `smartops-blue` | 预留的蓝色主题平台；平台壳未补齐时先生成独立抽屉并记录缺口。 |
-| `qifu-generic` | 奇富通用后台 | `zhikexing-green` | 未指定平台时使用，只生成抽屉本体。 |
+| `zhineng-yunying` | 智能运营平台 | `smartops-blue` | 预留的蓝色主题平台；正式交付仍必须是 `1366×768` 完整打开态，缺少专属底图时返回 `BACKGROUND_TEMPLATE_MISSING`。 |
+| `qifu-generic` | 奇富通用后台 | `zhikexing-green` | 未指定平台时使用；仍必须生成 `1366×768` 完整打开态，缺少通用底图时返回 `BACKGROUND_TEMPLATE_MISSING`。 |
 
 | themeKey | 主色 | 说明 |
 | --- | --- | --- |
@@ -149,6 +149,8 @@ cp -R skills/qifu-drawer-form ~/.codex/skills/
 
 抽屉组合：【不填自动判断 / Qifu Drawer Form / Simple Create / Sectioned Create / Advanced Create / Edit / Readonly / Data Detail with Table】；宽度：【不填自动判断 / 480 / 640 / 680 / 840】。
 
+展示方式：【完整页面打开态，默认】；画板：【1366×768】；底图：【智客星默认模板 / 已验收列表页节点 ID】；蒙层：【自动生成】。
+
 分区一：【分区名称】
 - 【字段标签】，控件【Input / Select / Radio.Group / Checkbox / Switch / DatePicker / DateRange / Cascader / Textarea / Upload / Custom】，是否必填【是 / 否】，默认值【无 / 内容】，帮助文字【无 / 内容】
 
@@ -166,10 +168,10 @@ Footer：取消按钮【显示 / 隐藏】；主操作【确定 / 保存 / 关�
 - 示例数据：【完整数据行】
 - 分页：【总数、每页条数、当前页】
 
-不要覆盖已有画板；使用真实组件实例。完成后检查组件关系、Auto Layout、整数几何、文本样式、平台与主题回读、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
+不要覆盖已有画板；使用真实组件实例。正式交付必须是 `1366×768` 画板，结构为底图 + 蒙层 + 右侧抽屉。完成后检查组件关系、Auto Layout、整数几何、文本样式、平台与主题回读、文字截断、节点重叠和画板溢出，并返回节点 ID 与截图结果。
 ```
 
-未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。未指定平台时使用 `qifu-generic`，只生成抽屉本体，不默认套用毓数。
+未指定正式交付 Page 的试生成、效果验证和 Skill 回归画板，统一放入组件库 Figma Page `测试`（node `3497:651`）。未指定平台时使用 `qifu-generic`，但仍生成 `1366×768` 完整打开态；没有已批准通用底图时返回 `BACKGROUND_TEMPLATE_MISSING`，不默认套用毓数。
 
 
 
@@ -180,7 +182,10 @@ Footer：取消按钮【显示 / 隐藏】；主操作【确定 / 保存 / 关�
 
 平台：智客星；platformKey：zhikexing。
 主题：zhikexing-green。
-presentationMode：STANDALONE。
+展示方式：完整页面打开态。
+画板：1366×768。
+底图：使用智客星列表页模板。
+蒙层：自动生成。
 componentMode：REAL_COMPONENT_ONLY。
 
 操作类型：新建；业务对象：超频流控规则；抽屉标题：超频流控配置。
@@ -206,7 +211,10 @@ Footer：取消按钮显示；主操作：确定。
 
 平台：智能运营平台；platformKey：zhineng-yunying；platformName：智能运营平台。
 主题：smartops-blue；themePrimary：#1677FF。
-presentationMode：STANDALONE。
+展示方式：完整页面打开态。
+画板：1366×768。
+底图：使用已验收的智能运营平台列表页节点；没有节点时返回 BACKGROUND_TEMPLATE_MISSING。
+蒙层：自动生成。
 componentMode：REAL_COMPONENT_ONLY。
 
 操作类型：新建；业务对象：超频流控规则；抽屉标题：超频流控配置。
@@ -214,7 +222,7 @@ componentMode：REAL_COMPONENT_ONLY。
 
 字段与“智客星超频流控配置”示例保持一致，只允许把主按钮、Radio 选中态、链接色、轻量标签和强调色切换为蓝色主题。不得改变字段顺序、控件类型、间距、圆角、阴影、Slot 结构或 Footer 按钮顺序。
 
-如果目标文件没有智能运营平台专属导航壳，先生成独立抽屉，并在组件缺口中记录 PLATFORM_PROFILE_MISSING；不要借用毓数菜单冒充智能运营平台。
+如果目标文件没有智能运营平台专属导航壳或已验收底图，返回 BACKGROUND_TEMPLATE_MISSING；不要生成裸抽屉，也不要借用毓数菜单冒充智能运营平台。
 ```
 
 ## 提示词示例三：数据详情抽屉

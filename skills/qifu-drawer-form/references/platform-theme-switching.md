@@ -12,7 +12,7 @@ platformName   中文平台名：智客星 | 毓数 | 智能运营平台 | 奇�
 themeKey       主题标识：zhikexing-green | yushu-green | smartops-blue | custom
 themePrimary   主题主色；custom 必填，例如 #1677FF
 themeMode      light；当前仅支持浅色后台
-presentationMode  STANDALONE | OVERLAY_ON_ZHIKEXING_LIST
+presentationMode  DRAWER_OPEN_WITH_BACKGROUND(默认) | OVERLAY_ON_ZHIKEXING_LIST(智客星兼容别名) | STANDALONE_DEBUG(仅内部调试)
 ```
 
 `platformKey` 与 `themeKey` 必须分开写。只说“蓝色平台”时，不得把 `platformKey` 改成 `blue`；应解析为某个平台 + 蓝色主题。
@@ -21,10 +21,10 @@ presentationMode  STANDALONE | OVERLAY_ON_ZHIKEXING_LIST
 
 | platformKey | platformName | 默认 themeKey | 适用说明 |
 | --- | --- | --- | --- |
-| `zhikexing` | 智客星 | `zhikexing-green` | 当前用户主平台。可单独生成抽屉，也可用 `OVERLAY_ON_ZHIKEXING_LIST` 叠加到智客星列表页底图。 |
+| `zhikexing` | 智客星 | `zhikexing-green` | 当前用户主平台。正式交付默认生成 `1366×768` 完整打开态，使用智客星列表页模板底图 + 蒙层 + 右侧抽屉。 |
 | `yushu` | 毓数 | `yushu-green` | 仅当用户明确说“毓数”或指定 `platformKey=yushu` 时使用，不再作为跨平台默认值。 |
-| `zhineng-yunying` | 智能运营平台 | `smartops-blue` | 未来蓝色主题平台。当前先复用抽屉表单结构和通用组件；缺少专属导航壳时生成独立抽屉并记录平台壳缺口。 |
-| `qifu-generic` | 奇富通用后台 | `zhikexing-green` | 用户未指定平台时的保守默认，只生成抽屉本体，不套用任何平台菜单或业务壳。 |
+| `zhineng-yunying` | 智能运营平台 | `smartops-blue` | 未来蓝色主题平台。正式交付仍必须是 `1366×768` 完整打开态；缺少专属底图模板时返回 `BACKGROUND_TEMPLATE_MISSING`。 |
+| `qifu-generic` | 奇富通用后台 | `zhikexing-green` | 用户未指定平台时的保守默认；仍必须生成 `1366×768` 完整打开态，不套用任何平台菜单或业务壳。缺少通用底图时返回 `BACKGROUND_TEMPLATE_MISSING`。 |
 
 ## 3. 主题 Token
 
@@ -57,29 +57,31 @@ presentationMode  STANDALONE | OVERLAY_ON_ZHIKEXING_LIST
 2. 用户明确说“毓数”：`platformKey=yushu`，读取 `platform-yushu.md`。
 3. 用户明确说“智能运营平台”或“蓝色主题智能运营平台”：`platformKey=zhineng-yunying`，默认 `themeKey=smartops-blue`。
 4. 用户只说“蓝色主题”：保持已解析的平台不变，设置 `themeKey=custom` 或 `smartops-blue`；不得改变字段、组合和结构。
-5. 用户没有说平台：使用 `platformKey=qifu-generic`，只生成抽屉本体；不得默认套用毓数菜单。
+5. 用户没有说平台：使用 `platformKey=qifu-generic`，但仍按完整打开态处理；不得默认套用毓数菜单。若没有已批准通用底图，返回 `BACKGROUND_TEMPLATE_MISSING`。
 
 ## 5. 生成约束
 
 - 平台切换不得改变 `compositionName`、字段顺序、控件类型、Footer 主操作和校验规则。
 - 主题切换只影响颜色变量、选中态、主按钮和轻量强调，不影响间距、字号、圆角、阴影、控件高度或 Slot 结构。
-- 智客星底图叠加只在 `platformKey=zhikexing` 且 `presentationMode=OVERLAY_ON_ZHIKEXING_LIST` 时启用。
-- 智能运营平台在平台壳尚未建立前，只能交付独立抽屉或记录 `PLATFORM_PROFILE_MISSING`；不得借用毓数菜单冒充。
+- 正式交付必须生成 `1366×768` 完整打开态，结构固定为 `Background < Overlay Mask < Drawer`，不得交付裸抽屉。
+- 智客星未指定 `background` 时，默认使用已验证智客星列表页模板；`OVERLAY_ON_ZHIKEXING_LIST` 作为旧提示词兼容写法等同完整打开态。
+- 智能运营平台在平台壳尚未建立前，不能交付正式打开态；必须返回 `BACKGROUND_TEMPLATE_MISSING`，或使用用户明确指定并验收通过的 `EXISTING_LIST_PAGE`。不得借用毓数菜单冒充。
 - 交付结果必须回报 `platformKey / platformName / themeKey / themePrimary` 和主题变量回读结果。
 
 ## 6. 示例提示词
 
-### 智客星绿色主题独立抽屉
+### 智客星绿色主题完整打开态
 
 ```text
 使用 qifu-drawer-form，在智客星平台生成“超频流控配置”右侧抽屉。
 platformKey：zhikexing
 themeKey：zhikexing-green
-presentationMode：STANDALONE
+展示方式：完整页面打开态
+底图：使用智客星列表页模板
 componentMode：REAL_COMPONENT_ONLY
 ```
 
-### 智客星叠加到列表页
+### 智客星旧写法兼容
 
 ```text
 使用 qifu-drawer-form 和 zhikexing-list-page，在智客星平台生成“超频流控配置”右侧抽屉。
@@ -98,6 +100,8 @@ platformKey：zhineng-yunying
 platformName：智能运营平台
 themeKey：smartops-blue
 themePrimary：#1677FF
-presentationMode：STANDALONE
+展示方式：完整页面打开态
+background.source：EXISTING_LIST_PAGE
+background.sourceNode：<智能运营平台已验收列表页节点 ID>
 componentMode：REAL_COMPONENT_ONLY
 ```
