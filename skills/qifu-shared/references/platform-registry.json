@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": 1,
+  "fallbackPlatform": "qifu-generic",
+  "platforms": {
+    "zhikexing": {
+      "displayName": "智客星",
+      "aliases": [
+        "智客星",
+        "zhikexing"
+      ],
+      "adapter": "references/platform-zhikexing.md",
+      "defaultTheme": "zhikexing-green",
+      "generationStrategy": "copyTemplate",
+      "shellReadiness": "validated-template",
+      "detectionSignals": {
+        "figmaNodeNames": [
+          "Template / List Page / 智客星 / 1440 / 手动调整"
+        ],
+        "figmaVariableModes": [],
+        "templateNodeIds": [
+          "4892:34812"
+        ]
+      },
+      "backgroundPriority": [
+        "EXISTING_LIST_PAGE",
+        "TEMPLATE",
+        "STRUCTURE_PREVIEW"
+      ]
+    },
+    "yushu": {
+      "displayName": "毓数",
+      "aliases": [
+        "毓数",
+        "yushu"
+      ],
+      "adapter": "references/platform-yushu.md",
+      "defaultTheme": "yushu-green",
+      "generationStrategy": "assemble",
+      "shellReadiness": "registered-adapter",
+      "detectionSignals": {
+        "figmaNodeNames": [
+          "Navigation / HeaderMenu / Yushu Header-V2"
+        ],
+        "figmaVariableModes": [
+          "毓数/Light"
+        ],
+        "templateNodeIds": []
+      },
+      "backgroundPriority": [
+        "EXISTING_LIST_PAGE",
+        "TEMPLATE",
+        "STRUCTURE_PREVIEW"
+      ]
+    },
+    "zhineng-yunying": {
+      "displayName": "智能运营平台",
+      "aliases": [
+        "智能运营平台",
+        "智能运营",
+        "zhineng-yunying",
+        "smartops"
+      ],
+      "adapter": "references/platform-zhineng-yunying.md",
+      "defaultTheme": "smartops-blue",
+      "generationStrategy": "existing-or-preview",
+      "shellReadiness": "partial",
+      "detectionSignals": {
+        "figmaNodeNames": [],
+        "figmaVariableModes": [
+          "智能运营/Light"
+        ],
+        "templateNodeIds": []
+      },
+      "backgroundPriority": [
+        "EXISTING_LIST_PAGE",
+        "STRUCTURE_PREVIEW"
+      ]
+    },
+    "qifu-generic": {
+      "displayName": "奇富通用后台",
+      "aliases": [
+        "奇富通用后台",
+        "qifu-generic",
+        "generic"
+      ],
+      "adapter": "references/platform-generic.md",
+      "defaultTheme": "yushu-green",
+      "generationStrategy": "assemble",
+      "shellReadiness": "neutral-only",
+      "detectionSignals": {
+        "figmaNodeNames": [],
+        "figmaVariableModes": [],
+        "templateNodeIds": []
+      },
+      "backgroundPriority": [
+        "EXISTING_LIST_PAGE",
+        "STRUCTURE_PREVIEW"
+      ]
+    }
+  }
+}

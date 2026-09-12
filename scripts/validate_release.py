@@ -141,13 +141,23 @@ def main() -> int:
     validate_content(errors)
     validate_manifest(versions, errors)
 
-    portable_validator = SKILLS / "qifu-drawer-form" / "scripts" / "validate_portable_manifest.py"
-    if portable_validator.is_file():
-        result = subprocess.run(
-            [sys.executable, str(portable_validator)], cwd=ROOT, check=False
-        )
+    package_validators = (
+        (
+            SKILLS / "qifu-drawer-form" / "scripts" / "validate_portable_manifest.py",
+            "portable component manifest validation failed",
+        ),
+        (
+            SKILLS / "qifu-drawer-form" / "scripts" / "validate_multi_platform_contract.py",
+            "multi-platform contract validation failed",
+        ),
+    )
+    for validator, failure_message in package_validators:
+        if not validator.is_file():
+            errors.append(f"missing package validator: {validator.relative_to(ROOT)}")
+            continue
+        result = subprocess.run([sys.executable, str(validator)], cwd=ROOT, check=False)
         if result.returncode:
-            errors.append("portable component manifest validation failed")
+            errors.append(failure_message)
 
     if errors:
         print("FAIL: drawer release validation")

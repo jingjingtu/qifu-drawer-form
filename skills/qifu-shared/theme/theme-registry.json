@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": 1,
+  "themes": {
+    "zhikexing-green": {
+      "primary": "#00B578",
+      "bindingStrategy": "inherit-template-then-semantic-variable",
+      "figmaCollection": "基础",
+      "figmaMode": null,
+      "colorVariableGroup": "mode/green",
+      "supportedAppearance": "light"
+    },
+    "yushu-green": {
+      "primary": "#00B578",
+      "bindingStrategy": "figma-mode-and-semantic-variable",
+      "figmaCollection": "基础",
+      "figmaMode": "毓数/Light",
+      "colorVariableGroup": "mode/green",
+      "supportedAppearance": "light"
+    },
+    "smartops-blue": {
+      "primary": "#1677FF",
+      "bindingStrategy": "figma-mode-and-semantic-variable",
+      "figmaCollection": "基础",
+      "figmaMode": "智能运营/Light",
+      "colorVariableGroup": "mode/blue",
+      "supportedAppearance": "light"
+    },
+    "custom": {
+      "primary": null,
+      "requiresThemePrimary": true,
+      "bindingStrategy": "existing-semantic-variable-or-exposed-property-only",
+      "figmaCollection": null,
+      "figmaMode": null,
+      "colorVariableGroup": null,
+      "supportedAppearance": "light"
+    }
+  }
+}

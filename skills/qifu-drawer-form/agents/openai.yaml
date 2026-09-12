@@ -1,4 +1,4 @@
 interface:
   display_name: "Qifu Drawer Form"
-  short_description: "按正式组件或 Portable Kit 生成 1366×768 打开态抽屉"
-  default_prompt: "使用 $qifu-drawer-form 并调用 @figma，根据业务字段在指定 Page 和落点生成完整右侧抽屉打开态，并返回实例、样式、结构与视觉验证结果。"
+  short_description: "以真实组件生成单平台抽屉或多平台一致性对比稿，并自动切换主题"
+  default_prompt: "使用 $qifu-drawer-form 并调用 @figma，根据同一份业务字段在指定 Page 生成多个平台的完整抽屉打开态，并返回平台识别、主题与跨平台一致性验证结果。"

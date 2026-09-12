@@ -1,7 +1,7 @@
 ---
 name: qifu-drawer-form
 description: >-
-  用于根据业务描述、字段清单、截图或线框，在 Figma 中以奇富组件库真实实例创建、更新或审查右侧抽屉的新建、编辑、只读和数据详情场景。正式交付生成完整页面打开态，并验证平台、主题、实例关系、Text Style、结构与视觉结果。不用于向导、批量编辑列表、复杂看板或高度定制工作台。
+  用于根据业务描述、字段清单、截图或线框，在 Figma 中以奇富组件库真实实例创建、更新或审查单平台或多平台对比的右侧抽屉。支持新建、编辑、只读和数据详情场景，并验证平台、主题、实例关系、结构与视觉结果。不用于向导、批量编辑列表、复杂看板或高度定制工作台。
 ---
 
 # Qifu Drawer Form
@@ -21,6 +21,7 @@ description: >-
 
 - 普通 Create / Edit / Readonly：读取[页面蓝图](references/page-blueprint.md)和[字段控件映射](references/field-control-map.md)。
 - 解析平台或主题：读取[平台与主题切换协议](references/platform-theme-switching.md)，以及当前平台的唯一 Adapter。
+- 用户要求同一抽屉复用到多个平台、生成对比稿，或一次列出两个及以上平台：读取[多平台批量生成协议](references/multi-platform-batch.md)、[平台注册表](../qifu-shared/references/platform-registry.json)和[主题注册表](../qifu-shared/theme/theme-registry.json)，用 `scripts/resolve_platform.py` 解析精确信号，再按目标加载各平台 Adapter。
 - 开始写入与最终验收：读取[Figma 执行与结构化验收](references/figma-execution-validation.md)。
 - 数据详情、智能运营策略关联、智客星超频流控：分别读取对应的[数据详情 Golden Sample](references/golden-sample-data-detail-drawer.md)、[智能运营 Golden Sample](references/golden-sample-smartops-strategy-drawer.md)、[智客星超频 Golden Sample](references/golden-sample-zhikexing-overfrequency-drawer.md)。
 - 正式完整打开态：读取[打开态底图协议](references/zhikexing-list-background.md)。
@@ -34,6 +35,7 @@ description: >-
 先形成共享 `PageContext`，再形成 `DrawerSpec`。用户不需要填写完整表格；从自然语言提取并合理补全：
 
 ```text
+generationMode=SINGLE|MULTI_PLATFORM_COMPARE
 drawerTitle / operation=create|edit|readonly|view
 componentMode=REAL_COMPONENT_ONLY|PORTABLE_KIT|VISUAL_FALLBACK
 compositionName
@@ -49,6 +51,13 @@ sections[].fields[]:
 footer: okText, cancelText, showCancel, danger, extras[]
 embeddedTable: columns[], rows[], tableSize, tableType, selection, pagination
 targetFileUrl / targetPage / targetAnchor / targetPlacement
+
+MULTI_PLATFORM_COMPARE additionally:
+baseDrawer=<normalized shared DrawerSpec>
+targets[].platformKey / platformName / themeKey / themePrimary
+targets[].background / navigation
+comparisonLayout=HORIZONTAL|GRID
+failurePolicy=ALL_OR_NOTHING|CONTINUE_WITH_REPORT
 ```
 
 统一默认：
@@ -56,6 +65,7 @@ targetFileUrl / targetPage / targetAnchor / targetPlacement
 - 未指定平台且目标文件无可靠上下文：`platformKey=qifu-generic`，不套用毓数或智客星菜单。
 - 未指定组件模式：`REAL_COMPONENT_ONLY`。
 - 未指定组合：按注册表推断，仍无法区分时使用 `Qifu Drawer Form / Sectioned Create`。
+- 用户明确要求多平台复用、对比稿，或一次给出两个及以上已注册平台时：`generationMode=MULTI_PLATFORM_COMPARE`；否则为 `SINGLE`。
 - 普通表单宽度 640；数据详情固定 680；智能运营策略关联 Golden Sample 固定 680；智客星超频 Golden Sample 固定 640。
 - 普通字段宽度默认 304，只允许 `200 / 304 / 408 / FULL`。
 - 正式交付默认 `DRAWER_OPEN_WITH_BACKGROUND + background.source=AUTO`，不交付裸抽屉。
@@ -78,6 +88,7 @@ targetFileUrl / targetPage / targetAnchor / targetPlacement
 1. 先解析目标文件、Page、落点和平台，再解析操作类型、对象、组合、Section、字段与 Footer。
 2. 参考图内容按 `user-description | screenshot | inferred` 记录证据；用户文字优先于截图。
 3. 影响组件选择、层级或写入位置的推断必须列入交付假设。
+4. 多平台模式只解析一次公共 `baseDrawer`，冻结内容指纹后为每个平台派生计划；平台目标不得改写公共字段结构。
 
 ### 2. 预检
 
@@ -85,6 +96,7 @@ targetFileUrl / targetPage / targetAnchor / targetPlacement
 2. 为必需组件建立 `ComponentResolutionManifest`；所有必需项为 `resolved` 后才写页面。
 3. 为页面级文字建立 `TextStyleResolutionManifest`；必需样式缺失时返回 `STYLE_MISSING`。
 4. 主题变量、背景来源和 Golden Sample 在写入前确认。预检失败不留下半成品。
+5. 多平台模式默认先预检全部目标；任一目标失败时按 `ALL_OR_NOTHING` 停止，不反复尝试同类替代方案。只有用户明确选择 `CONTINUE_WITH_REPORT` 才生成已通过目标并返回 `PARTIAL`。
 
 ### 3. 创建完整打开态
 
@@ -120,6 +132,10 @@ Scene / Drawer / <pageName> / <drawerTitle>
 - 智客星超频流控：固定六个字段、640px、超频规则面板和 `取消 / 确定`；不得混入其他平台案例字段。
 - 其他复合业务能力使用 `Custom(<BizSlot>)`；只有组件库确实缺少该能力时才能进入已授权的 Fallback。
 
+### 6. 多平台对比
+
+按多平台批量协议在同一目标 Page 创建 `Comparison / Drawer / <drawerTitle>`。每个平台保留独立 `1366×768` 完整打开态，结构、字段、控件、宽度和 Footer 使用相同 `contentFingerprint`；只允许 Adapter、背景、导航、平台词和主题变量不同。智能运营平台缺少正式背景时明确标记 `PREVIEW_ONLY`，不得冒充正式平台还原。
+
 ## 失败关闭
 
 以下情况属于执行失败，不是组件缺口：属性 Key 不存在、属性回读不一致、INSTANCE_SWAP/Slot 写入失败、字体或样式缺失、权限不足、目标不可编辑。
@@ -146,8 +162,9 @@ Scene / Drawer / <pageName> / <drawerTitle>
 - 无未声明的截断、重叠、溢出和异常空白；
 - Golden Sample 专项检查全部通过；
 - 缺口、Fallback 和假设均可追踪。
+- 多平台模式额外确认所有目标内容指纹一致，并返回每个平台的识别证据、壳状态与 `crossPlatformConsistency`。
 
-只有结构和视觉都为 `PASS` 才能宣称完成。返回节点 ID、平台与主题回读、组合名、背景来源、字段与 Section 摘要、组件与 Text Style 解析摘要、属性/Slot 回读、缺口、假设和双重验证结果。
+单平台只有结构和视觉都为 `PASS` 才能宣称完成。多平台只有全部目标双重验证通过、内容指纹一致且壳状态符合用户要求时，才能返回 `batchValidation=PASS`。返回节点 ID、平台与主题回读、组合名、背景来源、字段与 Section 摘要、组件与 Text Style 解析摘要、属性/Slot 回读、缺口、假设和验证结果。
 
 ## 硬性约束
 
@@ -155,5 +172,6 @@ Scene / Drawer / <pageName> / <drawerTitle>
 - 不把平台、主题和写入位置混为一谈。
 - 不创建 `DrawerShell` 母版；Drawer 是页面级组合。
 - 不静默切换组件模式或跨平台借用菜单、模板和业务字段。
+- 不用主题色、Logo 相似度或截图观感猜测平台；多平台目标必须由注册表中的确定性信号解析。
 - 不把向导、复杂看板或批量编辑列表硬塞进本 Skill。
 - 页面生成授权不包含修改本仓库或同步到其他目录；发现规则缺口时先报告。

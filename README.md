@@ -6,7 +6,7 @@
 
 ## 包含内容
 
-- `qifu-drawer-form`：新建、编辑、查看和数据详情右侧抽屉工作流。
+- `qifu-drawer-form`：新建、编辑、查看、数据详情，以及同一抽屉的多平台一致性对比工作流。
 - `qifu-shared`：组件映射、页面上下文、平台适配器和主题 Tokens，是抽屉 Skill 的必需依赖。
 - `RELEASE_MANIFEST.json`：源提交、包版本和发布文件哈希。
 

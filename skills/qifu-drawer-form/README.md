@@ -42,6 +42,26 @@ ln -sfn ~/Documents/qifu-drawer-form/skills/qifu-drawer-form ~/.claude/skills/qi
 
 完成后新开任务，使用 `$qifu-drawer-form` 或直接说“使用 qifu-drawer-form”。更新时进入 `~/Documents/qifu-drawer-form` 执行 `git pull`；软链不需要重新创建。主仓库维护者也可以把同样的两个软链直接指向 `qifu-skills/skills/` 下的对应目录。
 
+## 多平台对比模式
+
+同一个抽屉需要复用到多个平台时，只描述一次公共字段，再列出目标平台。Skill 会冻结公共结构，在同一个 Figma Page 中生成多个完整打开态；字段、控件、顺序、宽度和 Footer 保持一致，只切换平台 Adapter、背景、导航、平台词和主题变量。
+
+```text
+使用 qifu-drawer-form，并调用 @figma 插件，把同一个“新增策略”抽屉生成到智客星、毓数和智能运营平台，放在 <目标 Figma 文件> 的 <目标 Page> 空白处，生成一个多平台对比组。
+
+公共结构：Sectioned Create，宽度 640。
+基础信息：策略名称 Input 必填；有效期 DateRange 必填。
+策略配置：策略类型 Select 必填；备注 Textarea 选填。
+Footer：取消、确定。
+
+平台主题自动采用平台注册默认值；优先使用各平台已验收背景。没有正式智能运营平台背景时允许 STRUCTURE_PREVIEW，并标记 PREVIEW_ONLY。
+comparisonLayout：HORIZONTAL。
+failurePolicy：ALL_OR_NOTHING。
+不要改变不同平台之间的字段、控件、顺序、宽度和 Footer。完成后返回 contentFingerprint、每个平台识别证据和跨平台一致性验证。
+```
+
+一次只生成一个平台时继续使用下面的普通模板。批量模式的完整识别、预检、布局和验收规则见 [多平台抽屉批量生成协议](references/multi-platform-batch.md)。
+
 ## 一套模板
 
 只复制下面这一套。替换 `<...>` 内的业务值；没有的分区或字段直接删除，不保留占位符。

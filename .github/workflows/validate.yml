@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: python scripts/validate_release.py
-      - run: python skills/qifu-drawer-form/scripts/validate_portable_manifest.py
+      - run: python -m unittest discover -s skills/qifu-drawer-form/tests -v

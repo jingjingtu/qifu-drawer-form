@@ -9,9 +9,12 @@ Core contracts:
 - `references/page-context.md`
 - `references/component-invocation-baseline.md`
 - `references/component-map.md`
+- `references/platform-registry.json`
+- `theme/theme-registry.json`
 
 Included platform baselines:
 
 - `references/platform-yushu.md`
 - `references/platform-zhikexing.md`
+- `references/platform-zhineng-yunying.md`
 - `references/platform-generic.md`

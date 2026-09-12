@@ -23,7 +23,10 @@ Keep this Skill installed beside those companion Skills. They resolve shared com
 - `references/page-context.md`: 列表、详情、抽屉与编排入口共用的页面上下文。
 - `references/platform-yushu.md`: 毓数导航基线。
 - `references/platform-zhikexing.md`: 智客星列表页基线与 copyTemplate 策略（仓库唯一权威；2026-09-11 起 `qifu-list-page` 不再保留副本）。
+- `references/platform-registry.json`: 平台标识、别名、确定性检测信号、默认主题、Adapter 和背景优先级的机器可读注册表。
 - `references/platform-generic.md`: 通用 B 端平台适配器（`platform=generic` 时使用）。
+- `references/platform-zhineng-yunying.md`: 智能运营平台蓝色主题、背景来源和 `PREVIEW_ONLY` 边界。
+- `theme/theme-registry.json`: 主题到 Figma collection、mode 和颜色变量组的机器可读映射。
 - `theme/`: Figma 变量快照（`tokens.json` + `source/*.json` + `*.less`）。AI 先读 `tokens.json`，需要核对模式和值时读 `source/<collection>.json`。
 
 ## 版本
