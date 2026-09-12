@@ -3,7 +3,7 @@
     ".github/workflows/validate.yml": "dc7d5680bc69a179af3ef4cba1f883b74287aacb1bea1a7efa783ef96c819a5a",
     ".gitignore": "112544186c645cc29f06a5b6b25f0ee5068f906368b398cec5e25ce07ce25739",
     "AGENTS.md": "3ebfe64ad47028bdeda41fd06560bc1f5156a2c50c165c93524269c3f0d1c894",
-    "README.md": "cbeaf93fb0dac076ac2e3f99e2dd0a65bfd9683aa5093b6e7d97b9119c7ed494",
+    "README.md": "c1de80058a10862642733d251b528e2a1df747d8f9174ad945d241426cc8a5c6",
     "scripts/validate_release.py": "97c5a218da0dc23b87b54561ed0703543c3946d8fd2fb2ba8b7247c5df21a8cd",
     "skills/qifu-drawer-form/README.md": "7d63e019c3622ce4e4b0bc696b52227e062ff6ad666cc6fa4b42eef1334a1978",
     "skills/qifu-drawer-form/SKILL.md": "14833199375aae75dc2aee60534a8fe6642e3c0e4e89c4575b0614a1ddd3bf3d",
@@ -61,6 +61,6 @@
     "qifu-shared": "1.2.0"
   },
   "schemaVersion": 1,
-  "sourceCommit": "a2c66c9685c5ff400c80859415b4bcf35098782f",
+  "sourceCommit": "3e6cca8880258ad516eb7ab45d567d207bcf7dc0",
   "sourceRepository": "jingjingtu/qifu-skills"
 }
