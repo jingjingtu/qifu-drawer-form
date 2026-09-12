@@ -75,7 +75,7 @@ status = resolved | missing | ambiguous | unverified
 5. **关键几何**：正式交付必须有唯一 `1366×768` Scene，且 Background、Overlay Mask 均为 `1366×768`；Drawer、Header、Body、Footer 层级唯一；内容 padding、Section 间距、字段同行对齐、按钮右对齐均符合 DrawerSpec；无重叠、溢出和异常空白。
 6. **字体与变量**：新增页面级 Text 必须绑定 `TextStyleResolutionManifest` 中的组件库文本样式；最终 Scene 内不得出现无 `textStyleId` 的页面级文字。组件内部字体、颜色、间距和圆角仍由母组件或变量控制，不用页面级固定样式覆盖。
 7. **DateRange 后缀图标**：`录入组件 / DatePicker / Input / DateRange` 拉宽后，`Suffix / Calendar Icon` 必须仍在实例内部右侧，右边距跟随组件 padding（通常 12px）；禁止实例外叠加日历图标。若只能通过 detach 或移动不可改写的实例内部图层实现，判为 `COMPONENT_SOURCE_GAP`，不得伪装通过。
-8. **超频规则面板**：`Custom(OverFrequencyRule)` 必须满足面板填充 `#F5F7FA`、top/bottom padding 16px、left padding 24px、规则区内联标签到 Select gap 8px、规则行间距 12px、规则行高度 32px；添加/减少必须分别是 `Icon/basic/plus-square` 与 `Icon/basic/Minus-Square` 真实实例。
+8. **超频规则面板**：`Custom(OverFrequencyRule)` 必须绑定已批准的次级背景语义变量，视觉值与 Golden Sample 的 `#F5F7FA` 一致；top/bottom padding 16px、left padding 24px、规则区内联标签到 Select gap 8px、规则行间距 12px、规则行高度 32px；添加/减少必须分别是 `Icon/basic/plus-square` 与 `Icon/basic/Minus-Square` 真实实例。
 
 ## 4. 抽屉结构计数
 
@@ -120,10 +120,10 @@ Pagination = showPagination ? 1 : 0
 | 代码 | 含义 | 处理 |
 | --- | --- | --- |
 | `COMPONENT_LIBRARY_UNAVAILABLE` | 目标文件无法调用组件库 | 严格模式停止写入 |
-| `COMPONENT_MISSING` | 目标库没有能力 | 严格模式停止该区域；宽松模式才评估 Fallback |
+| `COMPONENT_MISSING` | 目标库没有能力 | 默认停止该区域；仅用户明确选择 `VISUAL_FALLBACK` 时评估 Fallback |
 | `COMPONENT_AMBIGUOUS` | 候选不唯一 | 停止，报告候选完整名称 |
 | `PLATFORM_PROFILE_MISSING` | 指定平台缺少平台壳或导航协议 | 停止平台壳交付，记录缺口 |
-| `BACKGROUND_TEMPLATE_MISSING` | 正式打开态缺少可用的 1366×768 底图模板或指定列表页 | 停止写入，不生成裸抽屉或假底图 |
+| `BACKGROUND_TEMPLATE_MISSING` | 缺少可验收的正式平台 1366×768 底图模板或指定列表页 | 正式平台页面验收为 BLOCKED；`background.source=AUTO` 仍生成 `STRUCTURE_PREVIEW + Overlay Mask + Drawer`，不生成裸抽屉或假平台底图 |
 | `THEME_VARIABLE_MISSING` | 主题主色无法绑定到变量或组件公开属性 | 停止改色，不 detach 组件手工覆盖 |
 | `PORTABLE_COMPONENT_MISSING` | Portable Kit 缺少本地组件 | 停止，报告缺失能力 |
 | `STYLE_MISSING` | 必需文本样式或字体不可用 | 停止，不手填近似样式 |

@@ -4,24 +4,24 @@
 
 决定每个 `fields[]` 在抽屉里使用哪种真实控件。优先命中本表,本表没有时使用 `Custom` Slot 并记录缺口。
 
-所有真实组件的 `节点 ID / 发布 Key / 属性`,请直接查询[组件映射](component-map.md);本表只做"语义 → 控件"的路由,不重复维护组件清单。
+所有真实组件的 `节点 ID / 发布 Key / 属性`,请直接查询[组件映射](../../qifu-shared/references/component-map.md);本表只做"语义 → 控件"的路由,不重复维护组件清单。
 
 ## 通用映射
 
 | 字段语义 | 控件 | 关键属性 | 默认 widthTier |
 | --- | --- | --- | --- |
-| 单行文本(name、title、id、code) | `录入组件 / Input / Base-V2` | `size=M 32px`、`content=Placeholder/Value` | 320 |
+| 单行文本(name、title、id、code) | `录入组件 / Input / Base-V2` | `size=M 32px`、`content=Placeholder/Value` | 304 |
 | 长文本 / 描述 / 备注 | `录入组件 / Textarea` | `rows=4`、`maxLength` 按业务 | FULL |
 | 数字 / 金额 / 百分比 | `录入组件 / InputNumber` | `size=M`、precision、`min/max` | 200 |
 | 单选枚举(≤ 4 项、文案短) | `录入组件 / Radio.Group` | `direction=horizontal`、`optionType=default` | FULL |
-| 单选枚举(> 4 项 / 文案长) | `录入组件 / Select / Base` | `size=LG 32px`、`mode=single` | 320 |
-| 多选枚举 | `录入组件 / Select / Base` | `mode=multiple` | 320 |
+| 单选枚举(> 4 项 / 文案长) | `录入组件 / Select / Base` | `size=LG 32px`、`mode=single` | 304 |
+| 多选枚举 | `录入组件 / Select / Base` | `mode=multiple` | 304 |
 | 布尔开关 | `录入组件 / Switch` | `checked`、`disabled` | — |
 | 单个布尔勾选(同意、包含) | `录入组件 / Checkbox` | `label`、`checked` | — |
 | 日期(单日) | `录入组件 / DatePicker / Input / Date` | `placeholder`、`size=M` | 200 |
-| 日期范围 | `录入组件 / DatePicker / Input / DateRange` | `placeholder`、`size=M` | 320 |
-| 级联层级(组织、地区) | `录入组件 / Cascader / Base` | `path`、`size=M` | 320 |
-| 模糊搜索(人员、客户、群组) | `录入组件 / Search / Base` 或 `Select` 带 `search` | `trigger=Icon`、`size=M` | 320 |
+| 日期范围 | `录入组件 / DatePicker / Input / DateRange` | `placeholder`、`size=M` | 304 |
+| 级联层级(组织、地区) | `录入组件 / Cascader / Base` | `path`、`size=M` | 304 |
+| 模糊搜索(人员、客户、群组) | `录入组件 / Search / Base` 或 `Select` 带 `search` | `trigger=Icon`、`size=M` | 304 |
 | 上传 | `录入组件 / Upload` | 限制文案、缩略预览 | FULL |
 | 富文本 | 不默认提供,记录缺口 | — | — |
 
@@ -29,7 +29,7 @@
 
 ### 必填红星
 
-必填 = `FormItem.required=true`。红星由 FormItem 渲染在 label 左侧,颜色 `#dc2626`,**不允许手画**。
+必填 = `FormItem.required=true`。红星由 FormItem 渲染在 label 左侧，颜色绑定 `文本颜色/--qifu-text-color-error`，**不允许手画**。
 
 ### 单选 vs 下拉 的判定
 
@@ -66,7 +66,7 @@
 
 | 项 | 数值 | 说明 |
 | --- | ---: | --- |
-| 面板填充 | `#F5F7FA` | 用于区分主次关系；可绑定等价背景变量 |
+| 面板填充 | 已批准的次级背景语义变量 | Golden Sample 核对值为 `#F5F7FA`；原始色值不是写入接口 |
 | 面板圆角 | 4px | 与普通内容区一致 |
 | 面板宽度 | 跟随 controlSlot，默认 FULL | 右边缘与其他控件右边缘对齐 |
 | 面板高度 | 内容自适应，示例 152px | 不用 144px 压缩三行规则 |
@@ -109,7 +109,7 @@ FormItem / overFrequencyRule
 
 ### 添加地图、圈选、上传文件类复合控件
 
-一律使用 `Custom` Slot 占位,在 `DrawerSpec.fields[].control` 写 `Custom(<BizSlotName>)`,并把占位区命名为 `Fallback / <BizSlotName>`,同步到 `Audit / Missing Components`。
+在 `DrawerSpec.fields[].control` 写 `Custom(<BizSlotName>)`，先用已解析的真实组件形成 `Custom / <BizSlotName>` 页面级组合。无法表达时记录 `COMPONENT_MISSING`；只有用户明确选择 `VISUAL_FALLBACK` 才创建 `Fallback / <BizSlotName>`，否则停止该区域并返回组件缺口。所有缺口同步到 `Audit / Missing Components`。
 
 ## 字段宽度阶梯(widthTier)
 
@@ -133,6 +133,6 @@ FormItem / overFrequencyRule
 - DatePicker → `size=M`
 - Radio.Group / Checkbox → 行高 32px
 
-**铁律**:同一抽屉内不允许混用 28px 和 32px 两种高度;在 840px `Wide` 抽屉中也不调到 36px——保持 32px 统一。
+**铁律**:同一抽屉内不允许混用 28px 和 32px 两种高度;在 840px `Wide` 或 960px `Extra Wide` 抽屉中也不调到 36px——保持 32px 统一。
 
 明确要求"紧凑模式"时,改用 28px 全联动:`Input size=S`、`Select size=MD`、`Button size=small`。

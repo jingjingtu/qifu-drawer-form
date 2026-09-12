@@ -1,0 +1,6 @@
+interface:
+  display_name: "Qifu Shared References"
+  short_description: "Qifu 页面 Skill 的共享依赖，提供组件契约、主题变量与平台适配器。"
+  default_prompt: "安装任一 Qifu 页面 Skill 时，同时安装 $qifu-shared 作为依赖，供其解析组件映射与平台导航基线。"
+policy:
+  allow_implicit_invocation: false

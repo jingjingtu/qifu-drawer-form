@@ -17,14 +17,32 @@
 
 ```text
 platform        yushu
+navigationMode  yushuPreset | custom；未填默认 yushuPreset
 headerActive    数据资产 | 自助查询 | 数据开发 | 指标管理 | QBI
 sideActive      当前页面所在的侧栏菜单
-sideExpanded[]  当前展开的父菜单；与 sideActive 分开记录
-sideAncestorsActive[] 当前页的祖先菜单；从 sidePath 排除 sideActive 后自动推导
+sideActiveLevel 1 | 2 | 3；固定等于 sidePath.length
+sideExpanded[]  当前展开的父菜单；固定等于 sidePath 中除最后一项外的祖先
+sideAncestorsActive[] 当前页的祖先菜单；固定等于 sideExpanded[]
 sidePath[]      从一级菜单到当前页面的完整路径
 ```
 
-`sideActive` 决定唯一的当前页菜单；`sideExpanded` 决定子菜单是否可见；`sideAncestorsActive` 决定当前路径上的父级视觉高亮。展开不等于祖先激活，允许出现“探索分析已选中，同时智能分析保持展开但仍为默认黑色”的状态。
+`sideActive` 固定为 `sidePath` 最后一项并决定唯一当前菜单。只有当前路径祖先可以进入 `sideExpanded` 与 `sideAncestorsActive`；其他菜单即使有子集也保持收起。
+
+### 导航模式
+
+`navigationMode=yushuPreset` 使用本文件的默认菜单树和图标映射；`sidePath` 必须真实存在，不存在时停止并请用户确认真实父级或切换为 `custom`。
+
+`navigationMode=custom` 时必须提供：
+
+```text
+customSideMenu.level1[]: label, iconComponentName, hasChildren
+customSideMenu.activeLevel1Children[]: label, hasChildren
+customSideMenu.activeLevel2Children[]: label
+```
+
+- `sidePath` 只允许 1–3 段，最后一段是唯一当前项。
+- 当前路径中的父项必须完整列出其可见子项；非当前路径父项保持收起。
+- 每个一级 `iconComponentName` 必须使用 `Icon/<system>/<purpose>` 形式的完整名称，唯一解析并完成 INSTANCE_SWAP 回读；缺失、多解或写入失败都停止，不模糊匹配或绘制替代图标。
 
 ## 2. 顶部导航
 
@@ -40,9 +58,9 @@ sidePath[]      从一级菜单到当前页面的完整路径
 
 - 左侧 Logo；
 - 菜单顺序：数据资产、自助查询、数据开发、指标管理、QBI；
+- 中文顶部菜单使用目标组件库已批准的中文 Text Style；不得用不支持中文的字体造成截断或只显示末尾单字。
 - 右侧功能图标顺序：帮助、通知、申请工单、问题上报；
-- 头像使用毓数默认头像；
-- 用户名固定为 `panyue`；
+- 头像与用户名使用用户明确提供的账号上下文；未提供时保留组件的中性占位状态，不把组件库样例中的个人信息复制到业务页面；
 - 用户名右侧保留下拉箭头。
 
 用户指定顶部入口时设置对应 `activeMenu 当前菜单`。未指定时：
@@ -79,7 +97,7 @@ sidePath[]      从一级菜单到当前页面的完整路径
 | 菜单 | Level | Has Submenu | 默认展开 | 已确认子项 |
 | --- | ---: | --- | --- | --- |
 | 探索分析 | 1 | False | — | — |
-| 智能分析 | 1 | True | True | 智能探查、智能报表 |
+| 智能分析 | 1 | True | False | 智能探查、智能报表 |
 | 智能探查 | 2 | False | — | — |
 | 智能报表 | 2 | False | — | — |
 | 仪表板 | 1 | False | — | — |
@@ -95,11 +113,11 @@ sidePath[]      从一级菜单到当前页面的完整路径
 | 角色授权 | 2 | False | — | — |
 | 归因配置 | 1 | False | — | — |
 
-订阅管理和权限管理的二级菜单已经确认。页面位于其中任一二级菜单时，展开对应一级父菜单并选中目标二级项；父菜单使用祖先激活样式：不出现绿色背景和指示条，但文字、图标和展开箭头均为主题色。
+默认树中所有一级菜单初始均为收起。只有 `sidePath` 经过的祖先展开；父菜单使用祖先激活样式，不出现当前页背景和指示条，但文字、图标和展开箭头使用主题色。
 
 ## 4. 侧栏图标映射
 
-图标使用奇富本地图标组件，显示尺寸为 16×16。名称只用于定位，最终以图形语义为准。
+图标使用奇富本地图标组件，显示尺寸为 16×16。默认预设优先使用下表节点 ID 或发布 Key；节点失效时按完整名称重新发现，不凭图形相似度猜测。
 
 | 一级菜单 | 图标组件 | 节点 ID | 发布 Key |
 | --- | --- | --- | --- |
@@ -121,16 +139,27 @@ sidePath[]      从一级菜单到当前页面的完整路径
 使用真实 `Navigation / SideMenu / SideMenuItem-V2` 实例逐项组装，不创建固定业务大组件：
 
 1. 宽度固定为 200px；一级菜单高 44px，二、三级菜单高 40px。
-2. 每个实例通过 `Label`、`Level`、`Has Submenu`、`State` 设置内容。
-3. 一级菜单将 `showIcon 显示图标` 设为 `true`，通过 `icon 图标` INSTANCE_SWAP 选择本文件映射的 16×16 本地图标；不得覆盖嵌套节点或绘制替代图标。
+2. 每个实例按共享组件调用基线动态解析 `Label`、`Level`、`Has Submenu`、`State` 的真实 Key，写入后立即回读。
+3. 一级菜单将 `showIcon 显示图标` 设为 `true`；默认模式使用本文件映射，自定义模式使用完整唯一的 `iconComponentName`。两者都必须完成 INSTANCE_SWAP 回读。
 4. 二、三级菜单保持纯文本层级，不显示业务图标；`Has Submenu=True` 时仅保留组件自带的展开箭头。
 5. `sideActive` 是唯一的当前页菜单并使用 `State=Selected`；如果它是无子菜单叶子，则显示绿色选中背景与右侧指示条。
-6. `sideExpanded` 中的父项设置 `expanded 展开=True` 并插入其已确认子项；不在数组中的父项设置为 `False`，只显示一级项。
+6. `sideExpanded` 中的路径祖先设置 `expanded 展开=True` 并插入已确认子项；所有不在当前路径的一级、二级父项设置为 `False`。
 7. 页面落在二级或三级菜单时，从 `sidePath` 排除 `sideActive` 得到 `sideAncestorsActive`。所有祖先都使用 `State=Selected` 且保持 `expanded 展开=True`，呈现白底、文字/一级图标/展开箭头主题绿；这表示祖先路径高亮，不表示父菜单是当前页。
-8. 不在 `sideAncestorsActive` 中、仅因默认展示或用户要求而展开的父项必须保持 `State=Default`；不能为了改变箭头方向或仅仅因为展开就设为绿色。
+8. 不在 `sideAncestorsActive` 中的菜单必须保持 `State=Default` 和收起；不能为了展示更多菜单而额外展开。
 9. 菜单区域使用垂直 Auto Layout。侧栏整体填满 Header 以下高度；菜单滚动区 `layoutGrow=1`、裁切内容并允许纵向滚动。
 10. 底部固定保留 `collapse-button`：分割线 + `Icon/shouqi`，组件节点 `2423:450`。滚动只作用于菜单区域，不让收起按钮随菜单滚走。
 11. 静态画板需要展示完整菜单时允许增加画板高度；不得压缩菜单项高度，也不得让菜单覆盖底部收起按钮。
+12. Label、图标或状态写入失败时停止，不创建导航文字覆盖层、裸文字或替代图标。
+
+### 各级菜单状态视觉矩阵（P0）
+
+| 菜单角色 | 状态 | 背景与指示 | 文字/图标/箭头 |
+| --- | --- | --- | --- |
+| 当前页叶子 | `Selected` | 选中背景与右侧指示条 | 主题色 |
+| 当前路径祖先 | `Selected` + `expanded=True` | 白底、无当前页指示条 | 主题色 |
+| 非当前路径菜单 | `Default` + 收起 | 白底、无指示条 | 中性色 |
+
+一级图标完成 INSTANCE_SWAP 后还要检查最终可见 paint 或语义变量。图标仍为黑色或其他中性色时本项判 `FAIL`；不得用页面级固定色覆盖修正。
 
 ## 6. 输入解析示例
 

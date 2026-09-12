@@ -1,0 +1,258 @@
+{
+  "source": {
+    "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
+    "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
+    "capturedAt": "2026-08-20",
+    "collection": "字体",
+    "collectionKey": "font",
+    "modes": [
+      "Value"
+    ],
+    "variableCount": 27
+  },
+  "variables": [
+    {
+      "figmaPath": "--qifu-font/family",
+      "name": "family",
+      "type": "STRING",
+      "values": {
+        "Value": "PingFang SC"
+      },
+      "group": "--qifu-font"
+    },
+    {
+      "figmaPath": "--qifu-font/数字",
+      "name": "数字",
+      "type": "STRING",
+      "values": {
+        "Value": "QiFu Sans Std"
+      },
+      "group": "--qifu-font"
+    },
+    {
+      "figmaPath": "--qifu-font/营销字体",
+      "name": "营销字体",
+      "type": "STRING",
+      "values": {
+        "Value": "Misans"
+      },
+      "group": "--qifu-font"
+    },
+    {
+      "figmaPath": "--qifu-font-weight/Regular",
+      "name": "Regular",
+      "type": "FLOAT",
+      "values": {
+        "Value": 400
+      },
+      "group": "--qifu-font-weight"
+    },
+    {
+      "figmaPath": "--qifu-font-weight/Semibold",
+      "name": "Semibold",
+      "type": "FLOAT",
+      "values": {
+        "Value": 600
+      },
+      "group": "--qifu-font-weight"
+    },
+    {
+      "figmaPath": "--qifu-font-size/12",
+      "name": "12",
+      "type": "FLOAT",
+      "values": {
+        "Value": 12
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/14",
+      "name": "14",
+      "type": "FLOAT",
+      "values": {
+        "Value": 14
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/16",
+      "name": "16",
+      "type": "FLOAT",
+      "values": {
+        "Value": 16
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/18",
+      "name": "18",
+      "type": "FLOAT",
+      "values": {
+        "Value": 18
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/20",
+      "name": "20",
+      "type": "FLOAT",
+      "values": {
+        "Value": 20
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/24",
+      "name": "24",
+      "type": "FLOAT",
+      "values": {
+        "Value": 24
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/28",
+      "name": "28",
+      "type": "FLOAT",
+      "values": {
+        "Value": 28
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/32",
+      "name": "32",
+      "type": "FLOAT",
+      "values": {
+        "Value": 32
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/36",
+      "name": "36",
+      "type": "FLOAT",
+      "values": {
+        "Value": 36
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/48",
+      "name": "48",
+      "type": "FLOAT",
+      "values": {
+        "Value": 48
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-font-size/64",
+      "name": "64",
+      "type": "FLOAT",
+      "values": {
+        "Value": 64
+      },
+      "group": "--qifu-font-size"
+    },
+    {
+      "figmaPath": "--qifu-line-height/20",
+      "name": "20",
+      "type": "FLOAT",
+      "values": {
+        "Value": 20
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/22",
+      "name": "22",
+      "type": "FLOAT",
+      "values": {
+        "Value": 22
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/24",
+      "name": "24",
+      "type": "FLOAT",
+      "values": {
+        "Value": 24
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/26",
+      "name": "26",
+      "type": "FLOAT",
+      "values": {
+        "Value": 26
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/28",
+      "name": "28",
+      "type": "FLOAT",
+      "values": {
+        "Value": 28
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/32",
+      "name": "32",
+      "type": "FLOAT",
+      "values": {
+        "Value": 32
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/36",
+      "name": "36",
+      "type": "FLOAT",
+      "values": {
+        "Value": 36
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/40",
+      "name": "40",
+      "type": "FLOAT",
+      "values": {
+        "Value": 40
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/44",
+      "name": "44",
+      "type": "FLOAT",
+      "values": {
+        "Value": 44
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/56",
+      "name": "56",
+      "type": "FLOAT",
+      "values": {
+        "Value": 56
+      },
+      "group": "--qifu-line-height"
+    },
+    {
+      "figmaPath": "--qifu-line-height/72",
+      "name": "72",
+      "type": "FLOAT",
+      "values": {
+        "Value": 72
+      },
+      "group": "--qifu-line-height"
+    }
+  ]
+}

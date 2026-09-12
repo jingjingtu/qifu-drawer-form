@@ -1,0 +1,759 @@
+{
+  "source": {
+    "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
+    "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
+    "capturedAt": "2026-08-20",
+    "collection": "色彩",
+    "collectionKey": "color",
+    "modes": [
+      "Value"
+    ],
+    "variableCount": 82
+  },
+  "variables": [
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-white",
+      "name": "--qifu-gray-color-white",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFFFFF"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-F7F7FA",
+      "name": "--qifu-gray-color-F7F7FA",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F7F7FA"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-2%",
+      "name": "--qifu-gray-color-2%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FAFAFA"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-4%",
+      "name": "--qifu-gray-color-4%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F5F5F5"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-6%",
+      "name": "--qifu-gray-color-6%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F0F0F0"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-8%",
+      "name": "--qifu-gray-color-8%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EBEBEB"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-15%",
+      "name": "--qifu-gray-color-15%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#D9D9D9"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-25%",
+      "name": "--qifu-gray-color-25%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#BFBFBF"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-45%",
+      "name": "--qifu-gray-color-45%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#8C8C8C"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-65%",
+      "name": "--qifu-gray-color-65%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#595959"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-85%",
+      "name": "--qifu-gray-color-85%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#262626"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-gray-color-100%",
+      "name": "--qifu-gray-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#000000"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-10%",
+      "name": "--qifu-brand-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EBF9F2"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-20%",
+      "name": "--qifu-brand-color-20%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#E5F8EE"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-40%",
+      "name": "--qifu-brand-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#99E3BE"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-60%",
+      "name": "--qifu-brand-color-60%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#66D49D"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-80%",
+      "name": "--qifu-brand-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#33C67D"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-100%",
+      "name": "--qifu-brand-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00B85C"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-20%000",
+      "name": "--qifu-brand-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00934A"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-40%000",
+      "name": "--qifu-brand-color-40%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#006E37"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-60%000",
+      "name": "--qifu-brand-color-60%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#004A25"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-brand-color-80%000",
+      "name": "--qifu-brand-color-80%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#002512"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-success-color-10%",
+      "name": "--qifu-success-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EBF9F2"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-success-color-40%",
+      "name": "--qifu-success-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#99E3BE"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-success-color-80%",
+      "name": "--qifu-success-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#33C67C"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-success-color-100%",
+      "name": "--qifu-success-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00B85C"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-success-color-20%000",
+      "name": "--qifu-success-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00934A"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-warning-color-10%",
+      "name": "--qifu-warning-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFF4EC"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-warning-color-40%",
+      "name": "--qifu-warning-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFD3B3"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-warning-color-80%",
+      "name": "--qifu-warning-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFA566"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-warning-color-100%",
+      "name": "--qifu-warning-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FF8F40"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-warning-color-20%000",
+      "name": "--qifu-warning-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#CC7233"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-error-color-10%",
+      "name": "--qifu-error-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FDEEEF"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-error-color-40%",
+      "name": "--qifu-error-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F5B0B6"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-error-color-80%",
+      "name": "--qifu-error-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EB606C"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-error-color-100%",
+      "name": "--qifu-error-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#E63948"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-error-color-20%000",
+      "name": "--qifu-error-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#B82D39"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-icon-color-1",
+      "name": "--qifu-icon-color-1",
+      "type": "COLOR",
+      "values": {
+        "Value": "#BABAC2"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-icon-color-2",
+      "name": "--qifu-icon-color-2",
+      "type": "COLOR",
+      "values": {
+        "Value": "#898991"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-icon-color-3",
+      "name": "--qifu-icon-color-3",
+      "type": "COLOR",
+      "values": {
+        "Value": "#2A2B37"
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/green/--qifu-overlay-color-75%000",
+      "name": "--qifu-overlay-color-75%000",
+      "type": "COLOR",
+      "values": {
+        "Value": {
+          "hex": "#000000",
+          "opacity": 0.75
+        }
+      },
+      "group": "mode/green"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-white",
+      "name": "--qifu-gray-color-white",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFFFFF"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-F7F7FA",
+      "name": "--qifu-gray-color-F7F7FA",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F7F7FA"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-1",
+      "name": "--qifu-gray-color-1",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F8FAFD"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-2",
+      "name": "--qifu-gray-color-2",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F4F5F9"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-3",
+      "name": "--qifu-gray-color-3",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F6F6F7"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-4",
+      "name": "--qifu-gray-color-4",
+      "type": "COLOR",
+      "values": {
+        "Value": "#E6E8EB"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-5",
+      "name": "--qifu-gray-color-5",
+      "type": "COLOR",
+      "values": {
+        "Value": "#D0D1D7"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-6",
+      "name": "--qifu-gray-color-6",
+      "type": "COLOR",
+      "values": {
+        "Value": "#B7B9C2"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-7",
+      "name": "--qifu-gray-color-7",
+      "type": "COLOR",
+      "values": {
+        "Value": "#888B9A"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-8",
+      "name": "--qifu-gray-color-8",
+      "type": "COLOR",
+      "values": {
+        "Value": "#595C72"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-9",
+      "name": "--qifu-gray-color-9",
+      "type": "COLOR",
+      "values": {
+        "Value": "#121736"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-gray-color-100%",
+      "name": "--qifu-gray-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#000000"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-10%",
+      "name": "--qifu-blue-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#E8F0FE"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-20%",
+      "name": "--qifu-blue-color-20%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#D1E1FC"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-40%",
+      "name": "--qifu-blue-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#A3C3F9"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-60%",
+      "name": "--qifu-blue-color-60%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#75A5F7"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-80%",
+      "name": "--qifu-blue-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#4787F4"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-100%",
+      "name": "--qifu-blue-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#1969F1"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-20%000",
+      "name": "--qifu-blue-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#1454C1"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-40%000",
+      "name": "--qifu-blue-color-40%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#0F3F91"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-60%000",
+      "name": "--qifu-blue-color-60%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#0A2A60"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-blue-color-80%000",
+      "name": "--qifu-blue-color-80%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#051530"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-success-color-10%",
+      "name": "--qifu-success-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EBF9F2"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-success-color-40%",
+      "name": "--qifu-success-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#99E3BE"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-success-color-80%",
+      "name": "--qifu-success-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#33C67C"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-success-color-100%",
+      "name": "--qifu-success-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00B85C"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-success-color-20%000",
+      "name": "--qifu-success-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#00934A"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-warning-color-10%",
+      "name": "--qifu-warning-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFF4EC"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-warning-color-40%",
+      "name": "--qifu-warning-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFD3B3"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-warning-color-80%",
+      "name": "--qifu-warning-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FFA566"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-warning-color-100%",
+      "name": "--qifu-warning-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FF8F40"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-warning-color-20%000",
+      "name": "--qifu-warning-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#CC7233"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-error-color-10%",
+      "name": "--qifu-error-color-10%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#FDEEEF"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-error-color-40%",
+      "name": "--qifu-error-color-40%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#F5B0B6"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-error-color-80%",
+      "name": "--qifu-error-color-80%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#EB606C"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-error-color-100%",
+      "name": "--qifu-error-color-100%",
+      "type": "COLOR",
+      "values": {
+        "Value": "#E63948"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-error-color-20%000",
+      "name": "--qifu-error-color-20%000",
+      "type": "COLOR",
+      "values": {
+        "Value": "#B82D39"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-icon-color-1",
+      "name": "--qifu-icon-color-1",
+      "type": "COLOR",
+      "values": {
+        "Value": "#BABAC2"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-icon-color-2",
+      "name": "--qifu-icon-color-2",
+      "type": "COLOR",
+      "values": {
+        "Value": "#898991"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-icon-color-3",
+      "name": "--qifu-icon-color-3",
+      "type": "COLOR",
+      "values": {
+        "Value": "#2A2B37"
+      },
+      "group": "mode/blue"
+    },
+    {
+      "figmaPath": "mode/blue/--qifu-overlay-color-75%000",
+      "name": "--qifu-overlay-color-75%000",
+      "type": "COLOR",
+      "values": {
+        "Value": {
+          "hex": "#000000",
+          "opacity": 0.75
+        }
+      },
+      "group": "mode/blue"
+    }
+  ]
+}

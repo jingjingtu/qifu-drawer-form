@@ -3,45 +3,47 @@
 ## 目录
 
 - [来源](#1-来源)
-- [页面骨架与导航](#2-页面骨架与导航)
-- [筛选与动作](#3-筛选与动作)
-- [表格、状态与分页](#4-表格状态与分页)
+- [调用边界](#2-调用边界)
+- [页面骨架与导航](#3-页面骨架与导航)
+- [筛选与动作](#4-筛选与动作)
+- [表格、状态与分页](#5-表格状态与分页)
 - [Table Shell V2 Slot 替换后的逐层同步](#table-shell-v2-slot-替换后的逐层同步强制)
-- [已确认缺口](#5-已确认缺口)
-- [运行时缺口记录格式](#6-运行时缺口记录格式)
+- [已确认缺口](#6-已确认缺口)
+- [运行时缺口记录格式](#7-运行时缺口记录格式)
 
 ## 1. 来源
 
 - 组件库文件：`奇富科技中后台组件库 新`
 - 文件 Key：`gTV3VdC6a5e9vpkRHIZSXA`
-- 本映射盘点日期：2026-07-29
+- 本映射盘点日期：2026-08-18
 
 节点 ID 用于同文件创建实例；发布 Key 用于其他文件导入。若节点已重建，按精确组件集名称重新发现，并更新本映射。
 
-## 2. 页面骨架与导航
+## 2. 调用边界
+
+本文件只回答“选择哪个组件”。所有页面共同遵守[共享组件调用基线](component-invocation-baseline.md)；列表页的 Slot 细节继续由其组件调用契约负责，页面结构与视觉门禁由各 Archetype 自己的验证文件负责。共享层不得反向依赖某个页面 Skill 的专属契约。
+
+本文件出现的“当前回退”只表示候选实现，不构成自动降级授权。页面 Skill 仍须确认 `COMPONENT_MISSING`，并取得该页面契约要求的用户授权；否则只记录缺口并失败关闭。
+
+表格中的属性名是稳定逻辑名称，不保证等于 Figma 运行时返回的完整 Key。创建实例后必须读取 `componentProperties` 动态解析；禁止把 `Label#2405:0` 等当前内部后缀固化为长期接口。
+
+## 3. 页面骨架与导航
 
 | 用途 | 组件集 | 节点 ID | 发布 Key | 关键属性 |
 | --- | --- | --- | --- | --- |
 | 顶部菜单 | `Navigation / HeaderMenu / HeaderMenu` | `2525:2226` | `b2b586e04aa149f802fb6b4fad502ef7f25c276e` | `Icon`、`Logo`、`Items=1..8`、4 个 Action Icon swap |
-| 毓数顶部菜单 V2 | `Navigation / HeaderMenu / Yushu Header-V2` | `3639:1529` | `13dd3304a68853196f2a683bba7ebd034e2928ee` | `activeMenu 当前菜单=QBI/数据资产/自助查询/数据开发/指标管理`；固定 Logo、右侧图标、头像和 `panyue` |
+| 毓数顶部菜单 V2 | `Navigation / HeaderMenu / Yushu Header-V2` | `3639:1529` | `13dd3304a68853196f2a683bba7ebd034e2928ee` | `activeMenu 当前菜单=QBI/数据资产/自助查询/数据开发/指标管理`；固定 Logo、右侧图标和头像槽位；业务页面不得固化个人姓名或账号 |
 | 顶部菜单项 | `Navigation / HeaderMenu / HeaderMenuItem` | `2525:1111` | `af3b9a17fd68b4a6b9943e91369d864ef9cb4126` | `Icon`、`State=Default/Selected/Hover/Disabled` |
 | 侧边菜单 | `Navigation / SideMenu / SideMenu` | `2406:461` | `0e8b19f82f0b069b5f68e1a7140087532de52167` | `Selected Case` 6 种结构 |
-| 侧边菜单项 V2 | `Navigation / SideMenu / SideMenuItem-V2` | `3650:998` | `cee1612d682da5860d488abc732321c3fd15ad44` | 36 个有效变体；`Label` 已全部接线；`Level=1/2/3`、`Has Submenu`、`State`、`expanded 展开=False/True`；一级菜单支持 `icon 图标`、`showIcon 显示图标`；有子菜单的 `State=Selected` 用于祖先路径高亮（白底，文字/图标/箭头主题绿），无子菜单的 `State=Selected` 用于当前页选中 |
+| 侧边菜单项 V2 | `Navigation / SideMenu / SideMenuItem-V2` | `3650:998` | `cee1612d682da5860d488abc732321c3fd15ad44` | 36 个有效变体；`Label` 已全部接线；`Level=1/2/3`、`Has Submenu`、`State`、`expanded 展开=False/True` 均可按 PageSpec 配置；一级菜单支持 `icon 图标`、`showIcon 显示图标`，可通过真实 Icon ComponentNode 做 INSTANCE_SWAP；有子菜单的 `State=Selected` 用于祖先路径高亮（白底，文字/图标/箭头主题绿），无子菜单的 `State=Selected` 用于当前页选中 |
 | 侧边菜单项（原版兼容） | `Navigation / SideMenu / SideMenuItem` | `2405:81` | `d3804303308830deced4bad8d4369b6ddff2d3f1` | 仅兼容旧页面；新页面改用 V2 |
-| 面包屑项 | `Navigation / Breadcrumb / BreadcrumbItem` | `2555:1395` | `7dfdd65c7174b094be1b68ce133b63f7b9634d50` | `Icon`、`Dropdown`、`State` |
 | 选项卡 | `Navigation / Tabs / Tabs` | `2695:4651` | `501fcf9f50619e0680ec6886b657356cc0b3d991` | `type`、`size`、`item=2..5`、`active=1..5` |
 | 选项卡项 | `Navigation / Tabs / TabItem` | `2695:3345` | `a314f0d8db2719a4bfb79ca6e594d8cd3101df40` | `type=line/card/pill`、`size`、`state` |
-| 普通列表内容外壳 V2 | `Templates / List Page Shell-V2` | `3478:657` | `6e26dad1245c1a7445593586454d6b2c73ff5433` | `pageHeaderSlot`、`filterBarSlot`、`tableSlot`、`showPageHeader`、`showFilterBar`；区块间距 12px；页头标题 16px、padding 0；三个 Slot 使用内容高度；存在列表操作栏时 `tableSlot` 放入页面级 `Data Region（List Action Bar + Table Shell-V2）`，不修改母版 |
+| 普通列表内容外壳 V2 | `Templates / List Page Shell-V2` | `3478:657` | `6e26dad1245c1a7445593586454d6b2c73ff5433` | `pageHeaderSlot`、`filterBarSlot`、`tableSlot`、`showPageHeader`、`showFilterBar`；三个 Slot 使用内容高度 |
 
-使用原则：
+本文件只记录组件解析与实现限制。页面结构和 List Action Bar 组合方式以 `page-rules.md` 为准；毓数默认菜单与自定义导航输入语义以 `platform-yushu.md` 为准。需要自定义业务文案、层级、子集或图标时按调用契约动态解析属性：契约声明存在但当前写入失败属于执行失败；只有核对母版后确认未暴露该能力，才记录组件缺口。
 
-- 页面外壳用 Auto Layout 组合 HeaderMenu、SideMenu 与 Content；Content 默认放入 `Templates / List Page Shell-V2`，不再手工拼接筛选区、表格区和分页区。
-- 毓数页面顶部直接使用 `Yushu Header-V2`；侧栏按 `platform-yushu.md` 使用 `SideMenuItem-V2` 实例组装固定菜单树。当前页叶子、祖先路径高亮与普通展开三种语义分别处理，不创建业务专用大组件。
-- 需要自定义业务标签时先检查实例内文本是否可覆盖；未暴露的文本属性属于组件缺口。
-- 普通 Tabs 不等于可关闭工作区页签。
-- List Action Bar 当前不是组件库母版；使用 Button 真实实例在页面级 Auto Layout 中组合。只有用户后续明确要求长期组件化时，才评估 Action Bar 母版及 List Page Shell 新 Slot。
-
-## 3. 筛选与动作
+## 4. 筛选与动作
 
 | 用途 | 组件集 | 节点 ID | 发布 Key | 关键属性 |
 | --- | --- | --- | --- | --- |
@@ -56,8 +58,8 @@
 | DatePicker | `录入组件 / DatePicker / Input / Date` | `2967:29996` | `bc43d0df1a94ac7bbd4ac1e09e0539a5e4ff7b11` | `placeholder`、`value`、`clear`、`size`、`state`、`filled` |
 | DateRange | `录入组件 / DatePicker / Input / DateRange` | `2967:30327` | `b11b9b940a5a173c6e97e37be9be4a028f9bd633` | `placeholder`、`value`、`clear`、`size`、`state`、`filled` |
 | Button | `Base / Button / Button` | `2381:2318` | `392ccbc18826879de80cd0b10e5c995db5184d69` | `text`、`icon`、`variant=base/outline/dash/text/link`、`size`、`icon type`、`state` |
-| 筛选项 V2 | `Data Display / Filter Item-V2` | `3802:107` | `fb86bfd8dd7f66b3b6c6d1a8420462b5bd943b71` | `display 显示形式=直接筛选框/带标题筛选项`、`size 尺寸=28px/32px`、`label 标题`、`controlSlot 筛选控件插槽`；标题分别为 12px/14px、`#565656`，带标题形式的标题与控件固定间距 8px；可见宽度阶梯为 120/160/200/304/408px、默认 200px，Filter Item FIXED、父 Slot WRAP；直接形式的内部控件可在定宽项内 FILL，禁止 Filter Item 在行内 FILL 等分拉伸 |
-| 筛选工具栏 V2 | `Data Display / Filter Bar-V2` | `3473:36837` | `23e9770f30375f5dcb0d10b7cf102b9ac72d98e7` | 5 个原生 Slot：常用筛选、更多筛选、快捷条件、查询操作、主操作；真实变体为 `expanded 展开=false/true × trigger 触发方式=实时触发/按钮触发`，共 4 个；显示布尔属性仅保留 `showQuickFilters`、`showPrimaryAction`，两者默认均为 `false`、仅按 PageSpec 开启；按钮触发默认使用 32px“确定 / 重置”，单行位于第一行、双行位于第二行；常用/更多筛选默认嵌套 Filter Item V2；外层 padding 0；Row 与 Slot 均为 32px 且不裁切 |
+| 筛选项 V2 | `Data Display / Filter Item-V2` | `3802:107` | `fb86bfd8dd7f66b3b6c6d1a8420462b5bd943b71` | `display 显示形式=直接筛选框/带标题筛选项`、`size 尺寸=28px/32px`、`label 标题`、`controlSlot 筛选控件插槽`；标题分别为 12px/14px、`#565656`，标题与控件原生间距 0px；小屏非日期控件可统一缩至 180px，父行优先 4 项并均分项间剩余空间 |
+| 筛选工具栏 V2 | `Data Display / Filter Bar-V2` | `3473:36837` | `23e9770f30375f5dcb0d10b7cf102b9ac72d98e7` | 5 个 Slot：常用筛选、更多筛选、快捷条件、查询操作、主操作；`expanded 展开=false/true × trigger 触发方式=实时触发/按钮触发` 共 4 个变体；布尔属性为 `showQuickFilters`、`showPrimaryAction` |
 
 ### Input V2 使用原则
 
@@ -80,7 +82,7 @@
 
 Input V2 的 `M 默认尺寸` 已是原生 32px：16px 图标垂直居中于 y=8，20px 文本垂直居中于 y=6。生成后仍需检查 Filter Bar 的 Row 与 Slot 同为 32px、垂直居中且不裁切，但不再对 Input 实例做额外高度覆盖。
 
-## 4. 表格、状态与分页
+## 5. 表格、状态与分页
 
 | 用途 | 组件集 | 节点 ID | 发布 Key | 关键属性 |
 | --- | --- | --- | --- | --- |
@@ -91,31 +93,20 @@ Input V2 的 `M 默认尺寸` 已是原生 32px：16px 图标垂直居中于 y=8
 | 数据行 V2 | `Data Display / Table / Row-V2` | `3393:6352` | `664e352544bee819c99b4de41284c9ac9d5d9901` | `cellsSlot`、`size`、`background`、`divider` |
 | 选择单元格 V2 | `Data Display / Table / Selection Cell-V2` | `3418:34040` | `98d12bfe7f1002a9ded85775369e6f76b2a3531a` | 固定 48px，嵌套并暴露 Checkbox；`size`、`background`、`divider` |
 | 文本内容 V2 | `Data Display / Table / Cell Content / Text-V2` | `3368:6025` | `51d09b477c04116ed5d16e1a19a0d1a926dae49f` | `value`、`contentFont=14px/12px` |
-| 状态内容 V2 | `Data Display / Table / Cell Content / Status-V2` | `3491:8894` | `d903d3fb91e052ff713beafe22e72e39d3594fcb` | 用于 pending/error/processing 等多状态；二元启用/禁用改用下方 Tag 精确语义映射 |
+| 状态内容 V2 | `Data Display / Table / Cell Content / Status-V2` | `3491:8894` | `d903d3fb91e052ff713beafe22e72e39d3594fcb` | 仅兼容明确要求额外状态内容能力的页面；新列表页所有普通状态标签统一使用下方 Tag。若使用本组件，其内部真实 Tag 也必须可写并回读为 `medium/square`，否则判 `FAIL` |
 | 操作内容 V2 | `Data Display / Table / Cell Content / Action Content-V2` | `3678:8875` | `eb3a6d86f44bbb9f4e811e23300898c3f9259deb` | `action1..4`、`showAction2..4`；`dangerAction=None/Action1/Action2/Action3/Action4`，支持 1–4 个紧凑操作且最多标记一个危险项 |
 | 表头单元格 | `Data Display / Table / Header Cell` | `3234:7927` | `af0a8d220aa801d708a6eb5a5cec58686d3d1209` | `label`、sort/filter/asc/desc、`size`、`headerFont`、`divider` |
 | 内容单元格 | `Data Display / Table / Content Cell` | `3234:8027` | `55ee73644b95fd0a20408a85eeefba5df69fa3ea` | `value`、`size`、`contentFont`、`background`、`divider`、`content=text/action` |
 | 表格列 | `Data Display / Table / Column` | `3234:8271` | `3cc97b002d72777c8e0986fa80cd6f08859df023` | `type=basic/bordered/stripe`、`size`、`contentFont`、`content` |
 | 固定整表 | `Data Display / Table / Table` | `3234:8525` | `f35bf5473bb6138c813aaac0cd1abb68b2ce0f21` | `type`、`size`、`contentFont` |
-| 标签 | `Data Display / Tag / Tag` | `3178:9659` | `a804e46f1544bd11fe932da5a86f04ea18d65bda` | 二元状态：启用=`light/success/medium/square`、禁用=`light/danger/medium/square`；两者 `disabled=false`、icon=false、close=false，文案分别为启用/禁用 |
+| 标签 | `Data Display / Tag / Tag` | `3178:9659` | `a804e46f1544bd11fe932da5a86f04ea18d65bda` | 所有列表状态标签：`variant=light`、`size=medium`、`shape=square`、`disabled=false`、icon=false、close=false；`theme` 按语义映射，成功/启用=`success`、失败/禁用=`danger`、等待=`warning`、运行/处理中=`primary`。规则适用于所有文案和状态数量，不仅限启用/禁用 |
 | 空状态 | `Data Display / Empty / Empty` | `3447:134` | `4f33759f3944920ed616a87abb0cb67ed82aa4e1` | `status=NoData/NoResult/Network/NoPermission/Failed`、`size=S/M/L`、title/description 文本、描述/操作布尔属性 |
 | 分页 V2 | `Navigation / Pagination / Pagination-V2` | `3698:482` | `57f5f847efd41f61f15c32aed8b2d4a48885f871` | `size=medium/small`；`pageCount=1/2/3/4/5/6+`；`showTotal`、`showPageSize`、`showJumper`；`total`、`current`、`pageSize`、`jump`、`endPage`、`jumpTotal` |
 | 分页（旧版） | `Navigation / Pagination / Pagination` | `2597:2086` | `30f50ef8e07569627f467a7f9e025bdc896dcf77` | 保留完整 default/simple 与 32 个旧组合变体，仅兼容旧页面 |
 | 加载状态 | `Data Display / Loading / Loading` | `3268:29` | `19c936c5a0383d80a984eb1ac4350daf39d89c81` | `text`、`content=icon/text/icon+text`、`size` |
 | 危险操作确认 | `通知反馈 / Popconfirm / Popconfirm` | `3302:45015` | `4bbd515fd95cea014f8236e557ecda04f93c5608` | title/description 文案、icon/description/arrow、placement、theme |
 
-表格生成策略：
-
-1. 默认从 `Table Shell-V2` 开始，通过三个 Slot 替换表头、数据行或状态、分页；不要重新手工搭建整表外壳。
-2. 任意列数：使用 Header Cell-V2、Row-V2 和 Content Cell-V2；把 Text-V2、Status-V2、Action Content-V2 等真实实例放入对应 Slot。
-3. `rowsSlot` 默认保留数据行；Loading 或 Empty 时替换为对应组件实例。默认画面只展示一种内容状态。
-4. 二元启用/禁用状态直接使用 Tag：启用 success、禁用 danger，均为 light/medium/square、`disabled=false` 且不显示 icon/close；pending/error/processing 等多状态继续使用 Status Content V2。只有明确要求紧凑圆点状态时才使用页面级降级并记录缺口。
-5. 操作列优先使用 Action Content V2；根据 `rowActions[]` 的危险级别，把唯一危险操作映射到 `dangerAction` 的对应位置。不可逆操作同时配合 `Popconfirm / theme=Danger`；超过 4 个操作仍按缺口处理。
-6. `paginationSlot` 默认使用 Pagination-V2。先计算 `pageCount=ceil(total/pageSize)`，再选择 1/2/3/4/5/6+；无分页时清空，需要旧版 Simple 风格时才回退原 Pagination。
-7. 原版 Header Cell、Content Cell、Column 与固定 Table 仅用于兼容旧页面，不作为新页面首选。
-8. 按内容语义确定列宽数组，表头和所有数据行复用同一数组；列宽之和等于表格宽度，第一列贴左、最后一列贴右，不使用会产生空白带的 `SPACE_BETWEEN`。
-9. 操作单元格使用 Content Cell-V2 的 `contentSlot` 右对齐，单元格 `paddingRight=20`；操作表头文字左边缘对齐动作组第一个文案。Header Cell-V2 不支持时使用 `Fallback / Header Cell / 操作 / Align to Action Group` 并记录缺口。
-10. `1366 × 768` 页面中优先展示 9 条有差异的 44px 数据行；空间允许且仍有明显空白时可使用 10 行。`paginationSlot` 紧跟数据行，上下内边距 12px、左右 0、`layoutGrow=0`，不得吸收剩余高度；Pagination 可见右边缘必须等于 Table Shell 可见右边缘，过宽 Slot 使用 `paddingRight=slotWidth-visibleTableWidth` 补偿。
+新页面优先使用 V2 表格组件；原版 Header Cell、Content Cell、Column、固定 Table 与旧版 Pagination 只兼容旧页面。页面级列宽、状态、操作和分页决策以 `page-rules.md` 为准，具体变体与 Slot 同步按下节执行。
 
 ### Table Shell V2 Slot 替换后的逐层同步（强制）
 
@@ -124,23 +115,23 @@ Table Shell-V2 的 `size`、`type`、`selection` 只决定母版默认 Slot 内�
 | `TableStyleSpec` 维度 | Table Shell-V2 | Header Cell-V2 | Row-V2 | Content Cell-V2 | Selection Cell-V2 |
 | --- | --- | --- | --- | --- | --- |
 | `size` | 选择 `large 大 44px`、`medium 中 40px` 或 `small 小 36px` | 每个表头使用相同 `size` | 每行使用相同 `size` | 每个内容单元格使用相同 `size` | 表头与每行选择单元格使用相同 `size` |
-| `type=basic 基础` | `type 类型=basic 基础` | `divider=horizontal` | `background=default`、`divider=horizontal` | `background=default`、`divider=horizontal` | `background=default`、`divider=horizontal` |
-| `type=bordered 边框线` | `type 类型=bordered 边框线` | `divider=both` | `background=default`、`divider=both` | `background=default`、`divider=both` | `background=default`、`divider=both` |
-| `type=stripe 斑马纹` | `type 类型=stripe 斑马纹` | `divider=horizontal` | 奇偶行按 `default/stripe` 交替，`divider=horizontal` | 跟随所属 Row 的 `background`，`divider=horizontal` | 跟随所属 Row 的 `background`，`divider=horizontal` |
+| `type=basic 基础` | `type 类型=basic 基础` | `divider=horizontal` | `background=default`、`divider=horizontal` | `background=default`、`divider=horizontal` | 表头选择单元格绑定 `背景色/--qifu-bg-color-canvas`；数据行选择单元格 `background=default`、`divider=horizontal` |
+| `type=bordered 边框线` | `type 类型=bordered 边框线` | `divider=both` | `background=default`、`divider=both` | `background=default`、`divider=both` | 表头选择单元格绑定 `背景色/--qifu-bg-color-canvas`；数据行选择单元格 `background=default`、`divider=both` |
+| `type=stripe 斑马纹` | `type 类型=stripe 斑马纹` | `divider=horizontal` | 奇偶行按 `default/stripe` 交替，`divider=horizontal` | 跟随所属 Row 的 `background`，`divider=horizontal` | 表头选择单元格绑定 `背景色/--qifu-bg-color-canvas`；数据行选择单元格跟随所属 Row 的 `background`、`divider=horizontal` |
 | `selection=off 隐藏` | `selection 选择列=off 隐藏` | 第一业务列直接开始 | 不插入选择单元格 | 不变 | 数量必须为 0 |
 | `selection=on 显示` | `selection 选择列=on 显示` | 第一业务列前插入一个 Selection Cell-V2 | 每行第一业务列前插入一个 Selection Cell-V2 | 不变 | 总数必须为“数据行数 + 1”，并同步 `size/background/divider` |
 
 同步顺序：
 
 1. 设置 Table Shell V2 的 `size/type/selection`。
-2. 替换 `headerSlot` 后，遍历全部 Header Cell-V2，并按同一个 `TableStyleSpec` 设置 `size/divider`。
+2. 替换 `headerSlot` 后，遍历全部 Header Cell-V2，并按同一个 `TableStyleSpec` 设置 `size/divider`；若显示选择列，表头 Selection Cell-V2 的根节点 `fills` 必须绑定 `背景色/--qifu-bg-color-canvas`，与其他表头单元格保持同色，不得沿用数据行的 surface 背景。这里只检查 Selection Cell 根背景，不把嵌套 Checkbox 方框自身的填充误判为表头背景。
 3. 替换 `rowsSlot` 后，先设置每个 Row-V2，再遍历该行全部 Content Cell-V2；斑马纹背景必须同时写到 Row、Content Cell 和 Selection Cell-V2。
 4. 按 `selection` 显式插入或移除选择单元格，不依赖 Shell 自动增删。
 5. 独立配置 `paginationSlot`。Pagination-V2 不继承表格的 `size/type/selection`；先计算 `pageCount=ceil(total/pageSize)`，选择对应页数变体，再设置 `size`、三个区域布尔属性和文案属性。
 6. 自定义行数与母版默认行数不一致时，变体切换会把 Table Shell 实例恢复为母版固定高度，但自定义 `rowsSlot` 仍保留真实内容高度，造成后续行与分页被外壳裁切。计算 `requiredTableHeight = headerSlot.height + rowsSlot.height + paginationSlot.height`，显式调整 Table Shell 实例高度，并确认外层 `tableSlot` 和 List Page Shell 随内容重新包裹。
 7. 最后按节点类型统计并抽查属性：表头数等于列数，Row 数等于数据行数，每行 Content Cell 数等于业务列数，Selection Cell 数只允许为 0 或“数据行数 + 1”；同时检查 `paginationSlot.y + paginationSlot.height <= Table Shell.height`。
 
-## 5. 已确认缺口
+## 6. 已确认缺口
 
 ### P0：直接影响普通列表页自动生成
 
@@ -157,8 +148,8 @@ Table Shell-V2 的 `size`、`type`、`selection` 只决定母版默认 Slot 内�
    - 普通 Tabs 或 closable Tag 只能作为临时降级。
 
 3. **Status / 紧凑状态点**
-   - Status Content V2 已覆盖五种常用 Tag 状态，但尚缺 `dot + text` 表现。
-   - 需要 default/success/warning/error/disabled 语义与自定义文案；补齐前仅在页面级克制降级。
+   - Status Content V2 内含五种 Tag 状态，但不作为新列表页普通状态标签的默认入口；普通状态仍直接使用 `Data Display / Tag / Tag` 并遵循全量 `medium/square` 契约。
+   - 当前尚缺 `dot + text` 表现。需要 default/success/warning/error/disabled 语义与自定义文案；补齐前仅在 PageSpec 明确要求、确认 `COMPONENT_MISSING` 且用户允许降级时使用受限实现。
 
 4. **页面外壳响应式宽度**
    - List Page Shell V2 与 Table Shell V2 的默认内容宽度为 1248px；选择列开关已不会导致跳宽。
@@ -176,7 +167,7 @@ Table Shell-V2 的 `size`、`type`、`selection` 只决定母版默认 Slot 内�
    - 剩余限制：V2 默认展示第一页；当提示词明确要求当前页大于 1 时，仍不会自动重算选中位置、相邻页窗口和首末箭头状态。
    - 当前处理：普通列表默认首屏不记录缺口；只有明确生成非首页状态时，才使用页面级受控分页并记录缺口。
 
-## 6. 运行时缺口记录格式
+## 7. 运行时缺口记录格式
 
 在页面右侧的 `Audit / Missing Components` 使用：
 

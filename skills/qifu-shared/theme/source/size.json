@@ -1,0 +1,510 @@
+{
+  "source": {
+    "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
+    "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
+    "capturedAt": "2026-08-20",
+    "collection": "尺寸",
+    "collectionKey": "size",
+    "modes": [
+      "Value"
+    ],
+    "variableCount": 55
+  },
+  "variables": [
+    {
+      "figmaPath": "--qifu-size/2",
+      "name": "2",
+      "type": "FLOAT",
+      "values": {
+        "Value": 2
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/4",
+      "name": "4",
+      "type": "FLOAT",
+      "values": {
+        "Value": 4
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/6",
+      "name": "6",
+      "type": "FLOAT",
+      "values": {
+        "Value": 6
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/8",
+      "name": "8",
+      "type": "FLOAT",
+      "values": {
+        "Value": 8
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/12",
+      "name": "12",
+      "type": "FLOAT",
+      "values": {
+        "Value": 12
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/16",
+      "name": "16",
+      "type": "FLOAT",
+      "values": {
+        "Value": 16
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/20",
+      "name": "20",
+      "type": "FLOAT",
+      "values": {
+        "Value": 20
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/24",
+      "name": "24",
+      "type": "FLOAT",
+      "values": {
+        "Value": 24
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/28",
+      "name": "28",
+      "type": "FLOAT",
+      "values": {
+        "Value": 28
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/32",
+      "name": "32",
+      "type": "FLOAT",
+      "values": {
+        "Value": 32
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/36",
+      "name": "36",
+      "type": "FLOAT",
+      "values": {
+        "Value": 36
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/40",
+      "name": "40",
+      "type": "FLOAT",
+      "values": {
+        "Value": 40
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/48",
+      "name": "48",
+      "type": "FLOAT",
+      "values": {
+        "Value": 48
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/56",
+      "name": "56",
+      "type": "FLOAT",
+      "values": {
+        "Value": 56
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/64",
+      "name": "64",
+      "type": "FLOAT",
+      "values": {
+        "Value": 64
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-size/72",
+      "name": "72",
+      "type": "FLOAT",
+      "values": {
+        "Value": 72
+      },
+      "group": "--qifu-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxxs",
+      "name": "xxxs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/16"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxs",
+      "name": "xxs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/20"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xs",
+      "name": "xs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/24"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/s",
+      "name": "s",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/28"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/m",
+      "name": "m",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/32"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/l",
+      "name": "l",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/36"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xl",
+      "name": "xl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/40"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxl",
+      "name": "xxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/48"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxxl",
+      "name": "xxxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/56"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxxxl",
+      "name": "xxxxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/64"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-size/xxxxxl",
+      "name": "xxxxxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/72"
+      },
+      "group": "--qifu-comp-size"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/xxs",
+      "name": "xxs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/2"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/xs",
+      "name": "xs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/4"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/s",
+      "name": "s",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/8"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/m",
+      "name": "m",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/12"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/l",
+      "name": "l",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/16"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/xl",
+      "name": "xl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/24"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingLR/xxl",
+      "name": "xxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/32"
+      },
+      "group": "--qifu-comp-paddingLR"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/xxs",
+      "name": "xxs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/2"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/xs",
+      "name": "xs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/4"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/s",
+      "name": "s",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/8"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/m",
+      "name": "m",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/12"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/l",
+      "name": "l",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/16"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/xl",
+      "name": "xl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/24"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-comp-paddingTB/xxl",
+      "name": "xxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/32"
+      },
+      "group": "--qifu-comp-paddingTB"
+    },
+    {
+      "figmaPath": "--qifu-pop-padding/s",
+      "name": "s",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/4"
+      },
+      "group": "--qifu-pop-padding"
+    },
+    {
+      "figmaPath": "--qifu-pop-padding/m",
+      "name": "m",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/6"
+      },
+      "group": "--qifu-pop-padding"
+    },
+    {
+      "figmaPath": "--qifu-pop-padding/l",
+      "name": "l",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/8"
+      },
+      "group": "--qifu-pop-padding"
+    },
+    {
+      "figmaPath": "--qifu-pop-padding/xl",
+      "name": "xl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/12"
+      },
+      "group": "--qifu-pop-padding"
+    },
+    {
+      "figmaPath": "--qifu-pop-padding/xxl",
+      "name": "xxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/16"
+      },
+      "group": "--qifu-pop-padding"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xxs",
+      "name": "xxs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/2"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xs",
+      "name": "xs",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/4"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/s",
+      "name": "s",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/8"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/m",
+      "name": "m",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/12"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/l",
+      "name": "l",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/16"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xl",
+      "name": "xl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/24"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xxl",
+      "name": "xxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/32"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xxxl",
+      "name": "xxxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/48"
+      },
+      "group": "--qifu-comp-margin"
+    },
+    {
+      "figmaPath": "--qifu-comp-margin/xxxxl",
+      "name": "xxxxl",
+      "type": "FLOAT",
+      "values": {
+        "Value": "--qifu-size/64"
+      },
+      "group": "--qifu-comp-margin"
+    }
+  ]
+}

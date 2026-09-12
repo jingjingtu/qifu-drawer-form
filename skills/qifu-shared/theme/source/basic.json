@@ -1,0 +1,1140 @@
+{
+  "source": {
+    "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
+    "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
+    "capturedAt": "2026-08-20",
+    "collection": "基础",
+    "collectionKey": "basic",
+    "modes": [
+      "毓数/Light",
+      "智能运营/Light"
+    ],
+    "variableCount": 107
+  },
+  "variables": [
+    {
+      "figmaPath": "基础颜色拓展/brand/default",
+      "name": "default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-100%"
+      },
+      "group": "基础颜色拓展/brand"
+    },
+    {
+      "figmaPath": "基础颜色拓展/brand/hover",
+      "name": "hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-80%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-80%"
+      },
+      "group": "基础颜色拓展/brand"
+    },
+    {
+      "figmaPath": "基础颜色拓展/brand/active",
+      "name": "active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-20%000"
+      },
+      "group": "基础颜色拓展/brand"
+    },
+    {
+      "figmaPath": "基础颜色拓展/brand/disabled",
+      "name": "disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-40%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-40%"
+      },
+      "group": "基础颜色拓展/brand"
+    },
+    {
+      "figmaPath": "基础颜色拓展/success/default",
+      "name": "default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-100%"
+      },
+      "group": "基础颜色拓展/success"
+    },
+    {
+      "figmaPath": "基础颜色拓展/success/hover",
+      "name": "hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-80%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-80%"
+      },
+      "group": "基础颜色拓展/success"
+    },
+    {
+      "figmaPath": "基础颜色拓展/success/active",
+      "name": "active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-success-color-20%000"
+      },
+      "group": "基础颜色拓展/success"
+    },
+    {
+      "figmaPath": "基础颜色拓展/success/disabled",
+      "name": "disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-40%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-40%"
+      },
+      "group": "基础颜色拓展/success"
+    },
+    {
+      "figmaPath": "基础颜色拓展/warning/default",
+      "name": "default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-100%"
+      },
+      "group": "基础颜色拓展/warning"
+    },
+    {
+      "figmaPath": "基础颜色拓展/warning/hover",
+      "name": "hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-80%",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-80%"
+      },
+      "group": "基础颜色拓展/warning"
+    },
+    {
+      "figmaPath": "基础颜色拓展/warning/active",
+      "name": "active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-20%000"
+      },
+      "group": "基础颜色拓展/warning"
+    },
+    {
+      "figmaPath": "基础颜色拓展/warning/disabled",
+      "name": "disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-40%",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-40%"
+      },
+      "group": "基础颜色拓展/warning"
+    },
+    {
+      "figmaPath": "基础颜色拓展/error/default",
+      "name": "default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-100%"
+      },
+      "group": "基础颜色拓展/error"
+    },
+    {
+      "figmaPath": "基础颜色拓展/error/hover",
+      "name": "hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-80%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-80%"
+      },
+      "group": "基础颜色拓展/error"
+    },
+    {
+      "figmaPath": "基础颜色拓展/error/active",
+      "name": "active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-error-color-20%000"
+      },
+      "group": "基础颜色拓展/error"
+    },
+    {
+      "figmaPath": "基础颜色拓展/error/disabled",
+      "name": "disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-40%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-40%"
+      },
+      "group": "基础颜色拓展/error"
+    },
+    {
+      "figmaPath": "遮罩/--qifu-overlay",
+      "name": "--qifu-overlay",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-overlay-color-75%000",
+        "智能运营/Light": "mode/green/--qifu-overlay-color-75%000"
+      },
+      "group": "遮罩"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-canvas",
+      "name": "--qifu-bg-color-canvas",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-F7F7FA",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-F7F7FA"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-surface",
+      "name": "--qifu-bg-color-surface",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-white",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-white"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-subsurface",
+      "name": "--qifu-bg-color-subsurface",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-2%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-2"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-surface-raised",
+      "name": "--qifu-bg-color-surface-raised",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-4%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-surface-overlay",
+      "name": "--qifu-bg-color-surface-overlay",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-overlay",
+      "name": "--qifu-bg-color-overlay",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-overlay-color-75%000",
+        "智能运营/Light": "mode/blue/--qifu-overlay-color-75%000"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "背景色/--qifu-bg-color-component-disabled",
+      "name": "--qifu-bg-color-component-disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-2"
+      },
+      "group": "背景色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-primary",
+      "name": "--qifu-text-color-primary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-85%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-9"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-secondary",
+      "name": "--qifu-text-color-secondary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-65%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-8"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-tertiary",
+      "name": "--qifu-text-color-tertiary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-45%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-7"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-placeholder",
+      "name": "--qifu-text-color-placeholder",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-25%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-6"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-disabled",
+      "name": "--qifu-text-color-disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-25%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-6"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-inverse",
+      "name": "--qifu-text-color-inverse",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-white",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-white"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-link",
+      "name": "--qifu-text-color-link",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-100%"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-hover",
+      "name": "--qifu-text-color-hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-80%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-80%"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-active",
+      "name": "--qifu-text-color-active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-20%000"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-success",
+      "name": "--qifu-text-color-success",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-100%"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-warning",
+      "name": "--qifu-text-color-warning",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-100%"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "文本颜色/--qifu-text-color-error",
+      "name": "--qifu-text-color-error",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-100%"
+      },
+      "group": "文本颜色"
+    },
+    {
+      "figmaPath": "分割线/--qifu-divider-color-primary",
+      "name": "--qifu-divider-color-primary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "分割线"
+    },
+    {
+      "figmaPath": "分割线/--qifu-divider-color-secondary",
+      "name": "--qifu-divider-color-secondary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-4%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "分割线"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-primary",
+      "name": "--qifu-icon-color-primary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-icon-color-3",
+        "智能运营/Light": "mode/blue/--qifu-icon-color-3"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-secondary",
+      "name": "--qifu-icon-color-secondary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-icon-color-2",
+        "智能运营/Light": "mode/blue/--qifu-icon-color-2"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-disabled",
+      "name": "--qifu-icon-color-disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-25%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-6"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-inverse",
+      "name": "--qifu-icon-color-inverse",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-white",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-white"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-brand",
+      "name": "--qifu-icon-color-brand",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-100%"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-default",
+      "name": "--qifu-border-color-default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-focus",
+      "name": "--qifu-border-color-focus",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-100%"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-active",
+      "name": "--qifu-border-color-active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-20%000",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-20%000"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-hover",
+      "name": "--qifu-border-color-hover",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-60%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-60%"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-disabled",
+      "name": "--qifu-border-color-disabled",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-error",
+      "name": "--qifu-border-color-error",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-100%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-100%"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "边框/--qifu-border-color-outline",
+      "name": "--qifu-border-color-outline",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-10%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-10%"
+      },
+      "group": "边框"
+    },
+    {
+      "figmaPath": "滚动条/--qifu-scrollbar-color",
+      "name": "--qifu-scrollbar-color",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-8%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-4"
+      },
+      "group": "滚动条"
+    },
+    {
+      "figmaPath": "滚动条/--qifu-scrollbar-hover-color",
+      "name": "--qifu-scrollbar-hover-color",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-gray-color-15%",
+        "智能运营/Light": "mode/blue/--qifu-gray-color-5"
+      },
+      "group": "滚动条"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-text-default",
+      "name": "--qifu-menu-text-default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "文本颜色/--qifu-text-color-primary",
+        "智能运营/Light": "文本颜色/--qifu-text-color-primary"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-active-color",
+      "name": "--qifu-menu-active-color",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "文本颜色/--qifu-text-color-link",
+        "智能运营/Light": "文本颜色/--qifu-text-color-link"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-icon-default",
+      "name": "--qifu-menu-icon-default",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "图标颜色/--qifu-icon-color-primary",
+        "智能运营/Light": "图标颜色/--qifu-icon-color-primary"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-bg-surface",
+      "name": "--qifu-menu-bg-surface",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "背景色/--qifu-bg-color-surface",
+        "智能运营/Light": "背景色/--qifu-bg-color-surface"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-bg-selected",
+      "name": "--qifu-menu-bg-selected",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "#E8F8EF",
+        "智能运营/Light": "#EAF2FF"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "菜单/--qifu-menu-indicator-active",
+      "name": "--qifu-menu-indicator-active",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "基础颜色拓展/brand/default",
+        "智能运营/Light": "基础颜色拓展/brand/default"
+      },
+      "group": "菜单"
+    },
+    {
+      "figmaPath": "组件/--qifu-tag-bg-brand-light",
+      "name": "--qifu-tag-bg-brand-light",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-brand-color-10%",
+        "智能运营/Light": "mode/blue/--qifu-blue-color-10%"
+      },
+      "group": "组件"
+    },
+    {
+      "figmaPath": "组件/--qifu-tag-bg-success-light",
+      "name": "--qifu-tag-bg-success-light",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-success-color-10%",
+        "智能运营/Light": "mode/blue/--qifu-success-color-10%"
+      },
+      "group": "组件"
+    },
+    {
+      "figmaPath": "组件/--qifu-tag-bg-warning-light",
+      "name": "--qifu-tag-bg-warning-light",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-warning-color-10%",
+        "智能运营/Light": "mode/blue/--qifu-warning-color-10%"
+      },
+      "group": "组件"
+    },
+    {
+      "figmaPath": "组件/--qifu-tag-bg-danger-light",
+      "name": "--qifu-tag-bg-danger-light",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-error-color-10%",
+        "智能运营/Light": "mode/blue/--qifu-error-color-10%"
+      },
+      "group": "组件"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/x-1",
+      "name": "x-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/y-1",
+      "name": "y-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 1,
+        "智能运营/Light": 1
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/blur-1",
+      "name": "blur-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 10,
+        "智能运营/Light": 10
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/spread-1",
+      "name": "spread-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/color-1",
+      "name": "color-1",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        }
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/x-2",
+      "name": "x-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/y-2",
+      "name": "y-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 2,
+        "智能运营/Light": 2
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/blur-2",
+      "name": "blur-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 4,
+        "智能运营/Light": 4
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/spread-2",
+      "name": "spread-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": -1,
+        "智能运营/Light": -1
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/color-2",
+      "name": "color-2",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.08
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.08
+        }
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/x-3",
+      "name": "x-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/y-3",
+      "name": "y-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 8,
+        "智能运营/Light": 8
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/blur-3",
+      "name": "blur-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 16,
+        "智能运营/Light": 16
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/spread-3",
+      "name": "spread-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 2,
+        "智能运营/Light": 2
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-1/color-3",
+      "name": "color-3",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.04
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.04
+        }
+      },
+      "group": "基础投影/--qifu-shadow-1"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/x-1",
+      "name": "x-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/y-1",
+      "name": "y-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 3,
+        "智能运营/Light": 3
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/blur-1",
+      "name": "blur-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 14,
+        "智能运营/Light": 14
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/spread-1",
+      "name": "spread-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 2,
+        "智能运营/Light": 2
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/color-1",
+      "name": "color-1",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        }
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/x-2",
+      "name": "x-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/y-2",
+      "name": "y-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 5,
+        "智能运营/Light": 5
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/blur-2",
+      "name": "blur-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 10,
+        "智能运营/Light": 10
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/spread-2",
+      "name": "spread-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": -3,
+        "智能运营/Light": -3
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/color-2",
+      "name": "color-2",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.1
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.1
+        }
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/x-3",
+      "name": "x-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/y-3",
+      "name": "y-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 8,
+        "智能运营/Light": 8
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/blur-3",
+      "name": "blur-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 10,
+        "智能运营/Light": 10
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/spread-3",
+      "name": "spread-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 1,
+        "智能运营/Light": 1
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-2/color-3",
+      "name": "color-3",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.06
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.06
+        }
+      },
+      "group": "基础投影/--qifu-shadow-2"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/x-1",
+      "name": "x-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/y-1",
+      "name": "y-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 6,
+        "智能运营/Light": 6
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/blur-1",
+      "name": "blur-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 30,
+        "智能运营/Light": 30
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/spread-1",
+      "name": "spread-1",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 5,
+        "智能运营/Light": 5
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/color-1",
+      "name": "color-1",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.05
+        }
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/x-2",
+      "name": "x-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/y-2",
+      "name": "y-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 8,
+        "智能运营/Light": 8
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/blur-2",
+      "name": "blur-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 10,
+        "智能运营/Light": 10
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/spread-2",
+      "name": "spread-2",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": -5,
+        "智能运营/Light": -5
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/color-2",
+      "name": "color-2",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.08
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.08
+        }
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/x-3",
+      "name": "x-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 0,
+        "智能运营/Light": 0
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/y-3",
+      "name": "y-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 16,
+        "智能运营/Light": 16
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/blur-3",
+      "name": "blur-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 24,
+        "智能运营/Light": 24
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/spread-3",
+      "name": "spread-3",
+      "type": "FLOAT",
+      "values": {
+        "毓数/Light": 2,
+        "智能运营/Light": 2
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    },
+    {
+      "figmaPath": "基础投影/--qifu-shadow-3/color-3",
+      "name": "color-3",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": {
+          "hex": "#000000",
+          "opacity": 0.04
+        },
+        "智能运营/Light": {
+          "hex": "#000000",
+          "opacity": 0.04
+        }
+      },
+      "group": "基础投影/--qifu-shadow-3"
+    }
+  ]
+}

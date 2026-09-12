@@ -1,0 +1,71 @@
+{
+  "source": {
+    "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
+    "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
+    "capturedAt": "2026-08-20",
+    "collection": "圆角",
+    "collectionKey": "radius",
+    "modes": [
+      "Value"
+    ],
+    "variableCount": 7
+  },
+  "variables": [
+    {
+      "figmaPath": "--qifu-radius-2",
+      "name": "--qifu-radius-2",
+      "type": "FLOAT",
+      "values": {
+        "Value": 2
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-4",
+      "name": "--qifu-radius-4",
+      "type": "FLOAT",
+      "values": {
+        "Value": 4
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-8",
+      "name": "--qifu-radius-8",
+      "type": "FLOAT",
+      "values": {
+        "Value": 8
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-12",
+      "name": "--qifu-radius-12",
+      "type": "FLOAT",
+      "values": {
+        "Value": 12
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-16",
+      "name": "--qifu-radius-16",
+      "type": "FLOAT",
+      "values": {
+        "Value": 16
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-20",
+      "name": "--qifu-radius-20",
+      "type": "FLOAT",
+      "values": {
+        "Value": 20
+      }
+    },
+    {
+      "figmaPath": "--qifu-radius-round",
+      "name": "--qifu-radius-round",
+      "type": "FLOAT",
+      "values": {
+        "Value": 999
+      }
+    }
+  ]
+}
