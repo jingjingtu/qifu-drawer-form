@@ -2,14 +2,14 @@
   "source": {
     "figmaFileKey": "gTV3VdC6a5e9vpkRHIZSXA",
     "figmaUrl": "https://www.figma.com/design/gTV3VdC6a5e9vpkRHIZSXA/%E5%A5%87%E5%AF%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%90%8E%E5%8F%B0%E7%BB%84%E4%BB%B6%E5%BA%93-%E6%96%B0?node-id=2874-9924&view=variables",
-    "capturedAt": "2026-08-20",
+    "capturedAt": "2026-09-13",
     "collection": "基础",
     "collectionKey": "basic",
     "modes": [
       "毓数/Light",
       "智能运营/Light"
     ],
-    "variableCount": 107
+    "variableCount": 108
   },
   "variables": [
     {
@@ -409,6 +409,16 @@
       "values": {
         "毓数/Light": "mode/green/--qifu-icon-color-2",
         "智能运营/Light": "mode/blue/--qifu-icon-color-2"
+      },
+      "group": "图标颜色"
+    },
+    {
+      "figmaPath": "图标颜色/--qifu-icon-color-tertiary",
+      "name": "--qifu-icon-color-tertiary",
+      "type": "COLOR",
+      "values": {
+        "毓数/Light": "mode/green/--qifu-icon-color-1",
+        "智能运营/Light": "mode/blue/--qifu-icon-color-1"
       },
       "group": "图标颜色"
     },

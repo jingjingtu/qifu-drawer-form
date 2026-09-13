@@ -172,6 +172,17 @@ background.source：TEMPLATE
 | 长文本 | `策略说明 Textarea 选填，rows=4` | `Textarea` |
 | 选择后展示明细 | `主模板 Select 必填；选择后在下方展示模板明细表` | `Select / Base` + 真实表格组合 |
 
+## Select / Cascader 后缀自动验收
+
+调用者不需要在提示词里重复指定箭头样式。Skill 在生成和最终验收时会自动检查 Scene 内全部 Select 与 Cascader：
+
+- 使用真实 `Icon/basic/Down-small`，尺寸 16×16、rotation=0；
+- `SM / MD / LG` 的右边距分别为 8 / 10 / 12px；
+- Vector Fill 绑定 `图标颜色/--qifu-icon-color-tertiary`，当前解析色为 `#BABAC2`；
+- 同规格、同状态的 Select 与 Cascader 后缀保持一致。
+
+即使视觉色值相同，硬编码 `#BABAC2` 也不会通过结构验收。若组件母版不符合契约，Skill 返回 `COMPONENT_SOURCE_GAP: selector suffix contract`，不会在页面实例层手工补图标或改色。
+
 ## 智能运营案例固定规则
 
 - 标题使用 `标题/Large` `18/26`；关闭图标绑定 `qifu-icon-color-secondary`。

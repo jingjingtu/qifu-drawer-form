@@ -136,3 +136,14 @@ FormItem / overFrequencyRule
 **铁律**:同一抽屉内不允许混用 28px 和 32px 两种高度;在 840px `Wide` 或 960px `Extra Wide` 抽屉中也不调到 36px——保持 32px 统一。
 
 明确要求"紧凑模式"时,改用 28px 全联动:`Input size=S`、`Select size=MD`、`Button size=small`。
+
+## Select / Cascader 后缀契约
+
+抽屉内的 Select 与 Cascader 必须保留母版内部 `Suffix Icon`，不得在实例外补画箭头。创建或调整宽度后回读：
+
+- 图标主组件为 `Icon/basic/Down-small`，尺寸 16×16，rotation=0；
+- `SM / MD / LG` 右边距分别为 8 / 10 / 12px；普通 32px 抽屉控件使用 LG，因此右边距为 12px；
+- Vector Fill 绑定 `图标颜色/--qifu-icon-color-tertiary`，不接受原始 `#BABAC2`、`icon-secondary` 或 disabled 色的实例级覆盖；
+- Select 与 Cascader 同规格、同状态的后缀必须在组件来源、尺寸、旋转、右边距和变量名上完全一致。
+
+任一回读不一致时返回 `COMPONENT_SOURCE_GAP: selector suffix contract`，停止该控件交付，不通过手工覆盖规避母版问题。

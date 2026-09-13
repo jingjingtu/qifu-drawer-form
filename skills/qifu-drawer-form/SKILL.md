@@ -161,6 +161,7 @@ Scene / Drawer / <pageName> / <drawerTitle>
 - 页面级 Text 100% 使用解析成功的组件库 Text Style；
 - 无未声明的截断、重叠、溢出和异常空白；
 - Golden Sample 专项检查全部通过；
+- Scene 内所有 Select / Cascader 后缀均通过统一契约：`Down-small`、16px、0°、规格对应右边距，以及 `图标颜色/--qifu-icon-color-tertiary` 变量绑定；
 - 缺口、Fallback 和假设均可追踪。
 - 多平台模式额外确认所有目标内容指纹一致，并返回每个平台的识别证据、壳状态与 `crossPlatformConsistency`。
 

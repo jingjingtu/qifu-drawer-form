@@ -150,6 +150,10 @@ def main() -> int:
             SKILLS / "qifu-drawer-form" / "scripts" / "validate_multi_platform_contract.py",
             "multi-platform contract validation failed",
         ),
+        (
+            SKILLS / "qifu-drawer-form" / "scripts" / "validate_selector_suffix_contract.py",
+            "selector suffix contract validation failed",
+        ),
     )
     for validator, failure_message in package_validators:
         if not validator.is_file():

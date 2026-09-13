@@ -2,6 +2,12 @@
 
 按时间倒序记录。普通抽屉生成不读取；仅在诊断历史回归或维护 Skill 时使用。仓库内回填方式见 `_docs/limit-backfill.md`。
 
+## 2026-09-13 · Select / Cascader 后缀统一
+
+- Select 与 Cascader 的 60 个母版变体已统一使用 `Icon/basic/Down-small`、16px、0°与语义变量 `图标颜色/--qifu-icon-color-tertiary`。
+- `SM / MD / LG` 的后缀右边距固定为 8 / 10 / 12px；页面生成后必须全量回读，不再依赖截图抽查。
+- `#BABAC2` 仅作为解析值核对，硬编码相同色值仍判失败；页面 Skill 不在实例层修复母版偏差。
+
 ## 2026-09-12 · 多平台批量对比
 
 - 新增 `MULTI_PLATFORM_COMPARE`：公共 `baseDrawer` 只解析一次，以内容指纹约束各平台字段、控件、顺序、宽度和 Footer 一致。

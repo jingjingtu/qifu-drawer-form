@@ -1,6 +1,6 @@
 # 奇富 Figma Variables 清单
 
-> 数据源：Figma「奇富科技中后台组件库-新」Variables（采集日期：2026-08-20）。本文件保留 **Figma 原始路径/名称、模式与真实值或 Alias**；没有把导出名写成设计资产名称。
+> 数据源：Figma「奇富科技中后台组件库-新」Variables（采集日期：2026-09-13）。本文件保留 **Figma 原始路径/名称、模式与真实值或 Alias**；没有把导出名写成设计资产名称。
 
 | Collection | Figma 原始路径 | Type | 毓数/Light / Value | 智能运营/Light |
 |---|---|---|---|---|
@@ -44,6 +44,7 @@
 | 基础 | `分割线/--qifu-divider-color-secondary` | COLOR | `mode/green/--qifu-gray-color-4%` | `mode/blue/--qifu-gray-color-4` |
 | 基础 | `图标颜色/--qifu-icon-color-primary` | COLOR | `mode/green/--qifu-icon-color-3` | `mode/blue/--qifu-icon-color-3` |
 | 基础 | `图标颜色/--qifu-icon-color-secondary` | COLOR | `mode/green/--qifu-icon-color-2` | `mode/blue/--qifu-icon-color-2` |
+| 基础 | `图标颜色/--qifu-icon-color-tertiary` | COLOR | `mode/green/--qifu-icon-color-1` | `mode/blue/--qifu-icon-color-1` |
 | 基础 | `图标颜色/--qifu-icon-color-disabled` | COLOR | `mode/green/--qifu-gray-color-25%` | `mode/blue/--qifu-gray-color-6` |
 | 基础 | `图标颜色/--qifu-icon-color-inverse` | COLOR | `mode/green/--qifu-gray-color-white` | `mode/blue/--qifu-gray-color-white` |
 | 基础 | `图标颜色/--qifu-icon-color-brand` | COLOR | `mode/green/--qifu-brand-color-100%` | `mode/blue/--qifu-blue-color-100%` |
