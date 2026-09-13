@@ -15,7 +15,7 @@
 
 - 组件库文件：`奇富科技中后台组件库 新`
 - 文件 Key：`gTV3VdC6a5e9vpkRHIZSXA`
-- 本映射盘点日期：2026-08-18
+- 本映射盘点日期：2026-09-13
 
 节点 ID 用于同文件创建实例；发布 Key 用于其他文件导入。若节点已重建，按精确组件集名称重新发现，并更新本映射。
 
@@ -49,12 +49,12 @@
 | --- | --- | --- | --- | --- |
 | Checkbox | `录入组件 / Checkbox / Base` | `2939:1619` | `c333aa369828e3ac2b048d86c7f0de4f49f84f55` | `label`、`showLabel`、`size`、`selected`、`state` |
 | CheckboxGroup | `录入组件 / CheckboxGroup / Base` | `2939:3229` | `423d78d13afdd2570f3fdd9e4b9a78632e60326f` | `size`、`direction`、`count`、`selection`、`state` |
-| Select | `录入组件 / Select / Base` | `2859:2820` | `1684c11d727996e0a41ebee921cf15444e395d8d` | `value`、`mode`、`size=SM/MD/LG`、`state`、prefix/clear/search/suffix/tag 布尔属性；Suffix 使用 `Icon/basic/Down-small`、16px、0°，填充绑定 `图标颜色/--qifu-icon-color-tertiary` |
+| Select | `录入组件 / Select / Base` | `2859:2820` | `1684c11d727996e0a41ebee921cf15444e395d8d` | `value`、`mode`、`size=SM/MD/LG`、`state`、`prefixIcon`、`clearable`、`searchable`、`suffixIcon`、`tagInput`；多选 Tag 的文字与关闭能力通过暴露的真实 `Data Display / Tag / Tag` 子实例配置。Suffix 使用 `Icon/basic/Down-small`、16px、0°，填充绑定 `图标颜色/--qifu-icon-color-tertiary` |
 | SelectOption | `录入组件 / SelectOption / Base` | `2956:3075` | `b21f458276a4d340edf099edcd70979ea63fcb91` | `label`、`secondary`、`mode`、`size`、`state` |
 | SelectMenu | `录入组件 / SelectMenu / Base` | `2956:4351` | `bbe51d5f5b4c50cb008555542075bc06b03b66cb` | `mode`、`size`、`count=3/5/8` |
 | Input | `录入组件 / Input / Base-V2` | `3406:853` | `f6965b0cf3ba42edbcf5117df75815cb1c2f83cc` | `value 文本`、prefix/suffix/clear/count 布尔属性、`size=S/M`、`content=Placeholder/Value`、`state=Default/Hover/Focus/Disabled/Error` |
 | Search | `录入组件 / Search / Base` | `2981:26533` | `01521850eb1471295750388e5f4fd4489f420a1b` | `trigger=Icon/Button`、`size=S/M/L`、`state`、`filled`、`placeholder 文案`、`value 文案` |
-| Cascader | `录入组件 / Cascader / Base` | `2956:6810` | `2f2cc0098d70676c0c578ee2cea223b4fb590890` | `path`、`mode`、`size`、`state`、prefix/clear/search/suffix/tag 布尔属性；Suffix 与 Select 共用 `Icon/basic/Down-small`、16px、0°和 `图标颜色/--qifu-icon-color-tertiary` |
+| Cascader | `录入组件 / Cascader / Base` | `2956:6810` | `2f2cc0098d70676c0c578ee2cea223b4fb590890` | `path`、`secondaryPath`、`mode`、`size`、`state`、`prefixIcon`、`clearable`、`searchable`、`suffixIcon`、`tagInput`、`tagClosable`；Suffix 与 Select 共用 `Icon/basic/Down-small`、16px、0°和 `图标颜色/--qifu-icon-color-tertiary` |
 | DatePicker | `录入组件 / DatePicker / Input / Date` | `2967:29996` | `bc43d0df1a94ac7bbd4ac1e09e0539a5e4ff7b11` | `placeholder`、`value`、`clear`、`size`、`state`、`filled` |
 | DateRange | `录入组件 / DatePicker / Input / DateRange` | `2967:30327` | `b11b9b940a5a173c6e97e37be9be4a028f9bd633` | `placeholder`、`value`、`clear`、`size`、`state`、`filled` |
 | Button | `Base / Button / Button` | `2381:2318` | `392ccbc18826879de80cd0b10e5c995db5184d69` | `text`、`icon`、`variant=base/outline/dash/text/link`、`size`、`icon type`、`state` |
@@ -85,6 +85,8 @@ Input V2 的 `M 默认尺寸` 已是原生 32px：16px 图标垂直居中于 y=8
 ### Select / Cascader 后缀一致性
 
 Select 与 Cascader 的下拉后缀属于同一交互语义，必须使用同一真实图标与语义变量。`SM / MD / LG` 的 Suffix 均为 `Icon/basic/Down-small`、16×16、rotation=0；右边距依次为 8 / 10 / 12px。颜色绑定 `图标颜色/--qifu-icon-color-tertiary`，当前三个 Figma 模式均解析为 `#BABAC2`。页面 Skill 只回读并验证这些母版契约；发现偏差时返回 `COMPONENT_SOURCE_GAP`，不得在页面实例外叠加箭头、手工改色或 detach。
+
+Select 的 `prefixIcon / clearable / searchable / suffixIcon` 必须映射到各变体的直接子节点；`tagInput` 控制标签输入区。Select 不提供重复的外层 `tagClosable` 或 `secondaryValue` 属性：多选标签直接配置已暴露的真实 Tag 子实例。Cascader 的同名可见性属性映射到直接子节点，`tagClosable` 映射到两个直接 `Tag Close` 节点。以上属性已随 2026-09-13 组件库版本发布，生成后仍须按共享调用基线动态解析完整运行时 Key 并回读。
 
 ## 5. 表格、状态与分页
 

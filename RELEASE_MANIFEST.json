@@ -32,10 +32,10 @@
     "skills/qifu-drawer-form/tests/test_platform_resolution.py": "ac5130d8e4795d80ebe6810448624d59e37ffc8336024483142684d9418b2d58",
     "skills/qifu-shared/README.md": "e9308cea575ffc17b39c15b3639775265c743f89454edaa242d7c8e1045a99a5",
     "skills/qifu-shared/SKILL.md": "1d7c96c29c3ba24e1ce9a7b4aa80d59f3f3ed86e0b038be2fc6aecc6d50d678e",
-    "skills/qifu-shared/VERSION": "64d23f858ef51b0f996e4966d4e27c0371b437e2d2787890b1f7ad22d4ec5663",
+    "skills/qifu-shared/VERSION": "10e2e117b01523891ca271a615ae36e9d5e52348fd7d642f66727602c1b8dcbe",
     "skills/qifu-shared/agents/openai.yaml": "5e28ec672f18e3980bfedfe734286398f3d5cfe1ec23a22cab58699929252505",
     "skills/qifu-shared/references/component-invocation-baseline.md": "fbd4f6b33cc6102510faa02c184b1f80b41fcc77add572d16d2ac874fce85f84",
-    "skills/qifu-shared/references/component-map.md": "f8ce3b77d323cca427df9a5279bf5c14d2b585e39d272f0c5d19c0df9f8aee96",
+    "skills/qifu-shared/references/component-map.md": "3bf0c6f2b8e871032d2021ab64ed3cd15101540bce9afb939e6b624f89bfa023",
     "skills/qifu-shared/references/page-context.md": "dc66e84ae5936e7f58af04ad7cf3410952bdbe3c036679223efd2b5094e71f91",
     "skills/qifu-shared/references/platform-generic.md": "d2ccb367a8c08fb693d1864568c92a4bc352fdda26579337bd0aae06da10cc45",
     "skills/qifu-shared/references/platform-registry.json": "213880a2f828c87f79dfa1d04717b28279f9caffa2c40ca3685a1e2098f711e4",
@@ -59,9 +59,9 @@
   },
   "packages": {
     "qifu-drawer-form": "1.6.0",
-    "qifu-shared": "1.3.0"
+    "qifu-shared": "1.3.1"
   },
   "schemaVersion": 1,
-  "sourceCommit": "2b01e36a423269292bfa5d19613fbcdc6831ea7c",
+  "sourceCommit": "48b0ae3818fcf9fa1386c643a9d6c823562a2137",
   "sourceRepository": "jingjingtu/qifu-skills"
 }
